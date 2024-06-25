@@ -1,15 +1,19 @@
 package com.kwan.app.departments;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class departmentService {
+public class DepartmentService {
 
 	@Autowired
-	private departmentDAO departmentDAO;
+	private DepartmentDAO departmentDAO;
 
-	public void getList() throws Exception {
-		departmentDAO.getList();
+	public List<DepartmentDTO> getList() throws Exception {
+		List<DepartmentDTO> ar = departmentDAO.getList();
+
+		return ar;
 	}
 }
