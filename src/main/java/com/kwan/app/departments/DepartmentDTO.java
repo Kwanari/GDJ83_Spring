@@ -6,6 +6,7 @@ public class DepartmentDTO {
 	private Integer department_id;
 	private String department_name;
 	private Long manager_id;
+	private Integer location_id;
 
 	public Integer getDepartment_id() {
 		return department_id;
@@ -39,5 +40,4 @@ public class DepartmentDTO {
 		this.location_id = location_id;
 	}
 
-	private Integer location_id;
 }
