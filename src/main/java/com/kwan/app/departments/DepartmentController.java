@@ -36,4 +36,36 @@ public class DepartmentController {
 		model.addAttribute("list", ar);
 	}
 
+	@RequestMapping("detail")
+	// 스프링에서 파라미터 이름에 따른 데이터값을 바로 전달
+	// @RequestParam(name = "num", defaultValue = "10") int department_id
+	public String getDetail(Model model, int department_id) throws Exception {
+		// dispatcher servlet Model 매개변수
+		System.out.println("detail");
+
+		String path = "commons/massage";
+
+		DepartmentDTO departmentDTO = departmentService.getDetail(department_id);
+
+		if (departmentDTO != null) {
+			model.addAttribute("dto", departmentDTO);
+			path = "department/detail";
+		} else {
+			model.addAttribute("result", "부서 찾을 수 없음");
+			model.addAttribute("url", "./list");
+		}
+
+		return path;
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public void Add() {
+
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public void Add2(String ) {
+		
+	}
+
 }

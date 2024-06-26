@@ -57,4 +57,57 @@ public class DepartmentDAO {
 
 	}
 
+	public DepartmentDTO getDetail(int num) throws Exception {
+
+		Connection con = dbConnection.getConnection();
+
+		String sql = "SELECT * FROM DEPARTMENTS WHERE DEPARTMENT_ID = ?";
+
+		// 미완성된 query문을 미리 전송
+		PreparedStatement st = con.prepareStatement(sql);
+
+		// ? 세팅, 파라미터 인데스 번호 맞춰서 입력
+		st.setInt(1, num);
+
+		System.out.println(st);
+		// 최종 전송
+		ResultSet rs = st.executeQuery();
+
+		DepartmentDTO departmentDTO = null;
+
+		if (rs.next()) {
+			departmentDTO = new DepartmentDTO();
+			departmentDTO.setDepartment_id(rs.getInt(1));
+			departmentDTO.setDepartment_name(rs.getString(2));
+			departmentDTO.setManager_id(rs.getLong(3));
+			departmentDTO.setLocation_id(rs.getInt(4));
+		}
+
+		rs.close();
+		st.close();
+		con.close();
+
+		return departmentDTO;
+	}
+
+	public int add(DepartmentDTO dto) throws Exception {
+		Connection con = dbConnection.getConnection();
+
+		String sql = "INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) "
+				+ " VALUES (DEPARTMENT_SEQ.NEXTVAL,?,?,?)";
+
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setString(1, dto.getDepartment_name());
+		st.setLong(2, dto.getManager_id());
+		st.setInt(3, dto.getLocation_id());
+
+		int result = st.executeUpdate(); // 성공한 후 숫자 리턴
+
+		st.close();
+		con.close();
+
+		return result;
+	}
+
 }

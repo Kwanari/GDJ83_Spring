@@ -7,8 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Home</h1>
-	<a href="/department/list">부서목록</a>
-	<a href="/location/list">지역목록</a>
+
+	
+
+	<script type="text/javascript">
+	
+	alert("${result}");
+	location.href='${url}';
+	
+	</script>
 </body>
 </html>

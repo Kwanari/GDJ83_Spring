@@ -12,8 +12,13 @@ public class DepartmentService {
 	private DepartmentDAO departmentDAO;
 
 	public List<DepartmentDTO> getList() throws Exception {
-		List<DepartmentDTO> ar = departmentDAO.getList();
 
-		return ar;
+		return departmentDAO.getList();
+	}
+
+	public DepartmentDTO getDetail(int num) throws Exception {
+
+		return departmentDAO.getDetail(num);
+
 	}
 }

@@ -7,8 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Home</h1>
-	<a href="/department/list">부서목록</a>
-	<a href="/location/list">지역목록</a>
+	<h1>Detail Page</h1>
+	
+	<h3>${dto.department_id}</h3>
+	<h3>${dto.department_name}</h3>
+	<h3>${dto.manager_id}</h3>
+	<h3>${dto.location_id}</h3>
+	
 </body>
 </html>
