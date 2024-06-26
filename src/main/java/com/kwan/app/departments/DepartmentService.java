@@ -21,4 +21,16 @@ public class DepartmentService {
 		return departmentDAO.getDetail(num);
 
 	}
+
+	public int add(DepartmentDTO dto) throws Exception {
+		return departmentDAO.add(dto);
+	}
+
+	public int delete(DepartmentDTO departmentDTO) throws Exception {
+		return departmentDAO.delete(departmentDTO);
+	}
+
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		return departmentDAO.update(departmentDTO);
+	}
 }

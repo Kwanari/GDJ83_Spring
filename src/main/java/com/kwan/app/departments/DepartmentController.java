@@ -64,8 +64,64 @@ public class DepartmentController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public void Add2(String ) {
-		
+	public String Add(Model model, DepartmentDTO dto) throws Exception { // 스프링에서 DTO 매개변수 > SETTER 의 이름과 동일하면 가능
+		int result = departmentService.add(dto);
+
+		String url = "";
+
+		if (result > 0) {
+			url = "redirect: list";
+		} else {
+			url = "commons/massage";
+			model.addAttribute("result", "부서 등록 실패");
+			model.addAttribute("url", "./list");
+		}
+
+		return url;
+	}
+
+	@RequestMapping("delete")
+	public String delete(DepartmentDTO departmentDTO, Model model) throws Exception {
+		System.out.println("delete");
+
+		int result = departmentService.delete(departmentDTO);
+
+		String path = "commons/massage";
+
+		if (result > 0) {
+			path = "redirect: list";
+		} else {
+			model.addAttribute("result", "삭제 실패");
+			model.addAttribute("url", "list");
+		}
+
+		return path;
+	}
+
+	@RequestMapping("update")
+	public String update(int department_id, Model model) throws Exception {
+		System.out.println("update");
+
+		DepartmentDTO dto = departmentService.getDetail(department_id);
+
+		String path = "commons/massage";
+
+		if (dto != null) {
+			model.addAttribute("dto", dto);
+			path = "redirect:update";
+		} else {
+			model.addAttribute("result", "부서 없음");
+			model.addAttribute("url", "list");
+		}
+
+		return path;
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(DepartmentDTO dto) throws Exception {
+		int result = departmentService.update(dto);
+
+		return "redirect: list";
 	}
 
 }

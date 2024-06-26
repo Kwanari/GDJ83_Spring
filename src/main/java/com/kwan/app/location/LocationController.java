@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RequestMapping("/location/")
 @Controller
@@ -30,6 +31,27 @@ public class LocationController {
 
 		model.addAttribute("dto", locationDTO);
 
+	}
+
+	@RequestMapping("add")
+	public void add() {
+
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add(LocationDTO locationDTO, Model model) throws Exception {
+		int result = locationService.add(locationDTO);
+
+		String path = "";
+
+		if (result > 0) {
+			path = "redirect: list";
+		} else {
+			path = "commons/massage";
+			model.addAttribute("result", "지역 등록 실패");
+			model.addAttribute("url", "list");
+		}
+		return path;
 	}
 
 }
