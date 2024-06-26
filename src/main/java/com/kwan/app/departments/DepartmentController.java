@@ -108,7 +108,7 @@ public class DepartmentController {
 
 		if (dto != null) {
 			model.addAttribute("dto", dto);
-			path = "redirect:update";
+			path = "department/update";
 		} else {
 			model.addAttribute("result", "부서 없음");
 			model.addAttribute("url", "list");
