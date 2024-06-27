@@ -10,6 +10,21 @@
 </head>
 <body>
 	<h1>department list</h1>
+	
+	<div class="row">
+		<c:forEach items="${info}" var="list">
+		
+		<h3>${list.id}</h3>
+		<h3>${list.sum}</h3>
+		<h3>${list.avg}</h3>
+		
+		</c:forEach>
+	
+	
+	</div>
+	
+	
+	
 	<div class = "row col-md-5">
 		<table class="table table-hover">
 			<thead>

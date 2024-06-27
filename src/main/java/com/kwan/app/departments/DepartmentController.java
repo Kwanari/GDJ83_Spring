@@ -1,6 +1,7 @@
 package com.kwan.app.departments;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class DepartmentController {
 		// ModelAndView - Spring이 생성 request와 cycle 같음
 
 		List<DepartmentDTO> ar = departmentService.getList();
+		List<Map<String, Object>> list = departmentService.getInfo();
 
 		// 모델 사용하는 방식 2가지
 		// 1. 객체만들기
@@ -34,6 +36,7 @@ public class DepartmentController {
 
 		// 2. 매개변수로 받아서 리턴, request.addAttribute와 같다. key=value
 		model.addAttribute("list", ar);
+		model.addAttribute("info", list);
 	}
 
 	@RequestMapping("detail")
@@ -123,5 +126,4 @@ public class DepartmentController {
 
 		return "redirect: list";
 	}
-
 }
