@@ -1,5 +1,7 @@
 package com.kwan.app.product;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +11,15 @@ public class ProductService {
 	@Autowired
 	ProductDAO productDAO;
 
-	public void getList() throws Exception {
+	public List<ProductDTO> getList() throws Exception {
 
-		productDAO.getList();
+		return productDAO.getList();
+
+	}
+
+	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
+
+		return productDAO.getDetail(productDTO);
 
 	}
 }

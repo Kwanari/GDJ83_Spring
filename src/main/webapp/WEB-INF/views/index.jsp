@@ -21,10 +21,9 @@
 	<!-- 회원가입, 로그인, 마이페이지, 수정, 탈퇴 -->
 	<!-- 계좌생성, 조회, 이제 -->
 	
-<div class="container-fluid mt-5"> <!-- container 클래스: 양쪽에 약간의 여백제외하고 공간 차지 -->
+<div class="container mt-5"> <!-- container 클래스: 양쪽에 약간의 여백제외하고 공간 차지 -->
 <div class="row justify-content-center">
-	<div class="row">
-		<div id="carouselExampleAutoplaying" class="carousel slide col-md-6" data-bs-ride="carousel">
+		<div id="carouselExampleAutoplaying" class="carousel slide col-md-8" data-bs-ride="carousel">
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
 		      <img src="/resources/images/index/1.jpg" class="d-block w-100" alt="...">
@@ -44,7 +43,6 @@
 		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 		    <span class="visually-hidden">Next</span>
 		  </button>
-		</div>
 	</div>
 </div>
 </div>
