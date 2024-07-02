@@ -80,4 +80,23 @@ public class ProductDAO {
 
 	}
 
+	public int add(ProductDTO productDTO) throws Exception {
+		Connection con = dbConnection.getConnetction();
+
+		String sql = "INSERT INTO ITEMS " + "VALUES (ITEMS_SEQ.NEXTVAL,?,?,?)";
+
+		PreparedStatement st = con.prepareStatement(sql);
+
+		st.setString(1, productDTO.getItem_name());
+		st.setString(2, productDTO.getItem_detail());
+		st.setDouble(3, productDTO.getItem_rate());
+
+		int result = st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return result;
+	}
+
 }

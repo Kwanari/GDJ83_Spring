@@ -37,8 +37,13 @@
 			</table>
 		</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			<a class="btn btn-primary" href="add" role="button">상품추가</a>
+		</div>
+		<br>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			<a class="btn btn-primary" href="/" role="button">HOME</a>
 		</div>
+		
 	</div>
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
