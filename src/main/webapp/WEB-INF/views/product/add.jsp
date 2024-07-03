@@ -17,7 +17,7 @@
 		<label>상품명</label>
 		<input type="text" name="item_name">
 		<label>상품설명</label>
-		<input type="text" name="item_datail">
+		<input type="text" name="item_detail">
 		<label>이자율</label>
 		<input type="text" name="item_rate">
 		

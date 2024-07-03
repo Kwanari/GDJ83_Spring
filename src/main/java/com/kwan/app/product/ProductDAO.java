@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kwan.app.DBConnection;
+import com.kwan.app.util.DBConnection;
 
 @Repository
 public class ProductDAO {
@@ -19,9 +19,9 @@ public class ProductDAO {
 
 	public List<ProductDTO> getList() throws Exception {
 
-		Connection con = dbConnection.getConnetction();
+		Connection con = dbConnection.getConnection();
 
-		String sql = "SELECT * FROM ITEMS";
+		String sql = "SELECT * FROM ITEMS ORDER BY ITEM_ID ASC";
 
 		PreparedStatement st = con.prepareStatement(sql);
 
@@ -49,7 +49,7 @@ public class ProductDAO {
 
 	public ProductDTO getDetail(ProductDTO productDTO) throws Exception {
 
-		Connection con = dbConnection.getConnetction();
+		Connection con = dbConnection.getConnection();
 
 		String sql = "SELECT * FROM ITEMS WHERE ITEM_ID=?";
 
@@ -81,7 +81,7 @@ public class ProductDAO {
 	}
 
 	public int add(ProductDTO productDTO) throws Exception {
-		Connection con = dbConnection.getConnetction();
+		Connection con = dbConnection.getConnection();
 
 		String sql = "INSERT INTO ITEMS " + "VALUES (ITEMS_SEQ.NEXTVAL,?,?,?)";
 
