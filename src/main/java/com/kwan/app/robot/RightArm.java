@@ -1,8 +1,6 @@
 package com.kwan.app.robot;
 
-import org.springframework.stereotype.Component;
-
-@Component("rA") // bean객체 이름 변경
+//@Component("rA") // bean객체 이름 변경
 public class RightArm implements Arm {
 
 	public void info() {

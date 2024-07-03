@@ -1,35 +1,51 @@
 package com.kwan.app.robot;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
-@Component
+//@Component
 public class Robot {
 
-	@Autowired
-	@Qualifier("rA")
+	private int age;
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	private String company;
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	// @Autowired
+//	@Qualifier("rA")
 	private Arm rightArm;
 	// Arm이란 타입이 두개, 변수명으로 찾음
 
-	@Autowired
-	@Qualifier("lA")
+//	@Autowired
+//	@Qualifier("lA")
 	private Arm leftArm;
 
-	public Arm getrA() {
-		return rA;
+	public Arm getRightArm() {
+		return rightArm;
 	}
 
-	public void setrA(Arm rA) {
-		this.rA = rA;
+	public void setRightArm(Arm rightArm) {
+		this.rightArm = rightArm;
 	}
 
-	public Arm getlA() {
-		return lA;
+	public Arm getLeftArm() {
+		return leftArm;
 	}
 
-	public void setlA(Arm lA) {
-		this.lA = lA;
+	public void setLeftArm(Arm leftArm) {
+		this.leftArm = leftArm;
 	}
 
 }

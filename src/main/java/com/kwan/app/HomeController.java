@@ -32,9 +32,8 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		robot.getrA().info();
-
-		robot.getlA().info();
+		robot.getLeftArm().info();
+		robot.getRightArm().info();
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);

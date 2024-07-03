@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 객체 생성 -->
+	<!-- FQDN -->
+	<!-- 기본생성자 호출 -->
+	<!-- id = 참조변수 역할 -->
+	<bean class="com.kwan.app.robot.LeftArm" id="leftArm"></bean>
+	
+	<bean class="com.kwan.app.robot.RightArm" id="rightArm"></bean>
+	
+	<bean class="com.kwan.app.robot.Robot" id="robot">
+		<!-- name = setter 이름 -->
+		<!-- 초기값 설정 -->
+		<!-- value = primitive type and String, ref = reference type -->
+		<property name="leftArm" ref="leftArm"></property>
+		<property name="rightArm" ref="rightArm"></property>
+		<property name="company" value="DOOSAN"></property>
+		<property name="age" value ="20"></property>
+	</bean>
+	
+	<bean class="com.kwan.app.robot.Wheel" id="wheel">
+		<!-- 인덱스로 매개변수 구분 -->
+<!-- 	<constructor-arg index="0" value="10"></constructor-arg>
+		<constructor-arg index="1" value="LG"></constructor-arg>
+		<constructor-arg index="2" value="4"></constructor-arg> -->
+		
+		<!-- 타입으로 매개변수 구분, 각 다른 타입이 선언되어있어야함 -->
+		<!-- <constructor-arg type="int" value="10"></constructor-arg> -->
+		
+		<!-- 생성자의 매개변수 이름으로 구분 -->
+		<constructor-arg name="size" value="10"></constructor-arg>
+		<constructor-arg name="brand" value="KIA"></constructor-arg>
+		<constructor-arg name="count" value="4"></constructor-arg>
+		
+	</bean>
+	
+</beans>
