@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace의 이름은 다른 mapper의 namespace와 중복안됨  -->
+  <mapper namespace="com.kwan.app.product.ProductDAO">
+
+  	<!-- 쿼리태그 -->
+  	<!-- mapper안에서의 id 중복안됨, 다른 mapper안의 id는 상관없음 -->
+  	<!-- 메서드명 선호 -->
+  	<!-- parameterType: 매개변수의 타입, 풀패키지 -->
+  	<!-- resultType: 결과값 타입, 풀패키지 -->
+  	<select id="getDetail" resultType="com.kwan.app.product.ProductDTO" parameterType="com.kwan.app.product.ProductDTO">
+  		<!-- 쿼리작성 -->
+  		<!-- ? = #{getter의 이름} -->
+  		SELECT * FROM ITEMS WHERE ITEM_ID = #{item_id}
+  	
+  	</select>
+  	
+  	<!-- ; 생략 -->
+  	<select id="getList" resultType="com.kwan.app.product.ProductDTO">
+  		SELECT * FROM ITEMS ORDER BY ITEM_ID ASC
+  	</select>
+  	
+  	
+  	<!-- int가 return됨 다른 type 없음 -->
+  	<insert id="add" parameterType="com.kwan.app.product.ProductDTO">
+  	
+  		INSERT INTO ITEMS VALUES (ITEMS_SEQ.NEXTVAL,#{item_name},#{item_detail},#{item_rate})
+  	
+  	</insert>
+  	
+  	
+  	<update id="update" parameterType="com.kwan.app.product.ProductDTO">
+  		
+  		UPDATE ITEMS SET ITEM_NAME=#{item_name},ITEM_DETAIL=#{item_detail},ITEM_RATE=#{item_rate}
+  		WHERE ITEM_ID=#{item_id}
+  	
+  	</update>
+  	
+  	<delete id="delete" parameterType="com.kwan.app.product.ProductDTO">
+  		
+  		DELETE ITEMS WHERE ITEM_ID = #{item_id}
+  		
+  	</delete>
+  
+  </mapper>

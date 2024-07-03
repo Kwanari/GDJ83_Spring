@@ -34,6 +34,14 @@
 			</table>
 	</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			<a class="btn btn-primary" href="delete?item_id=${result.item_id}" role="button">삭제</a>
+		</div>
+		<br>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			<a class="btn btn-primary" href="update?item_id=${result.item_id}" role="button">수정</a>
+		</div>
+		<br>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			<a class="btn btn-primary" href="/" role="button">HOME</a>
 		</div>
 	</div>

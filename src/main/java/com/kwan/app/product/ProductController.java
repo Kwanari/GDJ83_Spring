@@ -45,6 +45,8 @@ public class ProductController {
 
 		int result = productService.add(productDTO);
 
+		System.out.println(result);
+
 		String path = "commons/massage";
 
 		if (result > 0) {
@@ -54,6 +56,40 @@ public class ProductController {
 		} else {
 			model.addAttribute("result", "등록 오류");
 			model.addAttribute("url", "list");
+		}
+
+		return path;
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public void update(ProductDTO productDTO, Model model) throws Exception {
+
+		model.addAttribute("dto", productService.getDetail(productDTO));
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(ProductDTO productDTO) throws Exception {
+
+		int result = productService.update(productDTO);
+
+		String path = "commons/massage";
+
+		if (result > 0) {
+			path = "redirect:list";
+		}
+
+		return path;
+
+	}
+
+	@RequestMapping("delete")
+	public String delete(ProductDTO productDTO) throws Exception {
+		int result = productService.delete(productDTO);
+
+		String path = "commons/massage";
+
+		if (result > 0) {
+			path = "redirect:list";
 		}
 
 		return path;
