@@ -8,7 +8,34 @@
     <a class="nav-link" href="/product/list">금융상품</a>
   </li>
   
-  <c:if test="${not empty member}">
+  <%-- switch와 같은 개념 --%>
+  <c:choose>
+  	<c:when test="${ not empty member }">
+	  <li class="nav-item">
+	    <a class="nav-link" href="/membet/mypage">회원정보</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="/member/logout">로그아웃</a>
+	  </li>
+  	</c:when>
+  	
+  	<%-- default --%>
+  	<c:otherwise>
+  	  <li class="nav-item">
+	    <a class="nav-link" href="/member/join">회원가입</a>
+	  </li>
+	    <li class="nav-item">
+	    <a class="nav-link" href="/member/login">로그인</a>
+	  </li>
+  	</c:otherwise>
+  
+  </c:choose>
+  
+  
+  
+  
+  
+<%--   <c:if test="${not empty member}">
   
    <li class="nav-item">
     <a class="nav-link" href="/">회원정보</a>
@@ -28,6 +55,6 @@
     <a class="nav-link" href="/member/login">로그인</a>
   </li>
   
-    </c:if>
+    </c:if> --%>
 </ul>
 </nav>

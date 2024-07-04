@@ -2,10 +2,8 @@ package com.kwan.app;
 
 import java.util.Locale;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,9 +29,9 @@ public class HomeController {
 		// 상위: 가장 오래 살아있는 객체
 		// 하위에서 상위 객체 꺼낼수있음
 		// 상위에서 하위 객체 꺼내지못함
-		HttpSession session = request.getSession();
+//		HttpSession session = request.getSession();
 
-		Cookie[] cookies = request.getCookies();
+//		Cookie[] cookies = request.getCookies();
 
 //		for (Cookie c : cookies) {
 //			System.out.println(c.getName());

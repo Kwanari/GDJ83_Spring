@@ -18,6 +18,7 @@
 		<form action="login" method="POST">
 		  <div class="mb-3">
 		    <label for="member_id" class="form-label">ID</label>
+		    <!-- id value에  -->
 		    <input type="text" value="${id}" class="form-control" id="member_id" name="member_id">
 		  </div>
 		  <div class="mb-3">

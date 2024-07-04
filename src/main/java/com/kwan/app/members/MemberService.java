@@ -17,6 +17,7 @@ public class MemberService {
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
 		MemberDTO result = memberDAO.login(memberDTO);
 
+		// ID만 비교 후 맞는 회원 정보 DTO의 비밀번호를 다시 비교
 		if (result != null) {
 			if (result.getMember_pw().equals(memberDTO.getMember_pw())) {
 				return result;

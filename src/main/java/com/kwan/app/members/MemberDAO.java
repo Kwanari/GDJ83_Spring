@@ -20,6 +20,7 @@ public class MemberDAO {
 
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "login", memberDTO);
+		// memberMapper에서 ID만 비교 후 해당 회원 정보 DTO 리턴
 	}
 
 }
