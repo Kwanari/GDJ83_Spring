@@ -1,8 +1,11 @@
 package com.kwan.app;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,15 +26,23 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home(Locale locale, Model model, HttpServletResponse response, HttpServletRequest request) {
+		// 내장객체
+		// 상위: 가장 오래 살아있는 객체
+		// 하위에서 상위 객체 꺼낼수있음
+		// 상위에서 하위 객체 꺼내지못함
+		HttpSession session = request.getSession();
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		Cookie[] cookies = request.getCookies();
 
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
+//		for (Cookie c : cookies) {
+//			System.out.println(c.getName());
+//			System.out.println(c.getValue());
+//		}
+//
+//		Cookie cookie = new Cookie("test", "kkh");
+//		cookie.setMaxAge(60);
+//		response.addCookie(cookie);
 
 		return "index";
 	}

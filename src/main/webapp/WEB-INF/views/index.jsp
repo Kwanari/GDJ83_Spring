@@ -23,6 +23,15 @@
 	
 <div class="container mt-5"> <!-- container 클래스: 양쪽에 약간의 여백제외하고 공간 차지 -->
 <div class="row justify-content-center">
+
+	<c:if test="${not empty member}">
+		<div>
+			<!-- scope 생략가능 -->
+			<h3> ${sessionScope.member.member_name} 환영합니다 </h3>
+		
+		</div>
+	</c:if>
+
 		<div id="carouselExampleAutoplaying" class="carousel slide col-md-8" data-bs-ride="carousel">
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
