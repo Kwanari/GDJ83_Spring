@@ -12,6 +12,7 @@
 		</init-param>
 	</filter>
 	
+	<!-- url로 필터 구분 -->
 	<filter-mapping>
 		<filter-name>encode</filter-name>
 		<url-pattern>/*</url-pattern>
