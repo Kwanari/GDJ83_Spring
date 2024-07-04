@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<!-- database-context에서 연결해야함 -->
+<!-- namespace 는 type X, String 타입이라 사용불가 -->
+  
+<configuration>
+
+	<typeAliases>
+	
+		<typeAlias type="com.kwan.app.product.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.kwan.app.members.MemberDTO" alias="MemberDTO"/>
+		
+	</typeAliases>  
+  
+</configuration>

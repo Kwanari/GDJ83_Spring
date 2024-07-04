@@ -29,7 +29,6 @@ public class ProductDAO {
 	}
 
 	public int add(ProductDTO productDTO) throws Exception {
-		System.out.println("before");
 		return sqlSession.insert(NAMESPACE + "add", productDTO);
 	}
 

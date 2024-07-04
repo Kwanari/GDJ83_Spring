@@ -17,9 +17,11 @@
 	</bean>
 	
 	<!-- mapper 와 연결 -->
+	<!-- config 와 연결 -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="mapperLocations" value="classpath:database/mappers/*Mapper.xml"></property>
+		<property name="configLocation" value="classpath:database/config/mybatis-config.xml"></property>
 	</bean> 
 	
 	<bean class="org.mybatis.spring.SqlSessionTemplate">

@@ -26,13 +26,13 @@
 		<div id="carouselExampleAutoplaying" class="carousel slide col-md-8" data-bs-ride="carousel">
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
-		      <img src="/resources/images/index/1.jpg" class="d-block w-100" alt="...">
+		      <img src="/resources/images/index/1p.jpg" class="d-block w-100" alt="...">
 		    </div>
 		    <div class="carousel-item">
-		      <img src="/resources/images/index/2.jpg" class="d-block w-100" alt="...">
+		      <img src="/resources/images/index/2p.jpg" class="d-block w-100" alt="...">
 		    </div>
 		    <div class="carousel-item">
-		      <img src="/resources/images/index/3.jpg" class="d-block w-100" alt="...">
+		      <img src="/resources/images/index/3p.jpg" class="d-block w-100" alt="...">
 		    </div>
 		  </div>
 		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
