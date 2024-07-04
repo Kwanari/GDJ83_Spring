@@ -18,7 +18,7 @@
 		<form action="login" method="POST">
 		  <div class="mb-3">
 		    <label for="member_id" class="form-label">ID</label>
-		    <!-- id value에  -->
+		    <!-- value id = id기억하기 체크박스를 이용 name=remember로 controller에 파라미터 전달 -->
 		    <input type="text" value="${id}" class="form-control" id="member_id" name="member_id">
 		  </div>
 		  <div class="mb-3">
