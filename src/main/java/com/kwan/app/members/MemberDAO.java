@@ -23,4 +23,15 @@ public class MemberDAO {
 		// memberMapper에서 ID만 비교 후 해당 회원 정보 DTO 리턴
 	}
 
+	public int update(MemberDTO memberDTO) {
+
+		return sqlSession.update(NAMESPACE + "update", memberDTO);
+	}
+
+	public int delete(MemberDTO memberDTO) {
+
+		return sqlSession.delete(NAMESPACE + "delete", memberDTO);
+
+	}
+
 }

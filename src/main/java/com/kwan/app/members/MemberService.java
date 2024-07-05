@@ -30,4 +30,12 @@ public class MemberService {
 		return result;
 	}
 
+	public int update(MemberDTO memberDTO) {
+		return memberDAO.update(memberDTO);
+	}
+
+	public int delete(MemberDTO memberDTO) {
+		return memberDAO.delete(memberDTO);
+	}
+
 }

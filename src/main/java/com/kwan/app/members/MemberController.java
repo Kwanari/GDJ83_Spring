@@ -69,7 +69,7 @@ public class MemberController {
 			path = "redirect:/";
 		} else {
 			model.addAttribute("result", "실패");
-			model.addAttribute("url", "/");
+			model.addAttribute("url", "/member/login");
 		}
 
 		return path;
@@ -79,8 +79,67 @@ public class MemberController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 
-		session.invalidate(); // session의 유지시간 0으로 만듬
+//		session.invalidate(); // session의 유지시간 0으로 만듬
 
+		session.setAttribute("member", null);
+//		session.removeAttribute("member"); 속성, 값 삭제
+//		session.removeValue("memeber"); 속성 유지, 값만 삭제
+
+		return "redirect:/";
+	}
+
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public void mypage(HttpSession session, Model model) throws Exception {
+
+		// 로그인을 다시 실행
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = memberService.login(memberDTO);
+
+		model.addAttribute("member", memberDTO);
+
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public void update(HttpSession session) {
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(MemberDTO memberDTO, HttpSession session) throws Exception {
+
+		MemberDTO dto = (MemberDTO) session.getAttribute("member");
+
+		memberDTO.setMember_id(dto.getMember_id());
+
+		int result = memberService.update(memberDTO);
+
+		if (result > 0) {
+			// mypage에서 login 다시 조회하면 필요없음
+//			session.setAttribute("member", memberDTO);
+
+			return "redirect:mypage";
+		}
+
+		return "redirect:/";
+
+	}
+
+	// session 이용 삭제
+	@RequestMapping("delete")
+	public String delete(HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
+		memberService.delete(memberDTO);
+
+		session.setAttribute("member", null);
+
+		return "redirect:/";
+	}
+
+	// jsp에서 form 태그 이용
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public String delete(MemberDTO memberDTO, HttpSession session) {
+		memberService.delete(memberDTO);
+		session.setAttribute("member", null);
 		return "redirect:/";
 	}
 
