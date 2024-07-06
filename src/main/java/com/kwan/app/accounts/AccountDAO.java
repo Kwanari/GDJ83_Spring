@@ -10,7 +10,7 @@ public class AccountDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	private final String NAMESPACE = "com.kwan.app.accounts.AccountDAO";
+	private final String NAMESPACE = "com.kwan.app.accounts.AccountDAO.";
 
 	public void add(AccountDTO accountDTO) {
 

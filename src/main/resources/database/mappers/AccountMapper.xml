@@ -8,8 +8,8 @@
   
   	<insert id="add" parameterType="AccountDTO">
   	
-  		INSERT INTO ITEMS
-  		VALUES (#{bank_id}, #{member_id}, #{item_id}, CURRENT_DATE, #{bank_pw}, 0)
+  		INSERT INTO BANK (BANK_ID, MEMBER_ID, ITEM_ID, BANK_PW)
+  		VALUES (#{bank_id}, #{member_id}, #{item_id}, #{bank_pw})
   	
   	</insert>
   		
