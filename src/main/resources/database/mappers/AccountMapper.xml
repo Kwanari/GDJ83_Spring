@@ -14,7 +14,7 @@
   	</insert>
   	
   	<select id="mypage" parameterType="MemberDTO" resultType="AccountDTO">
-  	
+	<!-- key = column명, row개수마다 map이 늘어남 -->  	
   		SELECT *
 		FROM BANK
 		WHERE MEMBER_ID=#{member_id}

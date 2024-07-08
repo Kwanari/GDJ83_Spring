@@ -32,10 +32,10 @@
 				    </thead>
 				    <tbody>
 				      <tr class="align-middle">
-				        <td>${map.result.member_id}</td>
-						<td>${map.result.member_name}</td>
-						<td>${map.result.member_phone}</td>
-						<td>${map.result.member_email}</td>
+				        <td>${member.result.member_id}</td>
+						<td>${member.result.member_name}</td>
+						<td>${member.result.member_phone}</td>
+						<td>${member.result.member_email}</td>
 				      </tr>
 				    </tbody>
 				</table>
@@ -54,7 +54,7 @@
 				      </tr>
 				    </thead>
 				    <tbody>
-					    <c:forEach items="${map.list}" var="list">
+					    <c:forEach items="${member.list}" var="list">
 					      <tr class="align-middle">
 					        <td>${list.bank_id}</td>
 							<td>${list.open_date}</td>

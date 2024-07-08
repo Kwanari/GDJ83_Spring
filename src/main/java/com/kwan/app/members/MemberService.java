@@ -47,7 +47,7 @@ public class MemberService {
 		}
 
 		// result > null 일때 바로 return
-		return map;
+		return null;
 	}
 
 	public int update(MemberDTO memberDTO) {

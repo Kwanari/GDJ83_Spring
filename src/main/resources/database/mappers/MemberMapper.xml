@@ -13,7 +13,17 @@
   	
   	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
   	
-  		SELECT * FROM MEMBERS WHERE MEMBER_ID =#{member_id}
+<!--   		SELECT *
+  		FROM MEMBERS M
+  			LEFT JOIN
+  			BANK B
+  			ON M.MEMBER_NAME = B=MEMBER_NAME
+  		WHERE M.MEMBER_NAME = #{member_name} -->
+  		
+  		SELECT *
+  		FROM MEMBERS
+  		WHERE MEMBER_ID = #{member_id}
+  			
   	
   	</select>
   	

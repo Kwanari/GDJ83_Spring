@@ -72,7 +72,7 @@ public class MemberController {
 		String path = "commons/massage";
 
 		if (memberDTO != null) {
-			session.setAttribute("map", map);
+			session.setAttribute("member", map);
 			path = "redirect:/";
 		} else {
 			model.addAttribute("result", "실패");
