@@ -97,10 +97,9 @@ public class MemberController {
 	public void mypage(HttpSession session, Model model) throws Exception {
 
 		// 로그인을 다시 실행
-//		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-//		memberDTO = memberService.login(memberDTO);
-
-//		model.addAttribute("member", memberDTO);
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = memberService.detail(memberDTO);
+		model.addAttribute("member", memberDTO);
 
 	}
 

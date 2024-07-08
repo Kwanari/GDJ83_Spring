@@ -12,20 +12,28 @@
   	</insert>
   	
   	<!-- 결과를 매핑 -->
-  	<select id="login" parameterType="MemberDTO" resultMap="loginResult">
+  	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
   	
-   		SELECT M.*, B.*
+   		SELECT MEMBER_ID, MEMBER_PW, MEMBER_NAME
+  		FROM MEMBERS
+  		WHERE MEMBER_ID = #{member_id}
+  
+  	</select>
+  	
+  	<select id="detail" parameterType="MemberDTO" resultMap="mypageResult">
+  	
+  		SELECT M.*, B.*
   		FROM MEMBERS M
   			LEFT JOIN
   			BANK B
   			ON M.MEMBER_ID = B.MEMBER_ID
-  		WHERE M.MEMBER_ID = #{member_id}
-  
+  		WHERE M.MEMBER_ID=#{member_id}
+  	
   	</select>
   	
-  	<resultMap type="MemberDTO" id="loginResult">
+  	<resultMap type="MemberDTO" id="mypageResult">
   		<!-- primary key -->
-  		<!-- <id column="select할 컬럼명" property="setter의 이름"/> -->
+  		<id column="select할 컬럼명" property="setter의 이름"/>
   		<id column="MEMBER_ID" property="member_id"/>
   		
   		<!-- 그외 나머지 -->

@@ -36,4 +36,8 @@ public class MemberDAO {
 
 	}
 
+	public MemberDTO detail(MemberDTO memberDTO) {
+		return sqlSession.selectOne(NAMESPACE + "detail", memberDTO);
+	}
+
 }

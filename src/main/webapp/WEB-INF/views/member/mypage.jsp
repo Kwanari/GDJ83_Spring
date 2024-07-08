@@ -58,7 +58,7 @@
 				    <tbody>
 					    <c:forEach items="${member.dtos}" var="list">
 					      <tr class="align-middle">
-					        <td>${list.bank_id}</td>
+					        <td><a href="../account/detail?bank_id=${list.bank_id}">${list.bank_id}</a></td>
 							<td>${list.open_date}</td>
 							<td>${list.balance}</td>
 					      </tr>

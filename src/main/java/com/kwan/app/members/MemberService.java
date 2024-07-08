@@ -45,4 +45,9 @@ public class MemberService {
 		return memberDAO.delete(memberDTO);
 	}
 
+	public MemberDTO detail(MemberDTO memberDTO) {
+		return memberDAO.detail(memberDTO);
+
+	}
+
 }

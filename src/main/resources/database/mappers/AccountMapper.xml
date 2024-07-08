@@ -12,13 +12,38 @@
   		VALUES (#{bank_id}, #{member_id}, #{item_id}, #{bank_pw})
   	
   	</insert>
-  	
-  	<select id="mypage" parameterType="MemberDTO" resultType="AccountDTO">
-	<!-- key = column명, row개수마다 map이 늘어남 -->  	
-  		SELECT *
-		FROM BANK
-		WHERE MEMBER_ID=#{member_id}
-  	
-  	</select>
+ 
+ 	<select id="detail" parameterType="AccountDTO" resultMap="detailResult">
+ 	
+ 		SELECT B.*, I.*
+		FROM BANK B
+			INNER JOIN
+			ITEMS I
+			ON B.ITEM_ID = I.ITEM_ID 
+		WHERE B.BANK_ID = #{bank_id}
+ 	
+ 	</select>
+ 	
+ 	<resultMap type="AccountDTO" id="detailResult">
+ 	
+ 		<id column="BANK_ID" property="bank_id"/>
+ 		<id column="ITEM_ID" property="item_id"/>
+ 		
+ 		<result column="OPEN_DATE" property="open_date"/>
+ 		<result column="BALANCE" property="balance"/>
+ 		
+ 		<!-- 1:1의 관계 -->
+ 		<association property="productDTO" javaType="ProductDTO">
+ 			
+ 			<!-- id 이미 선언해서 생략 -->
+ 			<result column="ITEM_NAME" property="item_name"/>
+ 			<result column="ITEM_RATE" property="item_rate"/>
+ 			
+ 		</association>
+ 		
+ 		
+ 	
+ 	</resultMap>
+ 	
   		
   </mapper>

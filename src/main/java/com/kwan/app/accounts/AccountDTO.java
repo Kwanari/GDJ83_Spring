@@ -2,6 +2,9 @@ package com.kwan.app.accounts;
 
 import java.sql.Date;
 
+import com.kwan.app.members.MemberDTO;
+import com.kwan.app.product.ProductDTO;
+
 public class AccountDTO {
 	private String bank_id;
 	private String member_id;
@@ -9,6 +12,24 @@ public class AccountDTO {
 	private Date open_date;
 	private String bank_pw;
 	private Long balance;
+	private MemberDTO memberDTO;
+	private ProductDTO productDTO;
+
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
 
 	public Long getItem_id() {
 		return item_id;

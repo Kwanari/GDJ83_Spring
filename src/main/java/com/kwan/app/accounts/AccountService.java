@@ -14,4 +14,8 @@ public class AccountService {
 		accountDAO.add(accountDTO);
 
 	}
+
+	public AccountDTO detail(AccountDTO accountDTO) {
+		return accountDAO.detail(accountDTO);
+	}
 }
