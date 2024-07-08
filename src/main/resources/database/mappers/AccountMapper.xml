@@ -13,6 +13,7 @@
   	
   	</insert>
  
+ 	<!-- 매개변수로 받아온 AccountDTO에 잇는 BANK_ID가 같은 가입내역만 조회 -->
  	<select id="detail" parameterType="AccountDTO" resultMap="detailResult">
  	
  		SELECT B.*, I.*

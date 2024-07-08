@@ -29,7 +29,16 @@ public class AccountController {
 
 	// session - item_id, accountDTO - bank_pw
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(HttpSession session, AccountDTO accountDTO) {
+	public String add(HttpSession session, AccountDTO accountDTO, Model model) {
+
+		if (accountDTO.getBank_pw().length() > 4) {
+
+			model.addAttribute("result", "5자리 이상 X");
+			model.addAttribute("url", "/");
+
+			return "/commons/massage";
+
+		}
 
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 

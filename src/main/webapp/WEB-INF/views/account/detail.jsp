@@ -24,12 +24,17 @@
 				    </tr>
 				</thead>
 				<tbody>
+				<!-- AccountDTO의 멤버변수 ProductDTO에서 멤버변수를 꺼냄 -->
 				   	<tr class="align-middle">
 				    	<td>${dto.productDTO.item_name}</td>
 						<td>${dto.productDTO.item_rate}</td>
 					</tr>
 				</tbody>
+				
 			</table>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<a class="btn btn-primary" href="/member/mypage" role="button">뒤로가기</a>
+				</div>
 		</div>
 	</div>
 </div>

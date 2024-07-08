@@ -68,23 +68,16 @@
 			</div>
 			
 			<div>
-			
+			<div class="row">
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<a class="btn btn-primary" href="update" role="button">정보 수정</a>
-				</div>
-				<br>
-				
-				<form action="delete" method="POST">
-				
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				
+				<form action="delete" method="POST" >
 					<input type="hidden" value="${member.member_id}" name="member_id">
-					<input type="submit" value="회원탈퇴">
-					<a class="btn btn-primary" href="delete" role="button">회원 탈퇴</a>
-				</div>
-				
-				
+					<input type="submit" value="회원 탈퇴" class="btn btn-primary">
 				</form>
+				</div>
+			</div>
+			<br>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 						<a class="btn btn-primary" href="/" role="button">HOME</a>
 				</div>

@@ -19,7 +19,7 @@ public class AccountDAO {
 	}
 
 	public AccountDTO detail(AccountDTO accountDTO) {
-
+		// 매개변수 accountDTO에 BANK_ID만 있음
 		return sqlSession.selectOne(NAMESPACE + "detail", accountDTO);
 
 	}

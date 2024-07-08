@@ -29,9 +29,16 @@
 			<!-- scope 생략가능 -->
 			<h3> ${sessionScope.member.member_name} 환영합니다 </h3>
 		
+		<div id="carouselExampleAutoplaying" class="carousel slide col-md-8" data-bs-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="/resources/images/index/w1.png" class="d-block w-100" alt="...">
+		    </div>
+		  </div>
+		</div>
 		</div>
 	</c:if>
-
+	<c:if test="${empty member}">
 		<div id="carouselExampleAutoplaying" class="carousel slide col-md-8" data-bs-ride="carousel">
 		  <div class="carousel-inner">
 		    <div class="carousel-item active">
@@ -53,6 +60,7 @@
 		    <span class="visually-hidden">Next</span>
 		  </button>
 	</div>
+	</c:if>
 </div>
 </div>
 
