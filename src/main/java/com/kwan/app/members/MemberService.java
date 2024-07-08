@@ -1,14 +1,9 @@
 package com.kwan.app.members;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kwan.app.accounts.AccountDAO;
-import com.kwan.app.accounts.AccountDTO;
 
 @Service
 public class MemberService {
@@ -24,12 +19,7 @@ public class MemberService {
 		return memberDAO.join(memberDTO);
 	}
 
-	public Map<String, Object> login(MemberDTO memberDTO) throws Exception {
-
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		// 상품정보
-		List<AccountDTO> list = accountDAO.mypage(memberDTO);
+	public MemberDTO login(MemberDTO memberDTO) throws Exception {
 
 		MemberDTO result = memberDAO.login(memberDTO);
 
@@ -37,17 +27,14 @@ public class MemberService {
 		if (result != null) {
 			if (result.getMember_pw().equals(memberDTO.getMember_pw())) {
 
-				map.put("list", list);
-				map.put("result", result);
-
-				return map;
+				return result;
 			} else {
 				return null;
 			}
 		}
 
 		// result > null 일때 바로 return
-		return null;
+		return result;
 	}
 
 	public int update(MemberDTO memberDTO) {

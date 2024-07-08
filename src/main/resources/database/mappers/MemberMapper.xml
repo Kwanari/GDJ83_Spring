@@ -11,21 +11,42 @@
   		
   	</insert>
   	
-  	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+  	<!-- 결과를 매핑 -->
+  	<select id="login" parameterType="MemberDTO" resultMap="loginResult">
   	
-<!--   		SELECT *
+   		SELECT M.*, B.*
   		FROM MEMBERS M
   			LEFT JOIN
   			BANK B
-  			ON M.MEMBER_NAME = B=MEMBER_NAME
-  		WHERE M.MEMBER_NAME = #{member_name} -->
-  		
-  		SELECT *
-  		FROM MEMBERS
-  		WHERE MEMBER_ID = #{member_id}
-  			
-  	
+  			ON M.MEMBER_ID = B.MEMBER_ID
+  		WHERE M.MEMBER_ID = #{member_id}
+  
   	</select>
+  	
+  	<resultMap type="MemberDTO" id="loginResult">
+  		<!-- primary key -->
+  		<!-- <id column="select할 컬럼명" property="setter의 이름"/> -->
+  		<id column="MEMBER_ID" property="member_id"/>
+  		
+  		<!-- 그외 나머지 -->
+  		<result column="MEMBER_PW" property="member_pw"/>
+  		<result column="MEMBER_NAME" property="member_name"/>
+  		<result column="MEMBER_PHONE" property="member_phone"/>
+  		<result column="MEMBER_EMAIL" property="member_email"/>
+  		
+  		<!-- 1:N (=new List) -->
+  		<collection property="dtos" javaType="java.util.List" ofType="AccountDTO">
+  		
+  			<id column="BANK_ID" property="bank_id"/>
+  			
+  			<result column="ITEM_ID" property="item_id"/>
+  			<result column="OPEN_DATE" property="open_date"/>
+  			<result column="BANK_PW" property="bank_pw"/>
+  			<result column="BALANCE" property="balance"/>
+  		
+  		</collection>
+  	
+  	</resultMap>
   	
   	<update id="update" parameterType="MemberDTO">
   	

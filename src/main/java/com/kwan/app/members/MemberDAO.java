@@ -18,6 +18,7 @@ public class MemberDAO {
 
 	}
 
+	// map의 값이 여러개
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
 
 		return sqlSession.selectOne(NAMESPACE + "login", memberDTO);

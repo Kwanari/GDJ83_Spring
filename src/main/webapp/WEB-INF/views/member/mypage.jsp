@@ -13,11 +13,13 @@
 
 
 
-	<h1> My Page </h1>
+
 	
 
 	<div class="container-md">
+	<div class="mt-5">
 	<h1> My Page </h1>
+	</div>
 		<div class="row justify-content-center">
 			<h2>회원 정보</h2>
 			<div class="table-responsive-md">
@@ -32,10 +34,10 @@
 				    </thead>
 				    <tbody>
 				      <tr class="align-middle">
-				        <td>${member.result.member_id}</td>
-						<td>${member.result.member_name}</td>
-						<td>${member.result.member_phone}</td>
-						<td>${member.result.member_email}</td>
+				        <td>${member.member_id}</td>
+						<td>${member.member_name}</td>
+						<td>${member.member_phone}</td>
+						<td>${member.member_email}</td>
 				      </tr>
 				    </tbody>
 				</table>
@@ -54,7 +56,7 @@
 				      </tr>
 				    </thead>
 				    <tbody>
-					    <c:forEach items="${member.list}" var="list">
+					    <c:forEach items="${member.dtos}" var="list">
 					      <tr class="align-middle">
 					        <td>${list.bank_id}</td>
 							<td>${list.open_date}</td>

@@ -1,7 +1,5 @@
 package com.kwan.app.members;
 
-import java.util.Map;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,12 +65,12 @@ public class MemberController {
 			response.addCookie(cookie);
 		}
 
-		Map<String, Object> map = memberService.login(memberDTO);
+		memberDTO = memberService.login(memberDTO);
 
 		String path = "commons/massage";
 
 		if (memberDTO != null) {
-			session.setAttribute("member", map);
+			session.setAttribute("member", memberDTO);
 			path = "redirect:/";
 		} else {
 			model.addAttribute("result", "실패");
