@@ -12,5 +12,13 @@
   		VALUES (#{bank_id}, #{member_id}, #{item_id}, #{bank_pw})
   	
   	</insert>
+  	
+  	<select id="mypage" parameterType="MemberDTO" resultType="AccountDTO">
+  	
+  		SELECT *
+		FROM BANK
+		WHERE MEMBER_ID=#{member_id}
+  	
+  	</select>
   		
   </mapper>

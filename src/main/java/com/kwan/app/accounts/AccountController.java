@@ -36,8 +36,8 @@ public class AccountController {
 		accountDTO.setItem_id((Long) session.getAttribute("item_id"));
 		accountDTO.setMember_id(memberDTO.getMember_id());
 
+		// 계좌번호 생성
 		Calendar ca = Calendar.getInstance();
-
 		long l = ca.getTimeInMillis();
 		String s = String.valueOf(l);
 

@@ -1,12 +1,12 @@
 package com.kwan.app.accounts;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 public class AccountDTO {
 	private String bank_id;
 	private String member_id;
 	private Long item_id;
-	private Calendar open_date;
+	private Date open_date;
 	private String bank_pw;
 	private Long balance;
 
@@ -34,11 +34,11 @@ public class AccountDTO {
 		this.bank_id = bank_id;
 	}
 
-	public Calendar getOpen_date() {
+	public Date getOpen_date() {
 		return open_date;
 	}
 
-	public void setOpen_date(Calendar open_date) {
+	public void setOpen_date(Date open_date) {
 		this.open_date = open_date;
 	}
 

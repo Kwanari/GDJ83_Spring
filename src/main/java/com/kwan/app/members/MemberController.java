@@ -1,5 +1,7 @@
 package com.kwan.app.members;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,12 +14,18 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kwan.app.accounts.AccountDAO;
+import com.kwan.app.accounts.AccountDTO;
+
 @RequestMapping("/member/")
 @Controller
 public class MemberController {
 
 	@Autowired
 	MemberService memberService;
+
+	@Autowired
+	AccountDAO accountDAO;
 
 	@RequestMapping("join")
 	public void join() {
@@ -95,7 +103,11 @@ public class MemberController {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		memberDTO = memberService.login(memberDTO);
 
+		// 상품정보
+		List<AccountDTO> list = accountDAO.mypage(memberDTO);
+
 		model.addAttribute("member", memberDTO);
+		model.addAttribute("bank", list);
 
 	}
 
