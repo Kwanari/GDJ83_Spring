@@ -32,10 +32,10 @@
 				    </thead>
 				    <tbody>
 				      <tr class="align-middle">
-				        <td>${member.member_id}</td>
-						<td>${member.member_name}</td>
-						<td>${member.member_phone}</td>
-						<td>${member.member_email}</td>
+				        <td>${map.result.member_id}</td>
+						<td>${map.result.member_name}</td>
+						<td>${map.result.member_phone}</td>
+						<td>${map.result.member_email}</td>
 				      </tr>
 				    </tbody>
 				</table>
@@ -54,7 +54,7 @@
 				      </tr>
 				    </thead>
 				    <tbody>
-					    <c:forEach items="${bank}" var="list">
+					    <c:forEach items="${map.list}" var="list">
 					      <tr class="align-middle">
 					        <td>${list.bank_id}</td>
 							<td>${list.open_date}</td>
@@ -83,6 +83,10 @@
 				
 				
 				</form>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<a class="btn btn-primary" href="/" role="button">HOME</a>
+				</div>
+				
 				
 			
 			</div>
@@ -90,10 +94,6 @@
 	</div>
 	
 		
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<a class="btn btn-primary" href="/" role="button">HOME</a>
-		</div>
-	
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
 </body>
 </html>

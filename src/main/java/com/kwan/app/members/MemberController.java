@@ -1,6 +1,6 @@
 package com.kwan.app.members;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kwan.app.accounts.AccountDAO;
-import com.kwan.app.accounts.AccountDTO;
 
 @RequestMapping("/member/")
 @Controller
@@ -68,12 +67,12 @@ public class MemberController {
 			response.addCookie(cookie);
 		}
 
-		memberDTO = memberService.login(memberDTO);
+		Map<String, Object> map = memberService.login(memberDTO);
 
 		String path = "commons/massage";
 
 		if (memberDTO != null) {
-			session.setAttribute("member", memberDTO);
+			session.setAttribute("map", map);
 			path = "redirect:/";
 		} else {
 			model.addAttribute("result", "실패");
@@ -100,14 +99,10 @@ public class MemberController {
 	public void mypage(HttpSession session, Model model) throws Exception {
 
 		// 로그인을 다시 실행
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		memberDTO = memberService.login(memberDTO);
+//		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+//		memberDTO = memberService.login(memberDTO);
 
-		// 상품정보
-		List<AccountDTO> list = accountDAO.mypage(memberDTO);
-
-		model.addAttribute("member", memberDTO);
-		model.addAttribute("bank", list);
+//		model.addAttribute("member", memberDTO);
 
 	}
 
