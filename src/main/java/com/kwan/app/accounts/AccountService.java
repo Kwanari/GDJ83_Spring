@@ -19,6 +19,18 @@ public class AccountService {
 		return accountDAO.detail(accountDTO);
 	}
 
+	public int work(AccountDTO accountDTO) {
+
+		return accountDAO.work(accountDTO);
+
+	}
+
+	public AccountDTO checkpw(AccountDTO accountDTO) {
+
+		return accountDAO.checkpw(accountDTO);
+
+	}
+
 	public int transfer(InfosDTO infosDTO) {
 
 		return accountDAO.transfer(infosDTO);

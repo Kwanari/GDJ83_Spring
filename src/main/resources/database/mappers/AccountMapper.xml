@@ -44,6 +44,18 @@
  		
  	</resultMap>
  	
+ 	<update id="work" parameterType="AccountDTO">
+ 	
+ 		UPDATE BANK SET BALANCE=BALANCE+10000 WHERE BANK_ID=#{bank_id}
+ 	
+ 	</update>
+ 	
+ 	<select id="checkpw" parameterType="AccountDTO" resultType="AccountDTO">
+ 	
+ 		SELECT BANK_PW FROM BANK WHERE BANK_ID = #{bank_id}
+ 	
+ 	</select>
+ 	
  	
  	<!-- 내계좌 출금 -->
  	<insert id="transfer" parameterType="InfosDTO">

@@ -14,6 +14,7 @@
 <body>
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 	<h1>계좌 이체</h1>
+	<h3>1720508535272 입금 ㄱㄱ</h3>
 	
 	<div class="container-md">
 		<div class="row justify-content-center">

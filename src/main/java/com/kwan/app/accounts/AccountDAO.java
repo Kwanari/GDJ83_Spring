@@ -24,6 +24,18 @@ public class AccountDAO {
 
 	}
 
+	public int work(AccountDTO accountDTO) {
+
+		return sqlSession.update(NAMESPACE + "work", accountDTO);
+
+	}
+
+	public AccountDTO checkpw(AccountDTO accountDTO) {
+
+		return sqlSession.selectOne(NAMESPACE + "checkpw", accountDTO);
+
+	}
+
 	public int transfer(InfosDTO infosDTO) {
 
 		infosDTO.setDifference(infosDTO.getDifference() * -1);
