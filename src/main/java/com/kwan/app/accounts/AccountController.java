@@ -60,15 +60,48 @@ public class AccountController {
 	}
 
 	@RequestMapping("detail")
-	public void detail(AccountDTO accountDTO, Model model) {
+	public void detail(AccountDTO accountDTO, HttpSession session) {
 
 		AccountDTO dto = accountService.detail(accountDTO);
 
 		if (dto != null) {
 
-			model.addAttribute("dto", dto);
+			session.setAttribute("acdto", dto);
 
 		}
+	}
+
+	@RequestMapping(value = "transfer", method = RequestMethod.GET)
+	public void transfer() {
+	}
+
+	@RequestMapping(value = "transfer", method = RequestMethod.POST)
+	public String transfer(InfosDTO infosDTO, HttpSession session, Model model) {
+		AccountDTO accountDTO = (AccountDTO) session.getAttribute("acdto");
+
+		infosDTO.setBank_id(accountDTO.getBank_id());
+
+		if (infosDTO.getDifference() > accountDTO.getBalance()) {
+
+			model.addAttribute("url", "/");
+			model.addAttribute("result", "잔액 초과");
+			return "commons/massage";
+
+		}
+
+		int result = accountService.transfer(infosDTO);
+
+		String path = "commons/massage";
+		model.addAttribute("url", "/");
+		model.addAttribute("result", "이체 실패");
+
+		if (result > 0) {
+
+			path = "redirect:/";
+
+		}
+
+		return path;
 
 	}
 }

@@ -24,4 +24,16 @@ public class AccountDAO {
 
 	}
 
+	public int transfer(InfosDTO infosDTO) {
+
+		infosDTO.setDifference(infosDTO.getDifference() * -1);
+
+		int a = sqlSession.insert(NAMESPACE + "transfer", infosDTO);
+		int b = sqlSession.insert(NAMESPACE + "transfer2", infosDTO);
+		int c = sqlSession.update(NAMESPACE + "upbal", infosDTO);
+		int d = sqlSession.update(NAMESPACE + "upbal2", infosDTO);
+
+		return a * b * c * d;
+	}
+
 }

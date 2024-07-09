@@ -11,7 +11,6 @@
   <%-- switch와 같은 개념 --%>
   <c:choose>
   	<c:when test="${ not empty member }">
-  	
 	  <li class="nav-item">
 	    <a class="nav-link" href="/member/mypage">회원정보</a>
 	  </li>

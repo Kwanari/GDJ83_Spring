@@ -18,4 +18,10 @@ public class AccountService {
 	public AccountDTO detail(AccountDTO accountDTO) {
 		return accountDAO.detail(accountDTO);
 	}
+
+	public int transfer(InfosDTO infosDTO) {
+
+		return accountDAO.transfer(infosDTO);
+
+	}
 }
