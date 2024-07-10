@@ -152,11 +152,9 @@ public class AccountController {
 		infosDTO.setBank_id(accountDTO.getBank_id());
 
 		if (infosDTO.getDefference() > accountDTO.getBalance()) {
-
 			model.addAttribute("url", "/");
 			model.addAttribute("result", "잔액 초과");
 			return "commons/massage";
-
 		}
 
 		int result = accountService.transfer(infosDTO);
@@ -176,9 +174,9 @@ public class AccountController {
 	}
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void list(AccountDTO accountDTO, Model model) {
+	public void list(ListOption listOption, Model model) {
 
-		List<InfosDTO> list = accountService.list(accountDTO);
+		List<InfosDTO> list = accountService.list(listOption);
 
 		System.out.println(list.get(0).getDefference());
 

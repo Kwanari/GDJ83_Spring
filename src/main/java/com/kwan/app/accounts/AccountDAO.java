@@ -50,8 +50,8 @@ public class AccountDAO {
 		return a * b * c * d;
 	}
 
-	public List<InfosDTO> list(AccountDTO accountDTO) {
-		return sqlSession.selectList(NAMESPACE + "list", accountDTO);
+	public List<InfosDTO> list(ListOption listOption) {
+		return sqlSession.selectList(NAMESPACE + "list", listOption);
 	}
 
 }

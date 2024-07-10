@@ -39,9 +39,9 @@ public class AccountService {
 
 	}
 
-	public List<InfosDTO> list(AccountDTO accountDTO) {
+	public List<InfosDTO> list(ListOption listOption) {
 
-		return accountDAO.list(accountDTO);
+		return accountDAO.list(listOption);
 
 	}
 }

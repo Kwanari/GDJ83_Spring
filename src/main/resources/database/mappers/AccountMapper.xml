@@ -61,10 +61,10 @@
  	<insert id="transfer" parameterType="InfosDTO">
  	
  		INSERT INTO BANK_INFOS
-		VALUES (#{bank_id}, CURRENT_DATE, #{difference}, #{account_u},
+		VALUES (#{bank_id}, CURRENT_DATE, #{defference}, #{account_u},
 		(SELECT BALANCE
 			FROM BANK
-			WHERE BANK_ID=#{bank_id})+#{difference})
+			WHERE BANK_ID=#{bank_id})+#{defference})
  	
  	</insert>
  	
@@ -72,30 +72,46 @@
  	<insert id="transfer2" parameterType="InfosDTO">
  	
  		INSERT INTO BANK_INFOS
-		VALUES (#{account_u}, CURRENT_DATE, #{difference}*-1, #{bank_id}, 
+		VALUES (#{account_u}, CURRENT_DATE, #{defference}*-1, #{bank_id}, 
 		(SELECT BALANCE
 			FROM BANK
-			WHERE BANK_ID=#{bank_id})+#{difference}*-1)
+			WHERE BANK_ID=#{bank_id})+#{defference}*-1)
  	
  	</insert>
  	
  	<update id="upbal" parameterType="InfosDTO">
  	
- 		UPDATE BANK SET BALANCE = BALANCE + #{difference}
+ 		UPDATE BANK SET BALANCE = BALANCE + #{defference}
  		WHERE BANK_ID = #{bank_id}
  	
  	</update>
  	
  	 <update id="upbal2" parameterType="InfosDTO">
  	
- 		UPDATE BANK SET BALANCE = BALANCE + #{difference}*-1
+ 		UPDATE BANK SET BALANCE = BALANCE + #{defference}*-1
  		WHERE BANK_ID = #{account_u}
  	
  	</update>
  	
- 	<select id="list" parameterType="AccountDTO" resultType="InfosDTO">
+ 	<select id="list" parameterType="ListOption" resultType="InfosDTO">
  	
- 		SELECT * FROM BANK_INFOS WHERE BANK_ID = #{bank_id} ORDER BY TIMEPOINT DESC
+ 		SELECT * FROM BANK_INFOS WHERE BANK_ID = #{bank_id} 
+ 			<choose>
+ 				<when test="order==0">
+ 					ORDER BY TIMEPOINT DESC
+ 				</when>
+ 				<when test="order==1">
+ 					ORDER BY TIMEPOINT ASC
+ 				</when>
+ 				<when test="order==2">
+ 					AND DEFFERENCE>0 ORDER BY TIMEPOINT DESC
+ 				</when>
+ 				<when test="order==3">
+ 					AND DEFFERENCE<![CDATA[<]]>0 ORDER BY TIMEPOINT DESC
+ 				</when>
+ 			</choose>
+ 		
+ 		
  	
  	</select>
  	
