@@ -18,15 +18,27 @@
 		<div class="row justify-content-center">
 			<table class="table table-hover">
 				<thead>
-					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<div class="btn-group">
-					  <a href="list?bank_id=${param.bank_id}&order=0" class="btn btn-primary">최신순</a>
-					  <a href="list?bank_id=${param.bank_id}&order=1" class="btn btn-primary">과거순</a>
-					  <a href="list?bank_id=${param.bank_id}&order=2" class="btn btn-primary">입금내역</a>
-					  <a href="list?bank_id=${param.bank_id}&order=3" class="btn btn-primary">출금내역</a>
-					  <a href="list?bank_id=${param.bank_id}&order=0" class="btn btn-primary">입출금</a>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+					    정렬
+					  </button>
+					  <ul class="dropdown-menu">
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&order=0">최신순</a></li>
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&order=1">과거순</a></li>
+					  </ul>
 					</div>
+					<div class="btn-group">
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+					    필터
+					  </button>
+					  <ul class="dropdown-menu">
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=0">입금내역</a></li>
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=1">출금내역</a></li>
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=2">입출금내역</a></li>
+					  </ul>
 					</div>
+				</div>
 
 				
 					<tr>
@@ -60,6 +72,9 @@
 		</div>
 		
 	</div>
+	<script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
+</script>
 </body>
 </html>
