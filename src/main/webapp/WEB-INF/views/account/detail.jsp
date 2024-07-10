@@ -33,7 +33,7 @@
 				
 			</table>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<a class="btn btn-primary" href="/trade/checkpw" role="button">계좌이체</a>
+					<a class="btn btn-primary" href="/trade/transfer?bank_id=${acdto.bank_id}&balance=${acdto.balance}" role="button">계좌이체</a>
 					<a class="btn btn-primary" href="/trade/work" role="button">10000원 복권긁기</a>
 				</div>
 				<br>

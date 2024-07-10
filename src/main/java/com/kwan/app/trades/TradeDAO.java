@@ -12,7 +12,7 @@ public class TradeDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	private final String NAMESPACE = "com.kwan.app.Trades.TradeDAO.";
+	private final String NAMESPACE = "com.kwan.app.trades.TradeDAO.";
 
 	public int work(AccountDTO accountDTO) {
 
@@ -21,21 +21,18 @@ public class TradeDAO {
 	}
 
 	public AccountDTO checkpw(AccountDTO accountDTO) {
-
 		return sqlSession.selectOne(NAMESPACE + "checkpw", accountDTO);
-
 	}
 
 	public int transfer(TradeDTO tradeDTO) {
 
-		tradeDTO.setDifference(tradeDTO.getDifference() * -1);
+		return sqlSession.insert(NAMESPACE + "transfer", tradeDTO);
+	}
 
-		int a = sqlSession.insert(NAMESPACE + "transfer", tradeDTO);
-		int b = sqlSession.insert(NAMESPACE + "transfer2", tradeDTO);
-		int c = sqlSession.update(NAMESPACE + "upbal", tradeDTO);
-		int d = sqlSession.update(NAMESPACE + "upbal2", tradeDTO);
+	public int updateBal(TradeDTO tradeDTO) {
 
-		return a * b * c * d;
+		return sqlSession.update(NAMESPACE + "upbal", tradeDTO);
+
 	}
 
 }

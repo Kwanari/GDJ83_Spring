@@ -25,7 +25,15 @@ public class TradeService {
 
 	public int transfer(TradeDTO tradeDTO) {
 
-		return accountDAO.transfer(tradeDTO);
+		accountDAO.transfer(tradeDTO);
+		accountDAO.updateBal(tradeDTO);
+
+		tradeDTO.setDifference(tradeDTO.getDifference() * -1);
+
+		int transf = accountDAO.transfer(tradeDTO);
+		int updateb = accountDAO.updateBal(tradeDTO);
+
+		return transf * updateb;
 
 	}
 }

@@ -14,12 +14,14 @@
 <body>
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 	<h1>계좌 이체</h1>
-	<h3>1720508535272 입금 ㄱㄱ</h3>
+	<h3>1720398751182 입금 ㄱㄱ</h3>
 	
 	<div class="container-md">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
 				<form action="transfer" method="POST">
+				<input type="hidden" value="${param.bank_id}" name="bank_id">
+				<input type="hidden" value="${param.balance}" name="balance">
 					<div class="row d-grid gap-2 d-md-block">
 					<div class="p-1">
 						<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="popover" data-bs-title="잔액" data-bs-content="${acdto.balance}원">
