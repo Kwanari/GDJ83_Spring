@@ -1,23 +1,15 @@
-package com.kwan.app.accounts;
+package com.kwan.app.trades;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kwan.app.accounts.AccountDTO;
+
 @Service
-public class AccountService {
+public class TradeService {
 
 	@Autowired
-	AccountDAO accountDAO;
-
-	public void add(AccountDTO accountDTO) {
-
-		accountDAO.add(accountDTO);
-
-	}
-
-	public AccountDTO detail(AccountDTO accountDTO) {
-		return accountDAO.detail(accountDTO);
-	}
+	TradeDAO accountDAO;
 
 	public int work(AccountDTO accountDTO) {
 
@@ -31,4 +23,9 @@ public class AccountService {
 
 	}
 
+	public int transfer(TradeDTO tradeDTO) {
+
+		return accountDAO.transfer(tradeDTO);
+
+	}
 }

@@ -1,8 +1,8 @@
-package com.kwan.app.accounts;
+package com.kwan.app.trades;
 
 import java.sql.Date;
 
-public class InfosDTO {
+public class TradeDTO {
 
 	private String bank_id;
 	private Date timepoint;

@@ -33,8 +33,8 @@
 				
 			</table>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<a class="btn btn-primary" href="checkpw" role="button">계좌이체</a>
-					<a class="btn btn-primary" href="work" role="button">10000원 복권긁기</a>
+					<a class="btn btn-primary" href="/trade/checkpw" role="button">계좌이체</a>
+					<a class="btn btn-primary" href="/trade/work" role="button">10000원 복권긁기</a>
 				</div>
 				<br>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
