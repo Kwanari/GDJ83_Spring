@@ -93,5 +93,11 @@
  	
  	</update>
  	
+ 	<select id="list" parameterType="AccountDTO" resultType="InfosDTO">
+ 	
+ 		SELECT * FROM BANK_INFOS WHERE BANK_ID = #{bank_id} ORDER BY TIMEPOINT DESC
+ 	
+ 	</select>
+ 	
   		
   </mapper>

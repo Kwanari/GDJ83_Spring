@@ -1,6 +1,7 @@
 package com.kwan.app.accounts;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
@@ -150,7 +151,7 @@ public class AccountController {
 
 		infosDTO.setBank_id(accountDTO.getBank_id());
 
-		if (infosDTO.getDifference() > accountDTO.getBalance()) {
+		if (infosDTO.getDefference() > accountDTO.getBalance()) {
 
 			model.addAttribute("url", "/");
 			model.addAttribute("result", "잔액 초과");
@@ -171,6 +172,21 @@ public class AccountController {
 		}
 
 		return path;
+
+	}
+
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public void list(AccountDTO accountDTO, Model model) {
+
+		List<InfosDTO> list = accountService.list(accountDTO);
+
+		System.out.println(list.get(0).getDefference());
+
+		if (list != null) {
+
+			model.addAttribute("list", list);
+
+		}
 
 	}
 }

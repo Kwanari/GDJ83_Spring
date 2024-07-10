@@ -7,7 +7,7 @@ public class InfosDTO {
 	private String bank_id;
 	private Date timepoint;
 	private Long bal_result;
-	private Long difference;
+	private Long defference;
 	private String account_u;
 
 	public String getBank_id() {
@@ -34,12 +34,12 @@ public class InfosDTO {
 		this.bal_result = bal_result;
 	}
 
-	public Long getDifference() {
-		return difference;
+	public Long getDefference() {
+		return defference;
 	}
 
-	public void setDifference(Long difference) {
-		this.difference = difference;
+	public void setDefference(Long defference) {
+		this.defference = defference;
 	}
 
 	public String getAccount_u() {

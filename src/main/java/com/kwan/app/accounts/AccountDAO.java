@@ -1,5 +1,7 @@
 package com.kwan.app.accounts;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,7 +40,7 @@ public class AccountDAO {
 
 	public int transfer(InfosDTO infosDTO) {
 
-		infosDTO.setDifference(infosDTO.getDifference() * -1);
+		infosDTO.setDefference(infosDTO.getDefference() * -1);
 
 		int a = sqlSession.insert(NAMESPACE + "transfer", infosDTO);
 		int b = sqlSession.insert(NAMESPACE + "transfer2", infosDTO);
@@ -46,6 +48,10 @@ public class AccountDAO {
 		int d = sqlSession.update(NAMESPACE + "upbal2", infosDTO);
 
 		return a * b * c * d;
+	}
+
+	public List<InfosDTO> list(AccountDTO accountDTO) {
+		return sqlSession.selectList(NAMESPACE + "list", accountDTO);
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.kwan.app.accounts;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,12 @@ public class AccountService {
 	public int transfer(InfosDTO infosDTO) {
 
 		return accountDAO.transfer(infosDTO);
+
+	}
+
+	public List<InfosDTO> list(AccountDTO accountDTO) {
+
+		return accountDAO.list(accountDTO);
 
 	}
 }
