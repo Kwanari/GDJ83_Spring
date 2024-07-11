@@ -50,6 +50,12 @@ public class ProductService {
 
 		// 3. 일정한 개수의 페이지를 묶을 블럭수
 		long perBlock = 5L; // 한페이지에 보여질 페이지번호의 개수
+		long totalBlock = totalPage / perBlock;
+
+		if (totalPage % perBlock != 0) {
+			totalBlock++;
+		}
+
 		long curBlock = page / perBlock;
 
 		if (page % perBlock != 0) {
@@ -62,8 +68,16 @@ public class ProductService {
 
 		// 5. 이전블럭, 다음블럭 유무
 		boolean pre = true;
+		boolean next = true;
 		if (curBlock == 1) {
 			pre = false;
+		}
+
+		if (curBlock >= totalBlock) {
+
+			next = false;
+			lastnum = totalPage;
+
 		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -73,6 +87,7 @@ public class ProductService {
 		map.put("startnum", startnum);
 		map.put("lastnum", lastnum);
 		map.put("pre", pre);
+		map.put("next", next);
 
 		return map;
 	}

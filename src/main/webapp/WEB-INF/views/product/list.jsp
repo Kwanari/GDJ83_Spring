@@ -49,10 +49,11 @@
 			    	<c:forEach begin="${map.startnum}" end="${map.lastnum}" step="1" var="i">
 			    		<li class="page-item"><a class="page-link" href="list?page=${i}">${i}</a></li>
 					</c:forEach>
-			    <li class="page-item">
+			    <li class="page-item ${map.next?'':'disabled'}">
 			      <a class="page-link" href="list?page=${map.lastnum+1}" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
+			      
 			    </li>
 			  </ul>
 			</nav>
