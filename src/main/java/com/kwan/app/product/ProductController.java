@@ -1,6 +1,6 @@
 package com.kwan.app.product;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,13 +16,24 @@ public class ProductController {
 	ProductService productService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Model model, Long page) throws Exception {
+	public String getList(Model model, Long page) throws Exception {
 
 		System.out.println("Product List");
 
-		List<ProductDTO> list = productService.getList(page);
+		if (page < 1) {
 
-		model.addAttribute("list", list);
+			model.addAttribute("result", "안돼 돌아가");
+			model.addAttribute("url", "list?page=1");
+
+			return "commons/massage";
+
+		}
+
+		Map<String, Object> map = productService.getList(page);
+
+		model.addAttribute("map", map);
+
+		return "product/list";
 	}
 
 	@RequestMapping("detail")

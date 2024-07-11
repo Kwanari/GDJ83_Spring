@@ -26,7 +26,7 @@
 				</thead>
 				
 				<tbody>
-					<c:forEach items="${list}" var="list">
+					<c:forEach items="${map.list}" var="list">
 						<tr>
 							<td>${list.item_id}</td>
 							<td><a href="detail?item_id=${list.item_id}">${list.item_name}</td>
@@ -39,19 +39,18 @@
 			<!-- Page start -->
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
+			 <%--  <c:if test="${map.pre}"> --%>
+			    <li class="page-item ${map.pre?'':'disabled'}">
+			      <a class="page-link" href="list?page=${map.startnum-1}" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
-			    <li class="page-item"><a class="page-link" href="list?page=1">1</a></li>
-			    <li class="page-item"><a class="page-link" href="list?page=2">2</a></li>
-			    <li class="page-item"><a class="page-link" href="list?page=3">3</a></li>
-			    <li class="page-item"><a class="page-link" href="list?page=4">4</a></li>
-			    <li class="page-item"><a class="page-link" href="list?page=5">5</a></li>
-			    <li class="page-item"><a class="page-link" href="list?page=6">6</a></li>
+			 <%--  </c:if> --%>
+			    	<c:forEach begin="${map.startnum}" end="${map.lastnum}" step="1" var="i">
+			    		<li class="page-item"><a class="page-link" href="list?page=${i}">${i}</a></li>
+					</c:forEach>
 			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
+			      <a class="page-link" href="list?page=${map.lastnum+1}" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>
