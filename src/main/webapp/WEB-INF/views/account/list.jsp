@@ -24,8 +24,8 @@
 					    정렬
 					  </button>
 					  <ul class="dropdown-menu">
-					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&order=0">최신순</a></li>
-					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&order=1">과거순</a></li>
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&order=0&filter=${param.filter}">최신순</a></li>
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&order=1&filter=${param.filter}">과거순</a></li>
 					  </ul>
 					</div>
 					<div class="btn-group">
@@ -33,9 +33,9 @@
 					    필터
 					  </button>
 					  <ul class="dropdown-menu">
-					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=0">입금내역</a></li>
-					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=1">출금내역</a></li>
-					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=2">입출금내역</a></li>
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=0&order=${param.order}">입금내역</a></li>
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=1&order=${param.order}">출금내역</a></li>
+					    <li><a class="dropdown-item" href="list?bank_id=${param.bank_id}&filter=2&order=${param.order}">입출금내역</a></li>
 					  </ul>
 					</div>
 				</div>

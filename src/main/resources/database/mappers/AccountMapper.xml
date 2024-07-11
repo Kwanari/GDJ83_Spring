@@ -97,17 +97,20 @@
  	
  		SELECT * FROM BANK_INFOS WHERE BANK_ID = #{bank_id} 
  			<choose>
+ 				<when test="filter==0">
+ 					AND DEFFERENCE>0
+ 				</when>
+ 				<when test="filter==1">
+ 					AND DEFFERENCE<![CDATA[<]]>0
+ 				</when>
+ 			</choose>
+ 		
+ 			<choose>
  				<when test="order==0">
  					ORDER BY TIMEPOINT DESC
  				</when>
  				<when test="order==1">
  					ORDER BY TIMEPOINT ASC
- 				</when>
- 				<when test="order==2">
- 					AND DEFFERENCE>0 ORDER BY TIMEPOINT DESC
- 				</when>
- 				<when test="order==3">
- 					AND DEFFERENCE<![CDATA[<]]>0 ORDER BY TIMEPOINT DESC
  				</when>
  			</choose>
  		
