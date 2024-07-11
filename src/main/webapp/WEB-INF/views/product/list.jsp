@@ -26,7 +26,7 @@
 				</thead>
 				
 				<tbody>
-					<c:forEach items="${list}" var="list">
+					<c:forEach items="${map.list}" var="list">
 						<tr>
 							<td>${list.item_id}</td>
 							<td><a href="detail?item_id=${list.item_id}">${list.item_name}</td>
@@ -36,6 +36,25 @@
 				</tbody>
 			</table>
 		</div>
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+		    <li class="page-item">
+		      <a class="page-link" href="#" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    <c:forEach begin="${map.start}" end="${map.fin}" step="1" var="i">
+		    	<li class="page-item"><a class="page-link" href="list?page=${i}">${i}</a></li>
+		    </c:forEach>
+
+		    <li class="page-item">
+		      <a class="page-link" href="#" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
+		
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			<a class="btn btn-primary" href="add" role="button">상품추가</a>
 		</div>

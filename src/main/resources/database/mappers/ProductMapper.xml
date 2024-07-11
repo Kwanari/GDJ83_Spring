@@ -20,8 +20,16 @@
   	</select>
   	
   	<!-- ; 생략 -->
-  	<select id="getList" resultType="ProductDTO">
-  		SELECT * FROM ITEMS ORDER BY ITEM_ID ASC
+  	<select id="getList" resultType="ProductDTO" parameterType="Pager">
+  		SELECT * FROM
+		  	(SELECT ROWNUM R,I.*
+		  	FROM ITEMS I
+		  	ORDER BY ITEM_ID DESC)
+		WHERE R BETWEEN #{firstrow} AND #{lastrow}
+  	</select>
+  	
+  	<select id="getCount" resultType="long">
+  		SELECT COUNT(*) FROM ITEMS
   	</select>
   	
   	

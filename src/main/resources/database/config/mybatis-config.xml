@@ -16,6 +16,7 @@
 		<typeAlias type="com.kwan.app.accounts.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.kwan.app.accounts.InfosDTO" alias="InfosDTO"/>
 		<typeAlias type="com.kwan.app.accounts.ListOption" alias="ListOption"/>
+		<typeAlias type="com.kwan.app.product.util.Pager" alias="Pager"/>
 	</typeAliases>  
   
 </configuration>
