@@ -5,7 +5,7 @@
 <nav class="navbar" style="background-color: #e3f2fd;">
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link" href="/product/list">금융상품</a>
+    <a class="nav-link" href="/product/list?page=1">금융상품</a>
   </li>
   
   <%-- switch와 같은 개념 --%>

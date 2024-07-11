@@ -19,9 +19,20 @@
   	
   	</select>
   	
+  	<select id="getMax" resultType="Long">
+  		SELECT COUNT(*) FROM ITEMS
+  	</select>
+  	
   	<!-- ; 생략 -->
-  	<select id="getList" resultType="ProductDTO">
-  		SELECT * FROM ITEMS ORDER BY ITEM_ID ASC
+  	<select id="getList" resultType="ProductDTO" parameterType="Pager">
+  		<![CDATA[SELECT * FROM
+			(SELECT ROWNUM R,I.* FROM
+				(SELECT * FROM
+					ITEMS
+				ORDER BY ITEM_ID DESC
+				) I
+			)
+		WHERE R BETWEEN #{startrow} AND #{lastrow} ]]>
   	</select>
   	
   	

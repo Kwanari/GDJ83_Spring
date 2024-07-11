@@ -15,12 +15,12 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
-	@RequestMapping("list")
-	public void getList(Model model) throws Exception {
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public void getList(Model model, Long page) throws Exception {
 
 		System.out.println("Product List");
 
-		List<ProductDTO> list = productService.getList();
+		List<ProductDTO> list = productService.getList(page);
 
 		model.addAttribute("list", list);
 	}

@@ -35,15 +35,39 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<a class="btn btn-primary" href="add" role="button">상품추가</a>
-		</div>
-		<br>
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<a class="btn btn-primary" href="/" role="button">HOME</a>
-		</div>
 		
+			<!-- Page start -->
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination">
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li class="page-item"><a class="page-link" href="list?page=1">1</a></li>
+			    <li class="page-item"><a class="page-link" href="list?page=2">2</a></li>
+			    <li class="page-item"><a class="page-link" href="list?page=3">3</a></li>
+			    <li class="page-item"><a class="page-link" href="list?page=4">4</a></li>
+			    <li class="page-item"><a class="page-link" href="list?page=5">5</a></li>
+			    <li class="page-item"><a class="page-link" href="list?page=6">6</a></li>
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+			<!-- Page end -->
+		
+				
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<a class="btn btn-primary" href="add" role="button">상품추가</a>
+			</div>
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+					<a class="btn btn-primary" href="/" role="button">HOME</a>
+			</div>
+		</div>
+		<!-- row justify-content-center end -->
 	</div>
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
