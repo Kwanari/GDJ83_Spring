@@ -66,7 +66,7 @@
 			  <ul class="pagination">
 			 <%--  <c:if test="${map.pre}"> --%>
 			    <li class="page-item ${map.pre?'':'disabled'}">
-			      <a class="page-link" href="list?page=${map.startnum-1}" aria-label="Previous">
+			      <a class="page-link" href="list?page=${map.startnum-1}&kind=${map.kind}&search=${map.search}" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
@@ -75,7 +75,7 @@
 			    		<li class="page-item"><a class="page-link" href="list?page=${i}&kind=${map.kind}&search=${map.search}">${i}</a></li>
 					</c:forEach>
 			    <li class="page-item ${map.next?'':'disabled'}">
-			      <a class="page-link" href="list?page=${map.lastnum+1}" aria-label="Next">
+			      <a class="page-link" href="list?page=${map.lastnum+1}&kind=${map.kind}&search=${map.search}" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			      
