@@ -16,6 +16,30 @@
 	
 	<div class="container">
 		<div class="row justify-content-center">
+			<!-- 검색어 입력 -->
+				<form action="list" method="GET" class="row row-cols-lg-auto g-3 align-items-center mb-3">
+				  <div class="col-12">
+				    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+				    <select name="kind" class="form-select" id="inlineFormSelectPref">
+				      <option value="k1" selected>상품명</option>
+				      <option value="k2">상품내용</option>
+				    </select>
+				  </div>
+				
+				  <div class="col-12">
+				    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+				    <div class="input-group">
+				      <input type="text" name="search" class="form-control" id="inlineFormInputGroupUsername" placeholder="Username">
+				    </div>
+				  </div>
+				  
+				  <div class="col-12">
+				    <button type="submit" class="btn btn-primary">Submit</button>
+				  </div>
+				</form>
+		
+		
+			<!-- list start -->
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -35,6 +59,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<!-- list end -->
 		
 			<!-- Page start -->
 			<nav aria-label="Page navigation example">
@@ -47,7 +72,7 @@
 			    </li>
 			 <%--  </c:if> --%>
 			    	<c:forEach begin="${map.startnum}" end="${map.lastnum}" step="1" var="i">
-			    		<li class="page-item"><a class="page-link" href="list?page=${i}">${i}</a></li>
+			    		<li class="page-item"><a class="page-link" href="list?page=${i}&kind=${map.kind}&search=${map.search}">${i}</a></li>
 					</c:forEach>
 			    <li class="page-item ${map.next?'':'disabled'}">
 			      <a class="page-link" href="list?page=${map.lastnum+1}" aria-label="Next">

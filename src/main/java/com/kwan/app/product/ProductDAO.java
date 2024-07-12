@@ -17,9 +17,9 @@ public class ProductDAO {
 
 	private final String NAMESPACE = "com.kwan.app.product.ProductDAO.";
 
-	public Long getMax() throws Exception {
+	public Long getMax(Pager pager) throws Exception {
 
-		return sqlSession.selectOne(NAMESPACE + "getMax");
+		return sqlSession.selectOne(NAMESPACE + "getMax", pager);
 	}
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {

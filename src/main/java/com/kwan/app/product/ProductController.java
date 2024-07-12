@@ -16,10 +16,13 @@ public class ProductController {
 	ProductService productService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList(Model model, Long page) throws Exception {
+	public String getList(Model model, Long page, String kind, String search) throws Exception {
 
 		System.out.println("Product List");
-
+		if (page == null) {
+			page = (long) 1;
+		}
+		// 페이지
 		if (page < 1) {
 
 			model.addAttribute("result", "안돼 돌아가");
@@ -28,8 +31,9 @@ public class ProductController {
 			return "commons/massage";
 
 		}
+		// 페이지
 
-		Map<String, Object> map = productService.getList(page);
+		Map<String, Object> map = productService.getList(page, kind, search);
 
 		model.addAttribute("map", map);
 

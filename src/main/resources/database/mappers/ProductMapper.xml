@@ -19,20 +19,51 @@
   	
   	</select>
   	
-  	<select id="getMax" resultType="Long">
-  		SELECT COUNT(*) FROM ITEMS
+  	<select id="getMax" resultType="Long" parameterType="Pager">
+  		SELECT COUNT(*)
+  		FROM ITEMS
+  		<where>
+			ITEM_ID > 0
+			<choose>
+				<when test="kind=='k2'">
+				<!-- 타입에 따라 자동으로 홑따옴표 생성제거됨 ex)'%'10'%'-->
+					AND ITEM_DETAIL LIKE '%'||#{search}||'%' <!-- 연결연산자 || 사용 -->
+				</when>
+				<otherwise>
+					AND ITEM_NAME LIKE '%'||#{search}||'%'<!-- k2가 아닌 K1, NULL의 값은 비교적 데이터가 짧은 NAME과 비교한다 -->
+				</otherwise>
+			</choose>
+		</where>
   	</select>
   	
   	<!-- ; 생략 -->
   	<select id="getList" resultType="ProductDTO" parameterType="Pager">
-  		<![CDATA[SELECT * FROM
+  		SELECT * FROM
 			(SELECT ROWNUM R,I.* FROM
-				(SELECT * FROM
-					ITEMS
+				(SELECT *
+				FROM ITEMS
+				<where>
+					ITEM_ID > 0
+					<choose>
+						<when test="kind=='k2'">
+						<!-- 타입에 따라 자동으로 홑따옴표 생성제거됨 ex)'%'10'%'-->
+							AND ITEM_DETAIL LIKE '%'||#{search}||'%' <!-- 연결연산자 || 사용 -->
+						</when>
+						<otherwise>
+							AND ITEM_NAME LIKE '%'||#{search}||'%'<!-- k2가 아닌 K1, NULL의 값은 비교적 데이터가 짧은 NAME과 비교한다 -->
+						</otherwise>
+					</choose>
+<!-- 					<if test="kind=='k1'">
+						AND ITEM_NAME
+					</if>
+					<if test="kind=='k2'">
+						AND ITEM_DETAIL					
+					</if> -->
+				</where>
 				ORDER BY ITEM_ID DESC
 				) I
 			)
-		WHERE R BETWEEN #{startrow} AND #{lastrow} ]]>
+		WHERE R BETWEEN #{startrow} AND #{lastrow}
   	</select>
   	
   	
