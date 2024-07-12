@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.kwan.app.notice.NoticeDAO">
+  
+  	<select id="getList" resultType="NoticeDTO">
+  		SELECT * FROM NOTICE
+  	</select>
+  	
+  	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+  	
+  		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardnum}
+  	
+  	</select>
+  
+	<insert id="add" parameterType="NoticeDTO">
+		INSERT INTO NOTICE (BOARDNUM, BOARDWRITER, BOARDTITLE, BOARDCONTENTS)
+		VALUES (BOARD_SEQ.nextval, #{boardwriter}, #{boardtitle}, #{boardcontents})
+	</insert>
+  
+  </mapper>
