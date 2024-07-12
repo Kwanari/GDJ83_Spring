@@ -46,10 +46,26 @@ public class ProductService {
 		}
 
 		long curblock = 0;
-		curblock = (page - 1) % perblock + 1;
+		curblock = page / perblock;
+
+		if (page % perblock != 0) {
+			curblock++;
+		}
 
 		long startnum = 1 + perblock * (curblock - 1);
 		long finishnum = curblock * perblock;
+
+		boolean pre = true;
+		boolean next = true;
+
+		if (page < 6) {
+			pre = false;
+		}
+
+		if (curblock == totalblock) {
+			next = false;
+			finishnum = totalpage;
+		}
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -57,6 +73,8 @@ public class ProductService {
 		map.put("list", productDAO.getList(pager));
 		map.put("start", startnum);
 		map.put("fin", finishnum);
+		map.put("pre", pre);
+		map.put("next", next);
 
 		return map;
 	}
