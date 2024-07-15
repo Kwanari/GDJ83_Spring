@@ -27,7 +27,7 @@
 				</thead>
 				
 				<tbody>
-					<c:forEach items="${list}" var="list">
+					<c:forEach items="${map.list}" var="list">
 						<tr>
 							<td>${list.boardnum}</td>
 							<td><a class="btn" href="detail?boardnum=${list.boardnum}" role="button">${list.boardtitle}</a></td>
@@ -44,6 +44,24 @@
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<a class="btn btn-primary" href="add" role="button">글작성</a>
 	</div>
+	
+	<nav aria-label="Page navigation example">
+	  <ul class="pagination">
+	    <li class="page-item">
+	      <a class="page-link" href="list?page=${map.startnum-1}&perPage=10" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+	    <c:forEach begin="${map.startnum}" end="${map.lastnum}" step="1" var="i">
+	    <li class="page-item"><a class="page-link" href="list?page=${i}&perPage=10">${i}</a></li>
+	    </c:forEach>
+	    <li class="page-item">
+	      <a class="page-link" href="list?page=${map.lastnum+1}&perPage=10" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	  </ul>
+	</nav>
 </div>
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>

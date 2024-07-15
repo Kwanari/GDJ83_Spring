@@ -1,6 +1,6 @@
 package com.kwan.app.notice;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,11 +20,10 @@ public class NoticeController {
 	NoticeService noticeService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Model model) {
-		List<NoticeDTO> list = noticeService.getList();
-		System.out.println(list.get(0).getBoardnum());
+	public void getList(Model model, Long page, Long perPage) throws Exception {
+		Map<String, Object> map = noticeService.getList(page, perPage);
 
-		model.addAttribute("list", list);
+		model.addAttribute("map", map);
 
 	}
 

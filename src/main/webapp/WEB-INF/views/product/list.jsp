@@ -36,6 +36,8 @@
 				  <div class="col-12">
 				    <button type="submit" class="btn btn-primary">Submit</button>
 				  </div>
+				
+					<input type="hidden" value="10" name="perPage">
 				</form>
 		
 		
@@ -50,7 +52,7 @@
 				</thead>
 				
 				<tbody>
-					<c:forEach items="${map.list}" var="list">
+					<c:forEach items="${list}" var="list">
 						<tr>
 							<td>${list.item_id}</td>
 							<td><a href="detail?item_id=${list.item_id}">${list.item_name}</td>
@@ -65,17 +67,17 @@
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination">
 			 <%--  <c:if test="${map.pre}"> --%>
-			    <li class="page-item ${map.pre?'':'disabled'}">
-			      <a class="page-link" href="list?page=${map.startnum-1}&kind=${map.kind}&search=${map.search}" aria-label="Previous">
+			    <li class="page-item ${pager.pre?'':'disabled'}">
+			      <a class="page-link" href="list?page=${pager.startnum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
 			 <%--  </c:if> --%>
-			    	<c:forEach begin="${map.startnum}" end="${map.lastnum}" step="1" var="i">
-			    		<li class="page-item"><a class="page-link" href="list?page=${i}&kind=${map.kind}&search=${map.search}">${i}</a></li>
+			    	<c:forEach begin="${pager.startnum}" end="${pager.lastnum}" step="1" var="i">
+			    		<li class="page-item"><a class="page-link" href="list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 					</c:forEach>
-			    <li class="page-item ${map.next?'':'disabled'}">
-			      <a class="page-link" href="list?page=${map.lastnum+1}&kind=${map.kind}&search=${map.search}" aria-label="Next">
+			    <li class="page-item ${pager.next?'':'disabled'}">
+			      <a class="page-link" href="list?page=${pager.lastnum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			      
