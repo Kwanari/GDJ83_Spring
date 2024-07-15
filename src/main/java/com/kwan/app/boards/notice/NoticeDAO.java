@@ -1,4 +1,4 @@
-package com.kwan.app.notice;
+package com.kwan.app.boards.notice;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class NoticeDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	private final String NAMESPACE = "com.kwan.app.notice.NoticeDAO.";
+	private final String NAMESPACE = "com.kwan.app.boards.notice.NoticeDAO.";
 
 	// List start
 	public List<NoticeDTO> getList(Pager pager) {

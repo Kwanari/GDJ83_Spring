@@ -15,7 +15,9 @@
 		<typeAlias type="com.kwan.app.members.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.kwan.app.accounts.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.kwan.app.trades.TradeDTO" alias="TradeDTO"/>
-		<typeAlias type="com.kwan.app.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.kwan.app.boards.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.kwan.app.boards.qna.QnaDTO" alias="QnaDTO"/>
+		<typeAlias type="com.kwan.app.boards.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.kwan.app.util.Pager" alias="Pager"/>		
 		
 	</typeAliases>  

@@ -1,7 +1,6 @@
-package com.kwan.app.notice;
+package com.kwan.app.boards.notice;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,22 +16,15 @@ public class NoticeService {
 	@Autowired
 	Pager pager;
 
-	public Map<String, Object> getList(Long page, Long perPage) throws Exception {
+	public List<NoticeDTO> getList(Pager pager) throws Exception {
 
-		perPage = 10L;
-
-		pager.setStartrow((page - 1) * 10 + 1);
-		pager.setLastrow(page * 10);
+		pager.makeRow();
 
 		Long totalCount = noticeDAO.getTotal();
 
-		Map<String, Object> map = new HashMap<String, Object>();
+		pager.makeNum(totalCount);
 
-		pager.makeNum(page, totalCount, perPage, map);
-
-		map.put("list", noticeDAO.getList(pager));
-
-		return map;
+		return noticeDAO.getList(pager);
 	}
 
 	public NoticeDTO getDetail(NoticeDTO noticeDTO) {

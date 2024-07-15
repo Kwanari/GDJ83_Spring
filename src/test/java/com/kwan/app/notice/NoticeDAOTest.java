@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kwan.app.DefaultTest;
+import com.kwan.app.boards.notice.NoticeDAO;
+import com.kwan.app.boards.notice.NoticeDTO;
 
 public class NoticeDAOTest extends DefaultTest {
 

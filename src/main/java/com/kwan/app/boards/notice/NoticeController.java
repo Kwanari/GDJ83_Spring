@@ -1,6 +1,6 @@
-package com.kwan.app.notice;
+package com.kwan.app.boards.notice;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kwan.app.members.MemberDTO;
+import com.kwan.app.util.Pager;
 
 @RequestMapping("/notice/")
 @Controller
@@ -20,10 +21,11 @@ public class NoticeController {
 	NoticeService noticeService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Model model, Long page, Long perPage) throws Exception {
-		Map<String, Object> map = noticeService.getList(page, perPage);
+	public void getList(Model model, Pager pager) throws Exception {
+		List<NoticeDTO> list = noticeService.getList(pager);
 
-		model.addAttribute("map", map);
+		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
 
 	}
 

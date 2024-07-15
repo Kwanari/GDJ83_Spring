@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Notice List</title>
+<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
 <c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
 </head>
 <body>
@@ -13,6 +14,17 @@
 <h1>notice list</h1>
 <div class="container">
 	<div class="row justify-content-start">
+		<div class="dropdown">
+		  <a class="btn dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		    개수
+		  </a>
+		
+		  <ul class="dropdown-menu">
+		    <li><a class="dropdown-item" href="#">5개씩</a></li>
+		    <li><a class="dropdown-item" href="#">10개씩</a></li>
+		    <li><a class="dropdown-item" href="#">15개씩</a></li>
+		  </ul>
+		</div>
 
 <!-- list start -->
 			<table class="table table-hover">
@@ -27,7 +39,7 @@
 				</thead>
 				
 				<tbody>
-					<c:forEach items="${map.list}" var="list">
+					<c:forEach items="${list}" var="list">
 						<tr>
 							<td>${list.boardnum}</td>
 							<td><a class="btn" href="detail?boardnum=${list.boardnum}" role="button">${list.boardtitle}</a></td>
@@ -48,15 +60,15 @@
 	<nav aria-label="Page navigation example">
 	  <ul class="pagination">
 	    <li class="page-item">
-	      <a class="page-link" href="list?page=${map.startnum-1}&perPage=10" aria-label="Previous">
+	      <a class="page-link" href="list?page=${pager.startnum-1}&perPage=10" aria-label="Previous">
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
-	    <c:forEach begin="${map.startnum}" end="${map.lastnum}" step="1" var="i">
+	    <c:forEach begin="${pager.startnum}" end="${pager.lastnum}" step="1" var="i">
 	    <li class="page-item"><a class="page-link" href="list?page=${i}&perPage=10">${i}</a></li>
 	    </c:forEach>
 	    <li class="page-item">
-	      <a class="page-link" href="list?page=${map.lastnum+1}&perPage=10" aria-label="Next">
+	      <a class="page-link" href="list?page=${pager.lastnum+1}&perPage=10" aria-label="Next">
 	        <span aria-hidden="true">&raquo;</span>
 	      </a>
 	    </li>
@@ -64,6 +76,13 @@
 	</nav>
 </div>
 
+<script>
+const dropdownElementList = document.querySelectorAll('.dropdown-toggle')
+const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl))
+</script>
+
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+
+
 </body>
 </html>

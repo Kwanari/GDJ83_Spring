@@ -4,12 +4,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.kwan.app.notice.NoticeDAO">
+  <mapper namespace="com.kwan.app.boards.notice.NoticeDAO">
   
   	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
   		SELECT *
-  		FROM (SELECT ROWNUM R,N.* FROM NOTICE N ORDER BY BOARDNUM DESC)
-  		WHERE BOARDNUM BETWEEN #{startrow} AND #{lastrow}
+  		FROM (SELECT ROWNUM R, N.*
+  			FROM (SELECT * 
+  				FROM NOTICE ORDER BY BOARDNUM DESC
+  				) N
+  		)
+  		WHERE R BETWEEN #{startrow} AND #{lastrow}
   	</select>
   	
   	<select id="getTotal" resultType="Long">

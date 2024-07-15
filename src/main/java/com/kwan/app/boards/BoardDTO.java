@@ -1,9 +1,8 @@
-package com.kwan.app.notice;
+package com.kwan.app.boards;
 
 import java.sql.Date;
 
-public class NoticeDTO {
-
+public class BoardDTO {
 	private Long boardnum;
 	private String boardwriter;
 	private String boardtitle;
@@ -50,7 +49,7 @@ public class NoticeDTO {
 	}
 
 	public void setUpdatedate(Date updatedate) {
-		updatedate = updatedate;
+		this.updatedate = updatedate;
 	}
 
 	public Long getBoardhit() {
