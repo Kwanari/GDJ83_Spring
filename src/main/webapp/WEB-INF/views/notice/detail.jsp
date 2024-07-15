@@ -34,10 +34,26 @@
 						<td>${dto.boardwriter}</td>
 						<td>${dto.createdate}</td>
 						<td>${dto.boardhit}</td>
+						
 					</tr>
 				</tbody>
 			</table>
 			<!--list end-->
+			<div class="row justify-content-start">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>내용</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						<tr>
+							<td>${dto.boardcontents}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 	</div>
 	<!-- justify-content-start end -->
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
