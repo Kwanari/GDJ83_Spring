@@ -13,7 +13,8 @@
 
 
 <div class="container">
-	<div class="row justify-content-start mt-5">
+	<div class="row justify-content-center mt-5">
+		<div class="col-6">
 
 <!-- list start -->
 			<table class="table table-hover">
@@ -37,8 +38,17 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
 			<!--list end-->
 	</div>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-6">
+				<input class="form-control" type="text" value="${dto.boardcontents}" aria-label="내용" readonly>
+				</div>
+			</div>
+			</div>
+		</div>
 	<!-- justify-content-start end -->
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<a class="btn btn-primary" href="update?boardnum=${dto.boardnum}" role="button">글수정</a>

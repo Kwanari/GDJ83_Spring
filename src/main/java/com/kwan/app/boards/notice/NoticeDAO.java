@@ -6,10 +6,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kwan.app.boards.BoardDAO;
+import com.kwan.app.boards.BoardDTO;
 import com.kwan.app.util.Pager;
 
 @Repository
-public class NoticeDAO {
+public class NoticeDAO implements BoardDAO {
 
 	@Autowired
 	SqlSession sqlSession;
@@ -17,50 +19,57 @@ public class NoticeDAO {
 	private final String NAMESPACE = "com.kwan.app.boards.notice.NoticeDAO.";
 
 	// List start
-	public List<NoticeDTO> getList(Pager pager) {
-		return sqlSession.selectList(NAMESPACE + "getList", pager);
+	@Override
+	public List<BoardDTO> list(Pager pager) {
+		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 	// List end
 
 	// getTotal start
-	public Long getTotal() {
-		return sqlSession.selectOne(NAMESPACE + "getTotal");
+	@Override
+	public Long getCount(Pager pager) {
+		return sqlSession.selectOne(NAMESPACE + "getCount");
 	}
 
 	// detail start
-	public NoticeDTO getDetail(NoticeDTO noticeDTO) {
+	@Override
+	public NoticeDTO detail(BoardDTO boardDTO) {
 
-		return sqlSession.selectOne(NAMESPACE + "getDetail", noticeDTO);
+		return sqlSession.selectOne(NAMESPACE + "detail", boardDTO);
 
 	}
 	// detail end
 
 	// hit start
-	public void hit(NoticeDTO noticeDTO) {
-		sqlSession.update(NAMESPACE + "hit", noticeDTO);
+	@Override
+	public void hit(BoardDTO boardDTO) {
+		sqlSession.update(NAMESPACE + "hit", boardDTO);
 	}
 	// hit end
 
 	// add start
-	public int add(NoticeDTO noticeDTO) {
+	@Override
+	public int add(BoardDTO boardDTO) {
 //		System.out.println(noticeDTO.getBoardcontents());
 //		System.out.println(noticeDTO.getBoardtitle());
 //		System.out.println(noticeDTO.getBoardwriter());
 
-		return sqlSession.insert(NAMESPACE + "add", noticeDTO);
+		return sqlSession.insert(NAMESPACE + "add", boardDTO);
 	}
 	// add end
 
 	// update start
-	public int update(NoticeDTO noticeDTO) {
+	@Override
+	public int update(BoardDTO boardDTO) {
 
-		return sqlSession.insert(NAMESPACE + "update", noticeDTO);
+		return sqlSession.insert(NAMESPACE + "update", boardDTO);
 	}
 	// update end
 
 	// delete start
-	public int delete(NoticeDTO noticeDTO) {
-		return sqlSession.delete(NAMESPACE + "delete", noticeDTO);
+	@Override
+	public int delete(BoardDTO boardDTO) {
+		return sqlSession.delete(NAMESPACE + "delete", boardDTO);
 	}
 
 }

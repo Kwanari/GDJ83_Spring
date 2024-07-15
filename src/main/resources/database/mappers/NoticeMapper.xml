@@ -6,7 +6,7 @@
   
   <mapper namespace="com.kwan.app.boards.notice.NoticeDAO">
   
-  	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+  	<select id="list" resultType="NoticeDTO" parameterType="Pager">
   		SELECT *
   		FROM (SELECT ROWNUM R, N.*
   			FROM (SELECT * 
@@ -16,13 +16,13 @@
   		WHERE R BETWEEN #{startrow} AND #{lastrow}
   	</select>
   	
-  	<select id="getTotal" resultType="Long">
+  	<select id="getCount" resultType="Long">
   	
   		SELECT COUNT(BOARDNUM) FROM NOTICE
   	
   	</select>
   	
-  	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+  	<select id="detail" parameterType="NoticeDTO" resultType="NoticeDTO">
   	
   		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardnum}
   	

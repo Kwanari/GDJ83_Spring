@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kwan.app.boards.BoardDTO;
+import com.kwan.app.boards.BoardService;
 import com.kwan.app.util.Pager;
 
 @Service
-public class NoticeService {
+public class NoticeService implements BoardService {
 
 	@Autowired
 	NoticeDAO noticeDAO;
@@ -16,34 +18,39 @@ public class NoticeService {
 	@Autowired
 	Pager pager;
 
-	public List<NoticeDTO> getList(Pager pager) throws Exception {
+	@Override
+	public List<BoardDTO> list(Pager pager) throws Exception {
 
 		pager.makeRow();
 
-		Long totalCount = noticeDAO.getTotal();
+		Long totalCount = noticeDAO.getCount(pager);
 
 		pager.makeNum(totalCount);
 
-		return noticeDAO.getList(pager);
+		return noticeDAO.list(pager);
 	}
 
-	public NoticeDTO getDetail(NoticeDTO noticeDTO) {
-		noticeDAO.hit(noticeDTO);
-		return noticeDAO.getDetail(noticeDTO);
+	@Override
+	public NoticeDTO detail(BoardDTO boardDTO) {
+		noticeDAO.hit(boardDTO);
+		return noticeDAO.detail(boardDTO);
 	}
 
-	public int add(NoticeDTO noticeDTO) {
+	@Override
+	public int add(BoardDTO boardDTO) {
 
-		return noticeDAO.add(noticeDTO);
+		return noticeDAO.add(boardDTO);
 	}
 
-	public int update(NoticeDTO noticeDTO) {
+	@Override
+	public int update(BoardDTO boardDTO) {
 
-		return noticeDAO.update(noticeDTO);
+		return noticeDAO.update(boardDTO);
 	}
 
-	public int delete(NoticeDTO noticeDTO) {
-		return noticeDAO.delete(noticeDTO);
+	@Override
+	public int delete(BoardDTO boardDTO) {
+		return noticeDAO.delete(boardDTO);
 	}
 
 }

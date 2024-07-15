@@ -10,10 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kwan.app.boards.BoardDTO;
 import com.kwan.app.members.MemberDTO;
 import com.kwan.app.util.Pager;
 
-@RequestMapping("/notice/")
+@RequestMapping("/board/*")
 @Controller
 public class NoticeController {
 
@@ -21,8 +22,8 @@ public class NoticeController {
 	NoticeService noticeService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getList(Model model, Pager pager) throws Exception {
-		List<NoticeDTO> list = noticeService.getList(pager);
+	public void list(Model model, Pager pager) throws Exception {
+		List<BoardDTO> list = noticeService.list(pager);
 
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
@@ -30,14 +31,14 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail(NoticeDTO noticeDTO, Model model) {
+	public String detail(NoticeDTO noticeDTO, Model model) {
 
-		NoticeDTO dto = noticeService.getDetail(noticeDTO);
+		NoticeDTO dto = noticeService.detail(noticeDTO);
 		if (dto != null) {
 
 			model.addAttribute("dto", dto);
 
-			return "notice/detail";
+			return "board/detail";
 		} else {
 
 			model.addAttribute("result", "도루묵");
@@ -52,7 +53,7 @@ public class NoticeController {
 	public String add(NoticeDTO noticeDTO, Model model) {
 		model.addAttribute("dto", noticeDTO);
 
-		return "notice/writer";
+		return "board/write";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -81,11 +82,11 @@ public class NoticeController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String update(NoticeDTO noticeDTO, Model model) {
 
-		NoticeDTO dto = noticeService.getDetail(noticeDTO);
+		NoticeDTO dto = noticeService.detail(noticeDTO);
 
 		model.addAttribute("dto", dto);
 
-		return "notice/writer";
+		return "board/write";
 
 	}
 

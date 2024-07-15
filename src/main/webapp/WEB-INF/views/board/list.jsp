@@ -56,24 +56,49 @@
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		<a class="btn btn-primary" href="add" role="button">글작성</a>
 	</div>
-	
-	<nav aria-label="Page navigation example">
-	  <ul class="pagination">
-	    <li class="page-item">
-	      <a class="page-link" href="list?page=${pager.startnum-1}&perPage=10" aria-label="Previous">
-	        <span aria-hidden="true">&laquo;</span>
-	      </a>
-	    </li>
-	    <c:forEach begin="${pager.startnum}" end="${pager.lastnum}" step="1" var="i">
-	    <li class="page-item"><a class="page-link" href="list?page=${i}&perPage=10">${i}</a></li>
-	    </c:forEach>
-	    <li class="page-item">
-	      <a class="page-link" href="list?page=${pager.lastnum+1}&perPage=10" aria-label="Next">
-	        <span aria-hidden="true">&raquo;</span>
-	      </a>
-	    </li>
-	  </ul>
-	</nav>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-center">
+			<form class="row row-cols-lg-auto g-3 align-items-center">
+			  <div class="col-2">
+			    <label class="visually-hidden" for="search">검색어를 입력해 주세요.</label>
+			    <div class="input-group">
+			      <input type="text" class="form-control" id="search" name="search" placeholder="검색어를 입력해 주세요.">
+			    </div>
+			  </div>
+			
+			  <div class="col-2">
+			    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+			    <select name="kind" class="form-select" id="inlineFormSelectPref">
+			      <option value="k1" selected>제목</option>
+			      <option value="k2">내용</option>
+			      <option value="k3">작성자</option>
+			    </select>
+			  </div>
+		
+			  <div class="col-2">
+			    <button type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+			</form>
+		</div>
+		
+	<div class="mt-3 d-grid gap-2 d-md-flex justify-content-md-center">
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+		    <li class="page-item">
+		      <a class="page-link" href="list?page=${pager.startnum-1}&perPage=10" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    <c:forEach begin="${pager.startnum}" end="${pager.lastnum}" step="1" var="i">
+		    <li class="page-item"><a class="page-link" href="list?page=${i}&perPage=10">${i}</a></li>
+		    </c:forEach>
+		    <li class="page-item">
+		      <a class="page-link" href="list?page=${pager.lastnum+1}&perPage=10" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
+	</div>
 </div>
 
 <script>

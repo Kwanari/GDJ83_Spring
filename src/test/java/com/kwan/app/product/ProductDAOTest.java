@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kwan.app.DefaultTest;
+import com.kwan.app.util.Pager;
 
 public class ProductDAOTest extends DefaultTest {
 
@@ -12,9 +13,10 @@ public class ProductDAOTest extends DefaultTest {
 
 	@Test
 	public void pageTest() throws Exception {
+		Pager pager = new Pager();
 
 		long perPage = 10L;
-		long totalCount = productDAO.getMax();
+		long totalCount = productDAO.getMax(pager);
 		long totalPage = totalCount / perPage;
 
 		if (totalCount % perPage != 0) {
