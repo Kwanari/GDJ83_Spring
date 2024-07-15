@@ -16,13 +16,22 @@ public class NoticeService {
 	}
 
 	public NoticeDTO getDetail(NoticeDTO noticeDTO) {
+		noticeDAO.hit(noticeDTO);
 		return noticeDAO.getDetail(noticeDTO);
-
 	}
 
 	public int add(NoticeDTO noticeDTO) {
 
 		return noticeDAO.add(noticeDTO);
+	}
+
+	public int update(NoticeDTO noticeDTO) {
+
+		return noticeDAO.update(noticeDTO);
+	}
+
+	public int delete(NoticeDTO noticeDTO) {
+		return noticeDAO.delete(noticeDTO);
 	}
 
 }

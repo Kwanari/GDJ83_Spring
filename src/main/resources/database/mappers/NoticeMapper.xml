@@ -7,7 +7,7 @@
   <mapper namespace="com.kwan.app.notice.NoticeDAO">
   
   	<select id="getList" resultType="NoticeDTO">
-  		SELECT * FROM NOTICE
+  		SELECT * FROM NOTICE ORDER BY BOARDNUM DESC
   	</select>
   	
   	<select id="getDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
@@ -15,10 +15,24 @@
   		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardnum}
   	
   	</select>
+  	
+  	<update id="hit" parameterType="NoticeDTO">
+  		UPDATE NOTICE SET BOARDHIT=BOARDHIT+1 WHERE BOARDNUM=#{boardnum}	
+  	</update>
   
 	<insert id="add" parameterType="NoticeDTO">
 		INSERT INTO NOTICE (BOARDNUM, BOARDWRITER, BOARDTITLE, BOARDCONTENTS)
 		VALUES (BOARD_SEQ.nextval, #{boardwriter}, #{boardtitle}, #{boardcontents})
 	</insert>
+	
+	<update id="update" parameterType="NoticeDTO">
+		UPDATE NOTICE SET BOARDTITLE=#{boardtitle}, BOARDCONTENTS=#{boardtitle} WHERE BOARDNUM=#{boardnum}
+	
+	</update>
+	
+	<delete id="delete" parameterType="NoticeDTO">
+		DELETE NOTICE WHERE BOARDNUM=#{boardnum}
+	
+	</delete>
   
   </mapper>

@@ -11,25 +11,53 @@
 <body>
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 
-<!-- add start -->
-<form action="add" method="POST">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="row col-md-8">
-				<div class="mb-3 mt-5">
-				  <input type="text" name="boardtitle" class="form-control" placeholder="제목">
-				</div>
-				<div class="mb-3">
-				  <textarea class="form-control" name="boardcontents" rows="20" placeholder="내용을 입력하세요"></textarea>
-				</div>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<input type="submit" value="등록" class="btn btn-primary">
+<c:if test="${not empty dto}">
+<!-- update start -->
+	<form action="update" method="POST">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="row col-md-8">
+					<div class="mb-3 mt-5">
+					  <input type="text" name="boardtitle" class="form-control" placeholder="제목" value="${dto.boardtitle}">
+					</div>
+					<div class="mb-3">
+					  <textarea class="form-control" name="boardcontents" rows="20" placeholder="내용을 입력하세요" >${dto.boardcontents}</textarea>
+					</div>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<input type="submit" value="수정" class="btn btn-primary">
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</form>
-<!-- add end -->
+	</form>
+	<!-- update end -->
+</c:if>
+
+
+<c:if test="${empty dto}">
+	<!-- add start -->
+	<form action="add" method="POST">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="row col-md-8">
+					<div class="mb-3 mt-5">
+					  <input type="text" name="boardtitle" class="form-control" placeholder="제목">
+					</div>
+					<div class="mb-3">
+					  <textarea class="form-control" name="boardcontents" rows="20" placeholder="내용을 입력하세요"></textarea>
+					</div>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<input type="submit" value="등록" class="btn btn-primary">
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- add end -->
+</c:if>
+
+
+
 
 <c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
 </body>

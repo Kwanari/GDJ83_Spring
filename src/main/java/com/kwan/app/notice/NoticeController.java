@@ -48,7 +48,9 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add() {
+	public String add(NoticeDTO noticeDTO, Model model) {
+		model.addAttribute("dto", noticeDTO);
+
 		return "notice/writer";
 	}
 
@@ -76,13 +78,34 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public void update() {
+	public String update(NoticeDTO noticeDTO, Model model) {
+
+		NoticeDTO dto = noticeService.getDetail(noticeDTO);
+
+		model.addAttribute("dto", dto);
+
+		return "notice/writer";
+
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(NoticeDTO noticeDTO) {
+
+		if (noticeDTO != null) {
+
+			int result = noticeService.update(noticeDTO);
+
+		}
+
+		return "redirect:detail?boardnum=" + noticeDTO.getBoardnum();
 
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public void delete() {
+	public String delete(NoticeDTO noticeDTO) {
+		noticeService.delete(noticeDTO);
 
+		return "redirect:list";
 	}
 
 }

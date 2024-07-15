@@ -40,6 +40,12 @@
 			<!--list end-->
 	</div>
 	<!-- justify-content-start end -->
+	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<a class="btn btn-primary" href="update?boardnum=${dto.boardnum}" role="button">글수정</a>
+	</div>
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		<a class="btn btn-primary" href="delete?boardnum=${dto.boardnum}" role="button">글삭제</a>
+	</div>
 </div>
 
 
