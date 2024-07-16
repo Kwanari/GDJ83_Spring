@@ -54,4 +54,12 @@ public class QnaDAO implements BoardDAO {
 		return sqlSession.selectOne(NAMESPACE + "detail", boardDTO);
 	}
 
+	public int reply(QnaDTO qnaDTO) {
+		return sqlSession.insert(NAMESPACE + "reply", qnaDTO);
+	}
+
+	public int replyUpdate(QnaDTO qnaDTO) {
+		return sqlSession.update(NAMESPACE + "replyUpdate", qnaDTO);
+	}
+
 }

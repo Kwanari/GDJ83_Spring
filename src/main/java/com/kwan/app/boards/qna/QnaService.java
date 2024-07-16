@@ -27,6 +27,9 @@ public class QnaService implements BoardService {
 
 	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
+		if (boardDTO.getBoardcontents() == null) {
+			boardDTO.setBoardcontents("");
+		}
 
 		return qnaDAO.add(boardDTO);
 	}
@@ -47,6 +50,19 @@ public class QnaService implements BoardService {
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public int reply(QnaDTO qnaDTO) throws Exception {
+
+		QnaDTO dto = (QnaDTO) qnaDAO.detail(qnaDTO);
+
+		int result = qnaDAO.replyUpdate(dto);
+
+		qnaDTO.setRef(dto.getRef());
+		qnaDTO.setStep(dto.getStep() + 1);
+		qnaDTO.setDepth(dto.getDepth() + 1);
+
+		return qnaDAO.reply(qnaDTO);
 	}
 
 }

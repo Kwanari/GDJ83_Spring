@@ -32,6 +32,9 @@
 						<input type="submit" value="수정" class="btn btn-primary">
 					</div>
 				</div>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<a class="btn btn-primary" href="/" role="button">HOME</a>
+				</div>
 			</div>
 		</div>
 	</form>
@@ -41,12 +44,13 @@
 
 <c:if test="${empty dto}">
 	<!-- add start -->
-	<form action="add" method="POST">
+	<form method="POST">
 		<div class="container">
 			<div class="row justify-content-center">
 			<h1>${board} 작성</h1>
 				<div class="row col-md-8">
 					<div class="mb-3 mt-5">
+					<input type="hidden" name="boardnum" class="form-control" value="${boarddto.boardnum}">
 					  <label for="boardwriter">작성자</label>
 					  <input type="text" name="boardwriter" id="boardwriter" class="form-control" value="${member.member_id}" disabled>
 					</div>

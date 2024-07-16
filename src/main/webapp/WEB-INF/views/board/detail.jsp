@@ -45,17 +45,23 @@
 			<div class="row justify-content-center">
 				<div class="col-6">
 				<input class="form-control" type="text" value="${dto.boardcontents}" aria-label="내용" readonly>
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+				<c:if test="${board ne 'Notice'}">
+					<a class="btn btn-primary" href="reply?boardnum=${dto.boardnum}" role="button">답글</a>
+				</c:if>
+				<c:if test="${member.member_id eq dto.boardwriter}">
+					<a class="btn btn-primary" href="update?boardnum=${dto.boardnum}" role="button">글수정</a>
+					<a class="btn btn-primary" href="delete?boardnum=${dto.boardnum}" role="button">글삭제</a>
+				</c:if>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<a class="btn btn-primary" href="/" role="button">HOME</a>
+				</div>
+			</div>
 				</div>
 			</div>
 			</div>
 		</div>
 	<!-- justify-content-start end -->
-	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<a class="btn btn-primary" href="update?boardnum=${dto.boardnum}" role="button">글수정</a>
-	</div>
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<a class="btn btn-primary" href="delete?boardnum=${dto.boardnum}" role="button">글삭제</a>
-	</div>
 </div>
 
 

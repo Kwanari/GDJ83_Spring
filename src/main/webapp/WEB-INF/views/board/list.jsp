@@ -12,23 +12,29 @@
 <body>
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 <div class="container">
-<h1>${board}</h1>
+
+<!-- perPage 변환 start -->
 		<div class="row justify-content-center">
+			<h1>${board}</h1>
 			<div class="dropdown">
 			  <a class="btn dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			    개수
 			  </a>
 			
 			  <ul class="dropdown-menu">
-			    <li><a class="dropdown-item" href="list?perPage=5">5개씩</a></li>
-			    <li><a class="dropdown-item" href="list?perPage=10">10개씩</a></li>
-			    <li><a class="dropdown-item" href="list?perPage=15">15개씩</a></li>
+			    <li><a class="dropdown-item" href="list?perPage=5&kind=${pager.kind}&search=${pager.search}">5개씩</a></li>
+			    <li><a class="dropdown-item" href="list?perPage=10&kind=${pager.kind}&search=${pager.search}">10개씩</a></li>
+			    <li><a class="dropdown-item" href="list?perPage=15&kind=${pager.kind}&search=${pager.search}">15개씩</a></li>
 			  </ul>
 			</div>
 		</div>
+		
+<!-- perPage 변환 end -->	
+	
+<!-- justify-content-start start -->
 	<div class="row justify-content-start">
 
-<!-- list start -->
+<!-- 리스트 start -->
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -44,7 +50,14 @@
 					<c:forEach items="${list}" var="list">
 						<tr>
 							<td>${list.boardnum}</td>
-							<td><a class="btn" href="detail?boardnum=${list.boardnum}" role="button">${list.boardtitle}</a></td>
+							<td>
+							<a class="btn" href="detail?boardnum=${list.boardnum}" role="button">
+							<c:catch>
+							<c:forEach begin="1" end="${list.depth}">--</c:forEach>
+							</c:catch>
+							${list.boardtitle}
+							</a>
+							</td>
 							<td>${list.boardwriter}</td>
 							<td>${list.createdate}</td>
 							<td>${list.boardhit}</td>
@@ -52,12 +65,18 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<!--list end-->
+<!-- 리스트 end-->
 	</div>
-	<!-- justify-content-start end -->
+<!-- justify-content-start end -->
+
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<a class="btn btn-primary" href="add" role="button">글작성</a>
+		<c:if test="${dto ne null}">
+			<a class="btn btn-primary" href="add" role="button">글작성</a>
+		</c:if>
+		<a class="btn btn-primary" href="/" role="button">HOME</a>
 	</div>
+	
+<!-- 검색 기능 start -->
 		<div class="d-grid gap-2 d-md-flex justify-content-md-center">
 			<form action="list" method="GET" class="row row-cols-lg-auto g-3 align-items-center">
 			  <div class="col-2">
@@ -75,13 +94,14 @@
 			      <option value="k3">작성자</option>
 			    </select>
 			  </div>
-		
 			  <div class="col-2">
-			    <button type="submit" class="btn btn-primary">Submit</button>
+			    <button type="submit" class="btn btn-primary">검색</button>
 			  </div>
 			</form>
 		</div>
-		
+<!-- 검색 기능 end -->
+
+<!-- 페이징 기능 start -->
 	<div class="mt-3 d-grid gap-2 d-md-flex justify-content-md-center">
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination">
@@ -100,7 +120,11 @@
 		    </li>
 		  </ul>
 		</nav>
+		
 	</div>
+<!-- 페이징 기능 end -->
+
+
 </div>
 
 <script>

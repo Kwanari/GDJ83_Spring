@@ -80,4 +80,22 @@ public class QnaController {
 		return "redirect:detail?boardnum=" + qnaDTO.getBoardnum();
 	}
 
+	@GetMapping("reply")
+	public String reply(QnaDTO qnaDTO, Model model) throws Exception {
+
+		model.addAttribute("boardDTO", qnaDTO);
+		return "board/write";
+	}
+
+	@PostMapping("reply")
+	public String reply(QnaDTO qnaDTO, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
+		qnaDTO.setBoardwriter(memberDTO.getMember_id());
+
+		int result = qnaService.reply(qnaDTO);
+
+		return "redirect:list";
+	}
+
 }
