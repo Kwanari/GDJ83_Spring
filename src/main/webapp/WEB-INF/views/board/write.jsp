@@ -18,6 +18,7 @@
 			<div class="row justify-content-center">
 				<div class="row col-md-8">
 					<div class="mb-3 mt-5">
+					<input type="hidden" name="boardnum" class="form-control" value="${dto.boardnum}">
 					<label for="boardwriter">작성자</label>
 					  <input type="text" name="boardwriter" class="form-control"value="${member.member_id}" disabled>
 					</div>

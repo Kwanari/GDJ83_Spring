@@ -38,6 +38,15 @@
  				<include refid="searchSql"></include>
  		
  		</select>
+ 		
+ 		<insert id="add" parameterType="QnaDTO">
+ 			INSERT INTO QNA (BOARDNUM,BOARDWRITER,BOARDTITLE,BOARDCONTENTS,CREATEDATE,UPDATEDATE, BOARDHIT, REF, STEP, DEPTH)
+ 			VALUES (BOARD_SEQ.NEXTVAL,#{boardwriter},#{boardtitle},#{boardcontents},SYSDATE,SYSDATE,0,BOARD_SEQ.CURRVAL,0,0)
+ 		</insert>
+ 		
+ 		<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
+ 			SELECT * FROM QNA WHERE BOARDNUM=#{boardnum}
+ 		</select>
  	
  	
  	</mapper>

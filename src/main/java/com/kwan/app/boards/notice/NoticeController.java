@@ -59,7 +59,7 @@ public class NoticeController {
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(NoticeDTO noticeDTO, Model model) {
-		model.addAttribute("dto", noticeDTO);
+//		model.addAttribute("dto", noticeDTO);
 
 		return "board/write";
 	}
@@ -91,6 +91,8 @@ public class NoticeController {
 	public String update(NoticeDTO noticeDTO, Model model) {
 
 		NoticeDTO dto = noticeService.detail(noticeDTO);
+
+		dto.setBoardnum(noticeDTO.getBoardnum());
 
 		model.addAttribute("dto", dto);
 

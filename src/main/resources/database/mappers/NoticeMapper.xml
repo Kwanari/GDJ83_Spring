@@ -67,7 +67,7 @@
 	</insert>
 	
 	<update id="update" parameterType="NoticeDTO">
-		UPDATE NOTICE SET BOARDTITLE=#{boardtitle}, BOARDCONTENTS=#{boardtitle} WHERE BOARDNUM=#{boardnum}
+		UPDATE NOTICE SET BOARDTITLE=#{boardtitle}, BOARDCONTENTS=#{boardcontents} WHERE BOARDNUM=#{boardnum}
 	
 	</update>
 	

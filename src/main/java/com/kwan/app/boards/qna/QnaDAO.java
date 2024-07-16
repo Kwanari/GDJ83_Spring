@@ -35,7 +35,8 @@ public class QnaDAO implements BoardDAO {
 
 	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
-		return 0;
+
+		return sqlSession.insert(NAMESPACE + "add", boardDTO);
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class QnaDAO implements BoardDAO {
 
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
-		return null;
+		return sqlSession.selectOne(NAMESPACE + "detail", boardDTO);
 	}
 
 }
