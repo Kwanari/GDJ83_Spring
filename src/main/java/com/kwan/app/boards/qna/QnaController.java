@@ -63,8 +63,21 @@ public class QnaController {
 	}
 
 	@GetMapping("update")
-	public String update() throws Exception {
+	public String update(QnaDTO qnaDTO, Model model) throws Exception {
+
+		BoardDTO boardDTO = qnaService.detail(qnaDTO);
+
+		model.addAttribute("dto", boardDTO);
+
 		return "board/write";
+	}
+
+	@PostMapping("update")
+	public String update(QnaDTO qnaDTO) throws Exception {
+
+		int result = qnaService.update(qnaDTO);
+
+		return "redirect:detail?boardnum=" + qnaDTO.getBoardnum();
 	}
 
 }

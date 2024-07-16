@@ -47,6 +47,11 @@
  		<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
  			SELECT * FROM QNA WHERE BOARDNUM=#{boardnum}
  		</select>
+ 		
+ 		<update id="update" parameterType="QnaDTO">
+ 			UPDATE QNA SET BOARDTITLE = #{boardtitle}, BOARDCONTENTS=#{boardcontents}, UPDATEDATE = SYSDATE
+ 			WHERE BOARDNUM=#{boardnum}
+ 		</update>
  	
  	
  	</mapper>
