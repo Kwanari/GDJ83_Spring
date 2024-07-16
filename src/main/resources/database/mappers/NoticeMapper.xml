@@ -10,7 +10,22 @@
   		SELECT *
   		FROM (SELECT ROWNUM R, N.*
   			FROM (SELECT * 
-  				FROM NOTICE ORDER BY BOARDNUM DESC
+  				FROM NOTICE
+  				<where>
+  					<choose>
+	  					<when test="kind=='k2'">
+	  						BOARDCONTENTS
+	  					</when>
+	  					<when test="kind=='k1'">
+	  						BOARDTITLE
+	  					</when>
+	  					<otherwise>
+	  						BOARDWRITER
+	  					</otherwise>
+  					</choose>
+  					 LIKE '%'||#{search}||'%'
+  				</where>
+  				ORDER BY BOARDNUM DESC
   				) N
   		)
   		WHERE R BETWEEN #{startrow} AND #{lastrow}
@@ -19,6 +34,20 @@
   	<select id="getCount" resultType="Long">
   	
   		SELECT COUNT(BOARDNUM) FROM NOTICE
+  			<where>
+  					<choose>
+	  					<when test="kind=='k2'">
+	  						BOARDCONTENTS
+	  					</when>
+	  					<when test="kind=='k1'">
+	  						BOARDTITLE
+	  					</when>
+	  					<otherwise>
+	  						BOARDWRITER
+	  					</otherwise>
+  					</choose>
+  					 LIKE '%'||#{search}||'%'
+  				</where>
   	
   	</select>
   	

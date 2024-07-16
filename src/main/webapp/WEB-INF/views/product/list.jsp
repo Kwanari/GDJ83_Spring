@@ -21,7 +21,7 @@
 				  <div class="col-12">
 				    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 				    <select name="kind" class="form-select" id="inlineFormSelectPref">
-				      <option value="k1" selected>상품명</option>
+				      <option value="k1">상품명</option>
 				      <option value="k2">상품내용</option>
 				    </select>
 				  </div>

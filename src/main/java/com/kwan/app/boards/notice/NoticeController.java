@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,19 +15,26 @@ import com.kwan.app.boards.BoardDTO;
 import com.kwan.app.members.MemberDTO;
 import com.kwan.app.util.Pager;
 
-@RequestMapping("/board/*")
+@RequestMapping("/notice/*")
 @Controller
 public class NoticeController {
 
 	@Autowired
 	NoticeService noticeService;
 
+	@ModelAttribute("board") // 키
+	public String getBoard() {
+		return "Notice"; // 밸류
+	}
+
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void list(Model model, Pager pager) throws Exception {
+	public String list(Model model, Pager pager) throws Exception {
 		List<BoardDTO> list = noticeService.list(pager);
 
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
+
+		return "board/list";
 
 	}
 

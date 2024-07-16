@@ -18,6 +18,10 @@
 			<div class="row justify-content-center">
 				<div class="row col-md-8">
 					<div class="mb-3 mt-5">
+					<label for="boardwriter">작성자</label>
+					  <input type="text" name="boardwriter" class="form-control"value="${member.member_id}" disabled>
+					</div>
+					<div class="mb-3">
 					  <input type="text" name="boardtitle" class="form-control" placeholder="제목" value="${dto.boardtitle}">
 					</div>
 					<div class="mb-3">
@@ -39,8 +43,13 @@
 	<form action="add" method="POST">
 		<div class="container">
 			<div class="row justify-content-center">
+			<h1>${board} 작성</h1>
 				<div class="row col-md-8">
 					<div class="mb-3 mt-5">
+					  <label for="boardwriter">작성자</label>
+					  <input type="text" name="boardwriter" id="boardwriter" class="form-control" value="${member.member_id}" disabled>
+					</div>
+					<div class="mb-3">
 					  <input type="text" name="boardtitle" class="form-control" placeholder="제목">
 					</div>
 					<div class="mb-3">

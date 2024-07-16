@@ -8,7 +8,7 @@ public class Pager {
 	private long startrow;
 	private long lastrow;
 	private Long page;
-	private Long perPage = 10L;
+	private Long perPage;
 
 	private String search;
 	private String kind;
@@ -23,7 +23,7 @@ public class Pager {
 //rownum 계산
 	public void makeRow() {
 		// 1. 한페이지에 보여줄 row의 개수 설정
-		startrow = (this.getPage() - 1) * perPage + 1;
+		startrow = (this.getPage() - 1) * getPerPage() + 1;
 		lastrow = page * perPage;
 	}
 
@@ -126,6 +126,9 @@ public class Pager {
 	}
 
 	public Long getPerPage() {
+		if (perPage == null || perPage < 1) {
+			perPage = 10L;
+		}
 		return perPage;
 	}
 
@@ -153,7 +156,6 @@ public class Pager {
 		if (search == null) {
 			search = "";
 		}
-
 		return search;
 	}
 

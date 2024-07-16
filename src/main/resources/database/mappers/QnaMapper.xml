@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 	<mapper namespace="com.kwan.app.boards.qna.QnaDAO">
+ 	
+ 	<sql id="searchSql">
+ 		<where>
+	 		BOARDNUM>0
+		 	<choose>
+		 		<when test="kind=='kt'">
+		 			AND BOARDTITLE 
+		 		</when>
+		 		<when test="kind=='kc'">
+		 			AND BOARDCONTENTS 
+		 		</when>
+		 		<otherwise>
+					AND BOARDWRITER
+	 			</otherwise>
+	 		</choose>
+	 		LIKE '%'||#{search}||'%'
+ 		</where> 
+ 	</sql>
+ 	
+ 		<select id="list" parameterType="Pager" resultType="QnaDTO">
+ 		SELECT * FROM
+	 		(SELECT ROWNUM R, Q.* FROM
+	 			(SELECT * FROM QNA
+	 			<include refid="searchSql"></include>
+	 			ORDER BY REF DESC, STEP ASC) Q)
+	 	WHERE R BETWEEN #{startrow} AND #{lastrow}
+ 		</select>
+ 		
+ 		<select id="getCount" parameterType="Pager" resultType="Long">
+ 			SELECT COUNT(BOARDNUM) FROM QNA 
+ 				<include refid="searchSql"></include>
+ 		
+ 		</select>
+ 	
+ 	
+ 	</mapper>

@@ -28,7 +28,8 @@ public class NoticeDAO implements BoardDAO {
 	// getTotal start
 	@Override
 	public Long getCount(Pager pager) {
-		return sqlSession.selectOne(NAMESPACE + "getCount");
+
+		return sqlSession.selectOne(NAMESPACE + "getCount", pager);
 	}
 
 	// detail start
