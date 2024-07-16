@@ -11,6 +11,18 @@ public class BoardDTO {
 	private Long boardhit;
 	private String boardcontents;
 	private String boardcategory;
+	private Long del;
+
+	public Long getDel() {
+		if (this.del == null) {
+			del = 0L;
+		}
+		return del;
+	}
+
+	public void setDel(Long del) {
+		this.del = del;
+	}
 
 	public Long getBoardnum() {
 		return boardnum;

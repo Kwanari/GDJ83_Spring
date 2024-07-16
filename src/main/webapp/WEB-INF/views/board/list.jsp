@@ -13,12 +13,12 @@
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
 <div class="container">
 
-<!-- perPage 변환 start -->
-		<div class="row justify-content-center">
 			<h1>${board}</h1>
+<!-- perPage 변환 start -->
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			<div class="dropdown">
 			  <a class="btn dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			    개수
+			    게시물 개수 변경
 			  </a>
 			
 			  <ul class="dropdown-menu">
@@ -49,14 +49,24 @@
 				<tbody>
 					<c:forEach items="${list}" var="list">
 						<tr>
-							<td>${list.boardnum}</td>
 							<td>
-							<a class="btn" href="detail?boardnum=${list.boardnum}" role="button">
-							<c:catch>
-							<c:forEach begin="1" end="${list.depth}">--</c:forEach>
-							</c:catch>
-							${list.boardtitle}
-							</a>
+								<c:if test="${list.del eq 0}">
+								${list.boardnum}</td>
+								</c:if>
+							<td>
+								<c:choose>
+									<c:when test="${list.del eq 0}">
+										<a class="btn" href="detail?boardnum=${list.boardnum}" role="button">
+										<c:catch>
+										<c:forEach begin="1" end="${list.depth}">--</c:forEach>
+										</c:catch>
+										${list.boardtitle}
+										</a>
+									</c:when>
+									<c:otherwise>
+										삭제된 글입니다
+									</c:otherwise>
+								</c:choose>
 							</td>
 							<td>${list.boardwriter}</td>
 							<td>${list.createdate}</td>
@@ -70,7 +80,7 @@
 <!-- justify-content-start end -->
 
 	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-		<c:if test="${dto ne null}">
+		<c:if test="${member ne null}">
 			<a class="btn btn-primary" href="add" role="button">글작성</a>
 		</c:if>
 		<a class="btn btn-primary" href="/" role="button">HOME</a>

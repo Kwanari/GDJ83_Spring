@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,7 +40,7 @@ public class NoticeController {
 
 	}
 
-	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	@GetMapping("detail")
 	public String detail(NoticeDTO noticeDTO, Model model) {
 
 		NoticeDTO dto = noticeService.detail(noticeDTO);
@@ -57,14 +59,14 @@ public class NoticeController {
 		}
 	}
 
-	@RequestMapping(value = "add", method = RequestMethod.GET)
+	@GetMapping("add")
 	public String add(NoticeDTO noticeDTO, Model model) {
 //		model.addAttribute("dto", noticeDTO);
 
 		return "board/write";
 	}
 
-	@RequestMapping(value = "add", method = RequestMethod.POST)
+	@PostMapping("add")
 	public String add(NoticeDTO noticeDTO, HttpSession session, Model model) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 
@@ -87,7 +89,7 @@ public class NoticeController {
 		return "redirect:list";
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.GET)
+	@GetMapping("update")
 	public String update(NoticeDTO noticeDTO, Model model) {
 
 		NoticeDTO dto = noticeService.detail(noticeDTO);
@@ -100,7 +102,7 @@ public class NoticeController {
 
 	}
 
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@PostMapping("update")
 	public String update(NoticeDTO noticeDTO) {
 
 		if (noticeDTO != null) {
@@ -113,7 +115,7 @@ public class NoticeController {
 
 	}
 
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@GetMapping("delete")
 	public String delete(NoticeDTO noticeDTO) {
 		noticeService.delete(noticeDTO);
 

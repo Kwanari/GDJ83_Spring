@@ -50,7 +50,7 @@
  		</insert>
  		
  		<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
- 			SELECT * FROM QNA WHERE BOARDNUM=#{boardnum}
+ 			SELECT * FROM QNA WHERE BOARDNUM=#{boardnum} AND DEL=0
  		</select>
  		
  		<update id="update" parameterType="QnaDTO">
@@ -63,6 +63,10 @@
  			WHERE REF=#{ref} AND STEP>#{step}
  		
  		</update>
+ 		
+ 		<delete id="delete" parameterType="QnaDTO">
+ 			UPDATE QNA SET DEL=1 WHERE BOARDNUM = #{boardnum}
+ 		</delete>
  		
  	
  	

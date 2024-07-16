@@ -46,7 +46,7 @@ public class QnaDAO implements BoardDAO {
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
-		return 0;
+		return sqlSession.delete(NAMESPACE + "delete", boardDTO);
 	}
 
 	@Override
@@ -55,6 +55,7 @@ public class QnaDAO implements BoardDAO {
 	}
 
 	public int reply(QnaDTO qnaDTO) {
+
 		return sqlSession.insert(NAMESPACE + "reply", qnaDTO);
 	}
 

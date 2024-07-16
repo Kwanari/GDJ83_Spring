@@ -98,4 +98,11 @@ public class QnaController {
 		return "redirect:list";
 	}
 
+	@GetMapping("delete")
+	public String delete(QnaDTO qnaDTO) throws Exception {
+
+		int result = qnaService.delete(qnaDTO);
+		return "redirect:list";
+	}
+
 }
