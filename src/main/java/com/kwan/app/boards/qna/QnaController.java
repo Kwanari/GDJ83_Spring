@@ -20,6 +20,8 @@ import com.kwan.app.util.Pager;
 @RequestMapping("/qna/*")
 public class QnaController {
 
+	private String confilic;
+
 	@Autowired
 	private QnaService qnaService;
 
