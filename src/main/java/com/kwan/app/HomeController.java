@@ -25,7 +25,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletResponse response, HttpServletRequest request) {
-		System.out.println("master");
+		System.out.println("study conflict");
 		// 내장객체
 		// 상위: 가장 오래 살아있는 객체
 		// 하위에서 상위 객체 꺼낼수있음
