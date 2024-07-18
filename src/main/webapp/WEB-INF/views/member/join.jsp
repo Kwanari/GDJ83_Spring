@@ -27,34 +27,45 @@
 		                </div>
 		                <div class="card-body">
 								
-						<form method="post">
+						<form method="post" id="frm">
 							<div class="mb-3">
 			    	            <label for="userName" class="form-label">ID</label>
-			                    <input type="text" class="form-control" id="userName" name="member_id">
+			                    <input type="text" class="form-control ch" id="userName" name="member_id">
 			                </div>
 			                <div class="mb-3">
 			                     <label for="password" class="form-label">PASSWORD</label>
-			                     <input type="password" class="form-control" id="password" name="member_pw">
+			                     <input type="password" class="form-control ch" id="password" name="member_pw">
+								 <div id="password-error" class="text-danger"></div>
 			                 </div>
 			
 				             <div class="mb-3">
 			    	             <label for="name" class="form-label">NAME</label>
-			                     <input type="text" class="form-control" id="name" name="member_name">
+			                     <input type="text" class="form-control ch" id="name" name="member_name">
 			                 </div>
 			
 			                 <div class="mb-3">
 				                 <label for="phone" class="form-label">PHONE</label>
-			                     <input type="text" class="form-control" id="phone" name="member_phone">
+			                     <input type="text" class="form-control ch" id="phone" name="member_phone">
 			                 </div>
 			
 			                 <div class="mb-3">
 			                     <label for="email" class="form-label">EMAIL</label>
-			                     <input type="email" class="form-control" id="email" name="member_email">
+			                     <input type="email" class="form-control ch" id="email" name="member_email">
 			                 </div>
+
+					 		<div class="mb-3">
+								<button type="button" id="add" class="btn btn-primary">사진파일추가</button>
+								
+							</div>	
+							
+							<div id="result">
+
+
+							</div>
 			
 			                 
 					 		<div class="mb-3">
-								<button class="btn btn-primary">회원가입</button>
+								<button type="button" id="btn" class="btn btn-primary">회원가입</button>
 							</div>
 							
 						</form>	
@@ -73,5 +84,7 @@
     </div>
     
     <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
+    <script type="text/javascript" src="../resources/js/member/memberJoinCheck.js"></script>
+	<script type="text/javascript" src="../resources/js/commons/files.js"></script>
 </body>
 </html>
