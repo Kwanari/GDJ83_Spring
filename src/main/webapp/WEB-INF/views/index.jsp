@@ -1,71 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
-<!-- import: 다른 jsp파일의 내용을 복사해옴 -->
-
+<c:import url="./template/header_css.jsp"></c:import>
 </head>
-<body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
+<body id="page-top">
+	<!-- Page Wrapper -->
+    <div id="wrapper">
+    	<c:import url="./template/sidebar.jsp"></c:import>
+    	        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-	<!-- BasePackage/product -->
-	<!-- /product/ 상품목록 list?GET, 상품디테일 detail?GET, 상품추가 add?GET,POST, 수정 update?GET,POST, 삭제 delete?POST -->
-	<!-- 회원가입, 로그인, 마이페이지, 수정, 탈퇴 -->
-	<!-- 계좌생성, 조회, 이제 -->
-	
-<div class="container mt-5"> <!-- container 클래스: 양쪽에 약간의 여백제외하고 공간 차지 -->
-<div class="row justify-content-center">
-
-	<c:if test="${not empty member}">
-		<div>
-			<!-- scope 생략가능 -->
-			<h3> ${sessionScope.member.member_name} 환영합니다 </h3>
-		
-		</div>
-		<div id="carouselExampleAutoplaying" class="carousel slide col-md-8" data-bs-ride="carousel">
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="/resources/images/index/w1.png" class="d-block w-100" alt="...">
-		    </div>
-		  </div>
-		</div>
-	</c:if>
-	<c:if test="${empty member}">
-		<div id="carouselExampleAutoplaying" class="carousel slide col-md-8" data-bs-ride="carousel">
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="/resources/images/index/1p.jpg" class="d-block w-100" alt="...">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="/resources/images/index/2p.jpg" class="d-block w-100" alt="...">
-		    </div>
-		    <div class="carousel-item">
-		      <img src="/resources/images/index/3p.jpg" class="d-block w-100" alt="...">
-		    </div>
-		  </div>
-		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		    <span class="visually-hidden">Previous</span>
-		  </button>
-		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		    <span class="visually-hidden">Next</span>
-		  </button>
-	</div>
-	</c:if>
-</div>
-</div>
-
-
-<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
-	
+            <!-- Main Content -->
+         	<div id="content">
+         		<c:import url="./template/topbar.jsp"></c:import>
+         	</div>
+         	
+         	<c:import url="./template/footer.jsp"></c:import>
+         </div>
+    </div>
+    
+    <c:import url="./template/footer_script.jsp"></c:import>
 </body>
 </html>
