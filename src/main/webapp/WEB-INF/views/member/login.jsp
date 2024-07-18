@@ -1,41 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
 </head>
-<body>
+<body id="page-top">
+	<!-- Page Wrapper -->
+    <div id="wrapper">
+    	<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
+    	        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-<div class="mt-5">
-	<div class="container-md">
-		<div class="row justify-content-center">
-			<div class="w-50">
-			<form action="login" method="POST">
-			  <div class="mb-3">
-			    <label for="member_id" class="form-label">ID</label>
-			    <!-- value id = id기억하기 체크박스를 이용 name=remember로 controller에 파라미터 전달 -->
-			    <input type="text" value="${id}" class="form-control" id="member_id" name="member_id">
-			  </div>
-			  <div class="mb-3">
-			    <label for="member_pw" class="form-label">Password</label>
-			    <input type="password" class="form-control" id="member_pw" name="member_pw">
-			  </div>
-			  <div class="mb-3 form-check">
-	    		<input type="checkbox" class="form-check-input" name="remember" id="exampleCheck1">
-	    		<label class="form-check-label" for="exampleCheck1">ID 기억하기</label>
-	  		  </div>
+            <!-- Main Content -->
+         	<div id="content">
+         		<c:import url="/WEB-INF/views/template/topbar.jsp"></c:import>
+         		<div class="row justify-content-center">
+         		
+         		<div class="col-md-8">
+	                <div class="card shadow mb-4">
+		                <div class="card-header py-3">
+		                	<h6 class="m-0 font-weight-bold text-primary">회원수정</h6>
+		                </div>
+		                <div class="card-body">
+								
+						<form method="post">
+							<div class="mb-3">
+			    	            <label for="userName" class="form-label">ID</label>
+			                    <input type="text" class="form-control" id="userName"  name="member_id">
+			                </div>
+			                <div class="mb-3">
+			                     <label for="password" class="form-label">PASSWORD</label>
+			                     <input type="password" class="form-control" id="password" name="member_pw">
+			                 </div>
 			
-			  <button type="submit" class="btn btn-primary">로그인</button>
-			</form>
-			  </div>
-		</div>
-	</div>
-</div>
-<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+				            
+			
+			                 
+					 		<div class="mb-3">
+								<button class="btn btn-primary">로그인</button>
+							</div>
+							
+						</form>	
+	
+		                   
+		                </div>
+	                </div>         		
+         		
+         		</div>         		
+         		
+         		</div>
+         	</div>
+         	
+         	<c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
+         </div>
+    </div>
+    
+    <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
 </body>
 </html>

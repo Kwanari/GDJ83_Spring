@@ -1,94 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
 </head>
-<body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
+<body id="page-top">
+	<!-- Page Wrapper -->
+    <div id="wrapper">
+    	<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
+    	        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-
-
-
-	
-
-	<div class="container-md">
-	<div class="mt-5">
-	<h1> My Page </h1>
-	</div>
-		<div class="row justify-content-center">
-			<h2>회원 정보</h2>
-			<div class="table-responsive-md">
-		  		<table class="table align-middle">
-				    <thead>
-				      <tr class="table-info">
-				        <th>ID</th>
-				        <th>Name</th>
-				        <th>Phone</th>
-				        <th>Email</th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr class="align-middle">
-				        <td>${member.member_id}</td>
-						<td>${member.member_name}</td>
-						<td>${member.member_phone}</td>
-						<td>${member.member_email}</td>
-				      </tr>
-				    </tbody>
-				</table>
-			</div>
-			
-			<br>
-			<h2>상품 정보</h2>
-			
-			<div class="table-responsive-md">
-		  		<table class="table align-middle">
-				    <thead>
-				      <tr class="table-info">
-				        <th>계좌번호</th>
-				        <th>개설일</th>
-				        <th>잔액</th>
-				      </tr>
-				    </thead>
-				    <tbody>
-					    <c:forEach items="${member.dtos}" var="list">
-					      <tr class="align-middle">
-					        <td><a href="../account/detail?bank_id=${list.bank_id}">${list.bank_id}</a></td>
-							<td>${list.open_date}</td>
-							<td>${list.balance}</td>
-					      </tr>
-					     </c:forEach>
-				    </tbody>
-				</table>
-			</div>
-			
-			<div>
-			<div class="row">
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-					<a class="btn btn-primary" href="update" role="button">정보 수정</a>
-				<form action="delete" method="POST" >
-					<input type="hidden" value="${member.member_id}" name="member_id">
-					<input type="submit" value="회원 탈퇴" class="btn btn-primary">
-				</form>
-				</div>
-			</div>
-			<br>
-				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<a class="btn btn-primary" href="/" role="button">HOME</a>
-				</div>
-				
-				
-			
-			</div>
-		</div>
-	</div>
-	
-		
-<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+            <!-- Main Content -->
+         	<div id="content">
+         		<c:import url="/WEB-INF/views/template/topbar.jsp"></c:import>
+         		<div class="row justify-content-center">
+         		
+         		<div class="col-md-8">
+	                <div class="card shadow mb-4">
+		                <div class="card-header py-3">
+		                	<h6 class="m-0 font-weight-bold text-primary">상품상세</h6>
+		                </div>
+		                <div class="card-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>Phone</th>
+									<th>Email</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<tr>
+									<td>${member.member_id}</td>
+									<td>${member.member_name}</td>
+									<td>${member.member_phone}</td>
+									<td>${member.member_email}</td>
+								</tr>
+								
+							</tbody>
+						</table>
+		    
+						
+						<div>
+							<a href="./update" class="btn btn-primary">회원수정</a>
+							<a href="./delete" class="btn btn-danger">회원탈퇴</a>
+							
+						</div>
+		                </div>
+	                </div>  
+	                
+	                       		
+         		
+         		</div>         		
+         		<div class="col-md-8">
+	                <div class="card shadow mb-4">
+		                <div class="card-header py-3">
+		                	<h6 class="m-0 font-weight-bold text-primary">계좌정보</h6>
+		                </div>
+		                <div class="card-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>계좌번호</th>
+									<th>총잔액</th>
+								</tr>
+							</thead>
+							
+							<tbody>
+							<c:forEach items="${member.dtos}" var="ac">
+								<tr>
+									<td><a href="../account/detail?item_id=${ac.item_id}">${ac.item_id}</a></td>
+									<td>${ac.balance}</td>
+								</tr>
+							</c:forEach>	
+							</tbody>
+						</table>
+						
+		                </div>
+	                </div>       
+         		</div>
+         	</div>
+         	
+         	<c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
+         </div>
+    </div>
+    
+    <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
 </body>
 </html>
