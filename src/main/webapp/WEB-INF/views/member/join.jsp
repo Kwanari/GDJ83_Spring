@@ -34,9 +34,15 @@
 			                </div>
 			                <div class="mb-3">
 			                     <label for="password" class="form-label">PASSWORD</label>
-			                     <input type="password" class="form-control ch" id="password" name="member_pw">
+			                     <input type="password" class="form-control ch" id="password">
 								 <div id="password-error" class="text-danger"></div>
 			                 </div>
+
+							 <div class="mb-3">
+								<label for="password" class="form-label">PASSWORD</label>
+								<input type="password" class="form-control ch" id="passwordCheck" name="member_pw">
+								<div id="password-eqError" class="text-danger"></div>
+							</div>							 
 			
 				             <div class="mb-3">
 			    	             <label for="name" class="form-label">NAME</label>

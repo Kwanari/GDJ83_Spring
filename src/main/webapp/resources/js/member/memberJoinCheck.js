@@ -9,14 +9,27 @@
  const btn = document.getElementById("btn");
  const userName = document.getElementById("userName");
  const password = document.getElementById("password");
+ const passwordCheck = document.getElementById("passwordCheck");
  const name = document.getElementById("name");
  const phone = document.getElementById("phone");
  const email = document.getElementById("email");
  const ch = document.getElementsByClassName("ch");//배열 형식
  const frm = document.getElementById("frm");
  const passwordError = document.getElementById("password-error");
+ const passwordeqError = document.getElementById("password-eqError");
 
 
+ passwordCheck.addEventListener("blur", function(){
+    passwordeqError.innerText="";
+    console.log("test1")
+    if(password.value != passwordCheck.value){
+        console.log("test2")
+        passwordeqError.innerText="Password가 일치 하지 않음";
+        passwordCheck.value="";
+        return;
+    }
+
+ })
  
  btn.addEventListener("click", function(){
     passwordError.innerHTML="";
