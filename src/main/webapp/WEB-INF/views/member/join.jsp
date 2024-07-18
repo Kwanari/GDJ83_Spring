@@ -1,51 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
 </head>
-<body>
-<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-	<h1>Member Join</h1>
-<div class="container">
-	<div class="row justify-content-center">
-		<form class="row g-3 w-50" action="join" method="POST">
-		  <div class="col-md-6">
-		    <label for="member_id" class="form-label">ID</label>
-		    <input type="text" class="form-control" id="member_id" name="member_id">
-		  </div>
-		  <div class="col-md-6">
-		    <label for="member_pw" class="form-label">Password</label>
-		    <input type="password" class="form-control" id="member_pw" name="member_pw">
-		  </div>
-		  <div class="col-12">
-		    <label for="member_name" class="form-label">Name</label>
-		    <input type="text" class="form-control" id="member_name" name="member_name" placeholder="KIM JAVA">
-		  </div>
-		  <div class="col-12">
-		    <label for="member_phone" class="form-label">Phone</label>
-		    <input type="text" class="form-control" id="member_phone" name="member_phone" placeholder="010-1234-5678">
-		  </div>
-		  <div class="col-md-6">
-		    <label for="member_email" class="form-label">Email</label>
-		    <input type="text" class="form-control" id="member_email" name="member_email" placeholder="example@example.com">
-		  </div>
-		  <div class="col-12">
-		    <button type="submit" class="btn btn-primary">가입</button>
-		  </div>
-		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-			<a class="btn btn-primary" href="/" role="button">HOME</a>
-		</div>
-		</form>
-	</div>
-</div>
+<body id="page-top">
+	<!-- Page Wrapper -->
+    <div id="wrapper">
+    	<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
+    	        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+         	<div id="content">
+         		<c:import url="/WEB-INF/views/template/topbar.jsp"></c:import>
+         		<div class="row justify-content-center">
+         		
+         		<div class="col-md-8">
+	                <div class="card shadow mb-4">
+		                <div class="card-header py-3">
+		                	<h6 class="m-0 font-weight-bold text-primary">회원가입</h6>
+		                </div>
+		                <div class="card-body">
+								
+						<form method="post">
+							<div class="mb-3">
+			    	            <label for="userName" class="form-label">ID</label>
+			                    <input type="text" class="form-control" id="userName" name="member_id">
+			                </div>
+			                <div class="mb-3">
+			                     <label for="password" class="form-label">PASSWORD</label>
+			                     <input type="password" class="form-control" id="password" name="member_pw">
+			                 </div>
+			
+				             <div class="mb-3">
+			    	             <label for="name" class="form-label">NAME</label>
+			                     <input type="text" class="form-control" id="name" name="member_name">
+			                 </div>
+			
+			                 <div class="mb-3">
+				                 <label for="phone" class="form-label">PHONE</label>
+			                     <input type="text" class="form-control" id="phone" name="member_phone">
+			                 </div>
+			
+			                 <div class="mb-3">
+			                     <label for="email" class="form-label">EMAIL</label>
+			                     <input type="email" class="form-control" id="email" name="member_email">
+			                 </div>
+			
+			                 
+					 		<div class="mb-3">
+								<button class="btn btn-primary">회원가입</button>
+							</div>
+							
+						</form>	
 	
-	
-<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+		                   
+		                </div>
+	                </div>         		
+         		
+         		</div>         		
+         		
+         		</div>
+         	</div>
+         	
+         	<c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
+         </div>
+    </div>
+    
+    <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
 </body>
 </html>

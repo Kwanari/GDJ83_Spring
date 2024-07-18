@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -45,23 +44,23 @@ public class LoginFilter implements Filter {
 		HttpSession session = req.getSession();
 
 		Object obj = session.getAttribute("member");
-
-		if (obj != null) {
-
-			chain.doFilter(request, response);
-
-		} else {
-			request.setAttribute("result", "권한 없습니다.");
-			request.setAttribute("url", "/member/login");
-			// Spring 전이기 때문에 전체 경로 작성해야함
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/commons/massage.jsp");
-			view.forward(request, response);
-
-			// redirect
-//			HttpServletResponse res = (HttpServletResponse) response;
-//			res.sendRedirect("member/login");
-
-		}
+		chain.doFilter(request, response);
+//		if (obj != null) {
+//
+//			chain.doFilter(request, response);
+//
+//		} else {
+//			request.setAttribute("result", "권한 없습니다.");
+//			request.setAttribute("url", "/member/login");
+//			// Spring 전이기 때문에 전체 경로 작성해야함
+//			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/commons/massage.jsp");
+//			view.forward(request, response);
+//
+//			// redirect
+////			HttpServletResponse res = (HttpServletResponse) response;
+////			res.sendRedirect("member/login");
+//
+//		}
 
 	}
 
