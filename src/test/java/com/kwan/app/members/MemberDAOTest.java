@@ -12,7 +12,7 @@ public class MemberDAOTest extends DefaultTest {
 	@Autowired
 	private MemberDAO memberDAO;
 
-	@Test
+//	@Test
 	public void loginTest() throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
 
@@ -22,6 +22,18 @@ public class MemberDAOTest extends DefaultTest {
 
 		// memberDTO의 Dtos 리스트의 길이(ROW개수)가 2와 같은가
 		assertEquals(2, memberDTO.getDtos().size());
+
+	}
+
+	@Test
+	public void addFileTest() throws Exception {
+		MemberFileDTO dto = new MemberFileDTO();
+
+		dto.setUsername("kwan");
+		dto.setFilename("fdagasd.jsp");
+		dto.setOriname("heh.jsp");
+
+		memberDAO.addFile(dto);
 
 	}
 

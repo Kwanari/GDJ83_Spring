@@ -19,6 +19,18 @@
          	<div id="content">
          		<c:import url="/WEB-INF/views/template/topbar.jsp"></c:import>
          		<div class="row justify-content-center">
+	         			<div>
+	         			<!-- 저장할때는 /resources 이전 윈도우 운영체제의 실제 경로가 필요해서 서블릿컨텍스트로 경로를 구한 경로가 나왔고 -->
+	         			<!-- 불러올 때는 표현되지 않는 가상의 폴더에 이미지를 저장했기때문에 실제로 보이지 않는다. -->
+	         			<!-- 하지만 배포할때는 자동으로 추가된다. -->
+		         			<c:if test="${not empty member.memberFileDTO}">
+			         			<img src="/resources/upload/members/${member.memberFileDTO.filename}">
+		         			</c:if>
+		         			<c:if test="${empty member.memberFileDTO}">
+		         				<img src="/resources/upload/membersDefault/profile.png">
+		         			</c:if>
+	         			</div>
+         			
          		
          		<div class="col-md-8">
 	                <div class="card shadow mb-4">

@@ -27,7 +27,7 @@
 		                </div>
 		                <div class="card-body">
 								
-						<form method="post" id="frm">
+						<form method="post" id="frm" enctype="multipart/form-data">
 							<div class="mb-3">
 			    	            <label for="userName" class="form-label">ID</label>
 			                    <input type="text" class="form-control ch" id="userName" name="member_id">
@@ -71,7 +71,7 @@
 			
 			                 
 					 		<div class="mb-3">
-								<button type="button" id="btn" class="btn btn-primary">회원가입</button>
+								<button type="submit" id="btn" class="btn btn-primary">회원가입</button>
 							</div>
 							
 						</form>	
@@ -90,7 +90,7 @@
     </div>
     
     <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
-    <script type="text/javascript" src="../resources/js/member/memberJoinCheck.js"></script>
+    <!-- <script type="text/javascript" src="../resources/js/member/memberJoinCheck.js"></script> -->
 	<script type="text/javascript" src="../resources/js/commons/files.js"></script>
 </body>
 </html>

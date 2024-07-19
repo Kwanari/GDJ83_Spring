@@ -18,6 +18,10 @@ public class MemberDAO {
 
 	}
 
+	public int addFile(MemberFileDTO memberFileDTO) {
+		return sqlSession.insert(NAMESPACE + "addFile", memberFileDTO);
+	}
+
 	// map의 값이 여러개
 	public MemberDTO login(MemberDTO memberDTO) throws Exception {
 

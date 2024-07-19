@@ -10,15 +10,17 @@
 <configuration>
 
 	<typeAliases>
-	
 		<typeAlias type="com.kwan.app.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.kwan.app.members.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.kwan.app.members.MemberFileDTO" alias="MemberFileDTO"/>
 		<typeAlias type="com.kwan.app.accounts.AccountDTO" alias="AccountDTO"/>
+		
 		<typeAlias type="com.kwan.app.trades.TradeDTO" alias="TradeDTO"/>
 		<typeAlias type="com.kwan.app.boards.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.kwan.app.boards.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.kwan.app.boards.BoardDTO" alias="BoardDTO"/>
-		<typeAlias type="com.kwan.app.util.Pager" alias="Pager"/>		
+		<typeAlias type="com.kwan.app.files.FileDTO" alias="FileDTO"/>	
+		<typeAlias type="com.kwan.app.util.Pager" alias="Pager"/>	
 		
 	</typeAliases>  
   

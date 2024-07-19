@@ -87,5 +87,7 @@
   		DELETE ITEMS WHERE ITEM_ID = #{item_id}
   		
   	</delete>
+  	
+
   
   </mapper>

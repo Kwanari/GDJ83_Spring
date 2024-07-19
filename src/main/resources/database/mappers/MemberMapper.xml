@@ -22,11 +22,14 @@
   	
   	<select id="detail" parameterType="MemberDTO" resultMap="mypageResult">
   	
-  		SELECT M.*, B.*
+  		SELECT M.*, B.*, MF.*
   		FROM MEMBERS M
   			LEFT JOIN
   			BANK B
   			ON M.MEMBER_ID = B.MEMBER_ID
+  			LEFT JOIN 
+  			MEMBERFILES MF
+  			ON M.MEMBER_ID = MF.USERNAME
   		WHERE M.MEMBER_ID=#{member_id}
   	
   	</select>
@@ -41,6 +44,14 @@
   		<result column="MEMBER_NAME" property="member_name"/>
   		<result column="MEMBER_PHONE" property="member_phone"/>
   		<result column="MEMBER_EMAIL" property="member_email"/>
+
+  		
+  		<!-- 1:1 collection보다 위에 작성되어야함 -->
+  		<association property="memberFileDTO" javaType="com.kwan.app.members.MemberFileDTO">
+  			<id column="FileNUM" property="filenum"/>
+	  		<result column="FILENAME" property="filename"/>
+	  		<result column="ORINAME" property="oriname"/>
+  		</association>
   		
   		<!-- 1:N (=new List) -->
   		<collection property="dtos" javaType="java.util.List" ofType="AccountDTO">
@@ -70,6 +81,11 @@
   		WHERE MEMBER_ID=#{member_id}
   	
   	</delete>
+  	
+  	 <insert id="addFile" parameterType="MemberFileDTO">
+  		INSERT INTO MEMBERFILES 
+		VALUES (FILES_SEQ.NEXTVAL, #{username}, #{filename}, #{oriname})
+  	</insert>
   	
   
   </mapper>

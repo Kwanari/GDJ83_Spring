@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.accounts.AccountDAO;
 
@@ -30,9 +31,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(MemberDTO memberDTO, Model model) {
+	public String join(MemberDTO memberDTO, Model model, MultipartFile files, HttpSession session) throws Exception {
 
-		int result = memberService.join(memberDTO);
+		int result = memberService.join(memberDTO, files, session);
 
 		return "redirect:/";
 	}
