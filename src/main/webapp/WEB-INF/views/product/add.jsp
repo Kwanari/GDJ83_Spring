@@ -40,6 +40,13 @@
 									<label for="bookDetail" class="form-label">상품설명</label>
 								  	<textarea name="item_detail" class="form-control" id="bookDetail" rows="3">${dto.item_detail}</textarea>
 								</div>
+
+								<div class="mb-3">
+									<button type="button" id="add" class="btn btn-primary">파일추가</button>	
+								</div>
+								<div id="result">
+
+								</div>
 								
 								<div class="mb-3">
 									<button class="btn btn-primary">등록</button>
@@ -59,5 +66,9 @@
     </div>
     
     <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
+	<script src="/resources/js/commons/files.js"></script>
+	<script>
+		setMax(5);
+	</script>
 </body>
 </html>
