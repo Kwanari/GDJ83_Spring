@@ -2,11 +2,15 @@ package com.kwan.app.boards.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.boards.BoardDTO;
 import com.kwan.app.boards.BoardService;
+import com.kwan.app.files.FileManager;
 import com.kwan.app.util.Pager;
 
 @Service
@@ -17,6 +21,9 @@ public class NoticeService implements BoardService {
 
 	@Autowired
 	Pager pager;
+
+	@Autowired
+	FileManager fileManager;
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
@@ -37,9 +44,35 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int add(BoardDTO boardDTO) {
+	public int add(BoardDTO boardDTO, HttpSession session, MultipartFile[] files) throws Exception {
 
-		return noticeDAO.add(boardDTO);
+		Long num = noticeDAO.getNum();
+
+		boardDTO.setBoardnum(num);
+
+		int result = noticeDAO.add(boardDTO);
+
+		String path = session.getServletContext().getRealPath("/resources/upload/notice");
+
+		for (MultipartFile mf : files) {
+
+			if (mf == null) {
+				continue;
+			}
+
+			String filename = fileManager.fileSave(mf, path);
+
+			NoticeFileDTO nfDTO = new NoticeFileDTO();
+
+			nfDTO.setFilename(filename);
+			nfDTO.setOriname(mf.getOriginalFilename());
+			nfDTO.setBoardnum(num);
+
+			noticeDAO.addFile(nfDTO);
+
+		}
+
+		return result;
 	}
 
 	@Override

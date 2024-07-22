@@ -1,6 +1,7 @@
 package com.kwan.app.boards;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BoardDTO {
 	private Long boardnum;
@@ -12,6 +13,15 @@ public class BoardDTO {
 	private String boardcontents;
 	private String boardcategory;
 	private Long del;
+	private List<BoardFileDTO> boardFileDTOs;
+
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
+	}
 
 	public Long getDel() {
 		if (this.del == null) {

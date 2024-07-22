@@ -36,22 +36,58 @@
  		<select id="getCount" parameterType="Pager" resultType="Long">
  			SELECT COUNT(BOARDNUM) FROM QNA 
  				<include refid="searchSql"></include>
- 		
+
  		</select>
  		
  		<insert id="add" parameterType="QnaDTO">
+ 			<selectKey order="BEFORE" resultType="Long" keyProperty="boardnum">
+ 				SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+ 			</selectKey>
  			INSERT INTO QNA (BOARDNUM,BOARDWRITER,BOARDTITLE,BOARDCONTENTS,CREATEDATE,UPDATEDATE, BOARDHIT, REF, STEP, DEPTH)
- 			VALUES (BOARD_SEQ.NEXTVAL,#{boardwriter},#{boardtitle},#{boardcontents},SYSDATE,SYSDATE,0,BOARD_SEQ.CURRVAL,0,0)
+ 			VALUES (#{boardnum},#{boardwriter},#{boardtitle},#{boardcontents},SYSDATE,SYSDATE,0,#{boardnum},0,0)
  		</insert>
+ 		
+ 		<insert id="addFile" parameterType="QnaFileDTO">
+		INSERT INTO QNAFILES VALUES (FILES_SEQ.NEXTVAL,#{boardnum},#{filename},#{oriname})
+		</insert>
  		
  		<insert id="reply" parameterType="QnaDTO">
+ 		<selectKey order="BEFORE" resultType="Long" keyProperty="boardnum">
+ 			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
  			INSERT INTO QNA (BOARDNUM,BOARDWRITER,BOARDTITLE,BOARDCONTENTS,CREATEDATE,UPDATEDATE, BOARDHIT, REF, STEP, DEPTH)
- 			VALUES (BOARD_SEQ.NEXTVAL,#{boardwriter},#{boardtitle},#{boardcontents},SYSDATE,SYSDATE,0,#{ref},#{step},#{depth})
+ 			VALUES (#{boardnum},#{boardwriter},#{boardtitle},#{boardcontents},SYSDATE,SYSDATE,0,#{ref},#{step},#{depth})
  		</insert>
  		
- 		<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
- 			SELECT * FROM QNA WHERE BOARDNUM=#{boardnum} AND DEL=0
+ 		<select id="detail" parameterType="QnaDTO" resultMap="qfjoin">
+ 			SELECT Q.*,QF.*
+ 			FROM QNA Q
+ 				LEFT JOIN
+  				QNAFILES QF
+  				ON (Q.BOARDNUM = QF.BOARDNUM)
+ 			WHERE Q.BOARDNUM=#{boardnum} AND DEL=0
  		</select>
+ 		
+ 		<resultMap type="QnaDTO" id="qfjoin">
+	  		<id column="BOARDNUM" property="boardnum"/>
+	  		<result column="BOARDTITLE" property="boardtitle"/>
+	  		<result column="BOARDWRITER" property="boardwriter"/>
+	  		<result column="CREATEDATE" property="createdate"/>
+	  		<result column="UPDATEDATE" property="updatedate"/>
+	  		<result column="BOARDHIT" property="boardhit"/>
+	  		<result column="BOARDCONTENTS" property="boardcontents"/>
+	  		<result column="BOARDCATEGORY" property="boardcategory"/>
+	  		<result column="DEL" property="del"/>
+	  		<result column="REF" property="ref"/>
+	  		<result column="STEP" property="step"/>
+	  		<result column="DEPTH" property="depth"/>
+	  		
+	  		<collection property="boardFileDTOs" javaType="List" ofType="QnaFileDTO">
+	  			<id column="FILENUM" property="filenum"/>
+	  			<result column="FILENAME" property="filename"/>
+	  			<result column="ORINAME" property="oriname"/>
+	  		</collection>
+  		</resultMap>
  		
  		<update id="update" parameterType="QnaDTO">
  			UPDATE QNA SET BOARDTITLE = #{boardtitle}, BOARDCONTENTS=#{boardcontents}, UPDATEDATE = SYSDATE

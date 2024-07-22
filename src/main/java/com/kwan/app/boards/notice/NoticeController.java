@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.boards.BoardDTO;
 import com.kwan.app.members.MemberDTO;
@@ -29,7 +29,7 @@ public class NoticeController {
 		return "Notice"; // 밸류
 	}
 
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@GetMapping("list")
 	public String list(Model model, Pager pager) throws Exception {
 		List<BoardDTO> list = noticeService.list(pager);
 
@@ -67,7 +67,7 @@ public class NoticeController {
 	}
 
 	@PostMapping("add")
-	public String add(NoticeDTO noticeDTO, HttpSession session, Model model) {
+	public String add(NoticeDTO noticeDTO, HttpSession session, Model model, MultipartFile[] files) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 
 		if (memberDTO != null) {
@@ -80,11 +80,11 @@ public class NoticeController {
 			model.addAttribute("result", "로그인 ㄱㄱ");
 			model.addAttribute("url", "/");
 
-			return "commons/massage";
+			return "commons/message";
 
 		}
 
-		int result = noticeService.add(noticeDTO);
+		int result = noticeService.add(noticeDTO, session, files);
 
 		return "redirect:list";
 	}

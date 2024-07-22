@@ -2,11 +2,15 @@ package com.kwan.app.boards.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.boards.BoardDTO;
 import com.kwan.app.boards.BoardService;
+import com.kwan.app.files.FileManager;
 import com.kwan.app.util.Pager;
 
 @Service
@@ -14,6 +18,9 @@ public class QnaService implements BoardService {
 
 	@Autowired
 	QnaDAO qnaDAO;
+
+	@Autowired
+	FileManager fileManager;
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
@@ -26,12 +33,37 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int add(BoardDTO boardDTO) throws Exception {
+	public int add(BoardDTO boardDTO, HttpSession session, MultipartFile[] files) throws Exception {
+
 		if (boardDTO.getBoardcontents() == null) {
 			boardDTO.setBoardcontents("");
 		}
 
-		return qnaDAO.add(boardDTO);
+		int result = qnaDAO.add(boardDTO);
+
+		String path = session.getServletContext().getRealPath("/resources/upload/qna");
+
+		for (MultipartFile mf : files) {
+
+			if (mf == null) {
+				continue;
+			}
+
+			String filename = fileManager.fileSave(mf, path);
+
+			QnaFileDTO qfDTO = new QnaFileDTO();
+
+			qfDTO.setFilename(filename);
+			qfDTO.setOriname(mf.getOriginalFilename());
+			qfDTO.setBoardnum(boardDTO.getBoardnum());
+
+			System.out.println(qfDTO.getBoardnum());
+
+			qnaDAO.addFile(qfDTO);
+
+		}
+
+		return result;
 	}
 
 	@Override
@@ -52,7 +84,7 @@ public class QnaService implements BoardService {
 		return qnaDAO.delete(boardDTO);
 	}
 
-	public int reply(QnaDTO qnaDTO) throws Exception {
+	public int reply(QnaDTO qnaDTO, HttpSession session, MultipartFile[] files) throws Exception {
 
 		QnaDTO dto = (QnaDTO) qnaDAO.detail(qnaDTO);
 
@@ -62,7 +94,26 @@ public class QnaService implements BoardService {
 		qnaDTO.setStep(dto.getStep() + 1);
 		qnaDTO.setDepth(dto.getDepth() + 1);
 
-		return qnaDAO.reply(qnaDTO);
+		System.out.println(qnaDTO.getStep());
+
+		result = qnaDAO.reply(qnaDTO);
+
+		String path = session.getServletContext().getRealPath("/resources/upload/qna");
+
+		for (MultipartFile mf : files) {
+
+			String filename = fileManager.fileSave(mf, path);
+
+			QnaFileDTO qnaFileDTO = new QnaFileDTO();
+
+			qnaFileDTO.setBoardnum(qnaDTO.getBoardnum());
+			qnaFileDTO.setFilename(filename);
+			qnaFileDTO.setOriname(mf.getOriginalFilename());
+
+			qnaDAO.addFile(qnaFileDTO);
+		}
+
+		return result;
 	}
 
 }

@@ -1,10 +1,8 @@
 package com.kwan.app.product;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -13,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kwan.app.files.FileManager;
 import com.kwan.app.util.Pager;
 
 @Service
@@ -23,6 +22,9 @@ public class ProductService {
 
 	@Autowired
 	Pager pager;
+
+	@Autowired
+	FileManager filemanager;
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 
@@ -56,11 +58,11 @@ public class ProductService {
 
 		System.out.println(path);
 
-		File file = new File(path);
-
-		if (!file.exists()) {
-			file.mkdirs();
-		}
+//		File file = new File(path);
+//
+//		if (!file.exists()) {
+//			file.mkdirs();
+//		}
 
 		for (MultipartFile mf : files) {
 
@@ -68,12 +70,7 @@ public class ProductService {
 				continue;
 			}
 
-			String filename = UUID.randomUUID().toString();
-			filename = filename + "_" + mf.getOriginalFilename();
-
-			File file2 = new File(file, filename);
-
-			mf.transferTo(file2);
+			String filename = filemanager.fileSave(mf, path);
 
 			System.out.println(filename);
 

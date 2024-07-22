@@ -51,19 +51,49 @@
   	
   	</select>
   	
-  	<select id="detail" parameterType="NoticeDTO" resultType="NoticeDTO">
-  	
-  		SELECT * FROM NOTICE WHERE BOARDNUM=#{boardnum}
-  	
+  	<select id="detail" parameterType="NoticeDTO" resultMap="nfjoin">
+  		SELECT N.*,NF.*
+  		FROM NOTICE N
+  			LEFT JOIN
+  			NOTICEFILES NF
+  			ON (N.BOARDNUM = NF.BOARDNUM)
+  		WHERE N.BOARDNUM=#{boardnum}
   	</select>
+  	
+  	<resultMap type="NoticeDTO" id="nfjoin">
+  		<id column="BOARDNUM" property="boardnum"/>
+  		<result column="BOARDTITLE" property="boardtitle"/>
+  		<result column="BOARDWRITER" property="boardwriter"/>
+  		<result column="CREATEDATE" property="createdate"/>
+  		<result column="UPDATEDATE" property="updatedate"/>
+  		<result column="BOARDHIT" property="boardhit"/>
+  		<result column="BOARDCONTENTS" property="boardcontents"/>
+  		<result column="BOARDCATEGORY" property="boardcategory"/>
+  		<result column="DEL" property="del"/>
+  		
+  		<collection property="boardFileDTOs" javaType="List" ofType="NoticeFileDTO">
+  			<id column="FILENUM" property="filenum"/>
+  			<result column="FILENAME" property="filename"/>
+  			<result column="ORINAME" property="oriname"/>
+  		</collection>
+  	
+  	</resultMap>
   	
   	<update id="hit" parameterType="NoticeDTO">
   		UPDATE NOTICE SET BOARDHIT=BOARDHIT+1 WHERE BOARDNUM=#{boardnum}	
   	</update>
+  	
+  	<select id="getNum" resultType="Long">
+  		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  	</select>
   
 	<insert id="add" parameterType="NoticeDTO">
 		INSERT INTO NOTICE (BOARDNUM, BOARDWRITER, BOARDTITLE, BOARDCONTENTS)
-		VALUES (BOARD_SEQ.nextval, #{boardwriter}, #{boardtitle}, #{boardcontents})
+		VALUES (#{boardnum}, #{boardwriter}, #{boardtitle}, #{boardcontents})
+	</insert>
+	
+	<insert id="addFile" parameterType="NoticeFileDTO">
+		INSERT INTO NOTICEFILES VALUES (FILES_SEQ.NEXTVAL,#{boardnum},#{filename},#{oriname})
 	</insert>
 	
 	<update id="update" parameterType="NoticeDTO">

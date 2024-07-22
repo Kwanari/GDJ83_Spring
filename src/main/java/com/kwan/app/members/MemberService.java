@@ -1,18 +1,14 @@
 package com.kwan.app.members;
 
-import java.io.File;
-import java.util.Calendar;
-import java.util.UUID;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.accounts.AccountDAO;
+import com.kwan.app.files.FileManager;
 
 @Service
 public class MemberService {
@@ -22,6 +18,9 @@ public class MemberService {
 
 	@Autowired
 	private AccountDAO accountDAO;
+
+	@Autowired
+	private FileManager fileManager;
 
 	private String name = "members";
 
@@ -39,45 +38,7 @@ public class MemberService {
 
 		System.out.println(path);
 
-		// 1. 저장위치
-		File file = new File(path);
-		// 경로가 없다면 생성
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-
-		// 2. 파일명 설정
-		// 1)
-		// 중복되지않는 값 구하기
-		Calendar cal = Calendar.getInstance();
-		Long n = cal.getTimeInMillis();
-
-		// 확장자명 파싱
-		String filename = files.getOriginalFilename();
-		int dotIndex = filename.lastIndexOf(".");
-		String typename = filename.substring(dotIndex);
-
-		System.out.println(typename);
-
-		// 파일이름 + 확장자
-		filename = n + typename;
-		System.out.println(filename);
-		filename = n + "_" + files.getOriginalFilename();
-		System.out.println(filename);
-
-		// 2) 중복되지않는 값을 만들어주는 라이브러리 사용
-		filename = UUID.randomUUID().toString() + "_" + files.getOriginalFilename();
-		System.out.println(filename);
-//		memberDAO.join(memberDTO);
-
-		// 3. HDD에 파일 저장
-		file = new File(file, filename);
-
-		// 1) MultipartFile
-//		files.transferTo(file);
-
-		// 2) FileCopyUtils
-		FileCopyUtils.copy(files.getBytes(), file);
+		String filename = fileManager.fileSave(files, path);
 
 		MemberFileDTO memberFileDTO = new MemberFileDTO();
 

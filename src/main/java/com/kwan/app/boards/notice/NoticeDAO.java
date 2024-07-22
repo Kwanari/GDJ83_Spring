@@ -48,6 +48,10 @@ public class NoticeDAO implements BoardDAO {
 	}
 	// hit end
 
+	public Long getNum() {
+		return sqlSession.selectOne(NAMESPACE + "getNum");
+	}
+
 	// add start
 	@Override
 	public int add(BoardDTO boardDTO) {
@@ -58,6 +62,10 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.insert(NAMESPACE + "add", boardDTO);
 	}
 	// add end
+
+	public void addFile(NoticeFileDTO nfDTO) {
+		sqlSession.insert(NAMESPACE + "addFile", nfDTO);
+	}
 
 	// update start
 	@Override

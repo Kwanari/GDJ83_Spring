@@ -33,10 +33,18 @@ public class QnaDAO implements BoardDAO {
 		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 
+	public Long getNum() {
+		return sqlSession.selectOne(NAMESPACE + "getNum");
+	}
+
 	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
 
 		return sqlSession.insert(NAMESPACE + "add", boardDTO);
+	}
+
+	public void addFile(QnaFileDTO qfDTO) {
+		sqlSession.insert(NAMESPACE + "addFile", qfDTO);
 	}
 
 	@Override

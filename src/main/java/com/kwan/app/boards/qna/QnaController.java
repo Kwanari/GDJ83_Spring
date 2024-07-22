@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.boards.BoardDTO;
 import com.kwan.app.members.MemberDTO;
@@ -24,7 +25,7 @@ public class QnaController {
 
 	@ModelAttribute("board") // 키
 	public String getBoard() {
-		return "QnA"; // 밸류
+		return "qna"; // 밸류
 	}
 
 	@GetMapping("list")
@@ -51,12 +52,12 @@ public class QnaController {
 	}
 
 	@PostMapping("add")
-	public String add(QnaDTO qnaDTO, HttpSession session) throws Exception {
+	public String add(QnaDTO qnaDTO, HttpSession session, MultipartFile[] files) throws Exception {
 		MemberDTO dto = (MemberDTO) session.getAttribute("member");
 
 		qnaDTO.setBoardwriter(dto.getMember_id());
 
-		int result = qnaService.add(qnaDTO);
+		int result = qnaService.add(qnaDTO, session, files);
 
 		return "redirect:./list";
 	}
@@ -87,12 +88,12 @@ public class QnaController {
 	}
 
 	@PostMapping("reply")
-	public String reply(QnaDTO qnaDTO, HttpSession session) throws Exception {
+	public String reply(QnaDTO qnaDTO, HttpSession session, MultipartFile[] files) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 
 		qnaDTO.setBoardwriter(memberDTO.getMember_id());
 
-		int result = qnaService.reply(qnaDTO);
+		int result = qnaService.reply(qnaDTO, session, files);
 
 		return "redirect:list";
 	}
