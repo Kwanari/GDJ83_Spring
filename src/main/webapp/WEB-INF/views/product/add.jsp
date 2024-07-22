@@ -26,7 +26,7 @@
 		                	<h6 class="m-0 font-weight-bold text-primary">상품등록</h6>
 		                </div>
 		                <div class="card-body">
-							<form action="add" method="post">
+							<form action="add" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="item_id" value="${dto.item_id}">
 								<div class="mb-3">
 									<label for="bookName" class="form-label">상품명</label>

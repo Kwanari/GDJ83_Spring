@@ -11,6 +11,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.kwan.app.product.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.kwan.app.product.ProductFileDTO" alias="ProductFileDTO"/>
 		<typeAlias type="com.kwan.app.members.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.kwan.app.members.MemberFileDTO" alias="MemberFileDTO"/>
 		<typeAlias type="com.kwan.app.accounts.AccountDTO" alias="AccountDTO"/>

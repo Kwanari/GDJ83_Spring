@@ -1,11 +1,22 @@
 package com.kwan.app.product;
 
+import java.util.List;
+
 public class ProductDTO {
 
 	private Long item_id;
 	private String item_name;
 	private String item_detail;
 	private Double item_rate;
+	private List<ProductFileDTO> productFileDTOs;
+
+	public List<ProductFileDTO> getProductFileDTOs() {
+		return productFileDTOs;
+	}
+
+	public void setProductFileDTOs(List<ProductFileDTO> productFileDTOs) {
+		this.productFileDTOs = productFileDTOs;
+	}
 
 	public Long getItem_id() {
 		return item_id;

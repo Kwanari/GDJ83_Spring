@@ -1,11 +1,17 @@
 package com.kwan.app.product;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.util.Pager;
 
@@ -34,8 +40,54 @@ public class ProductService {
 		return productDAO.getDetail(productDTO);
 	}
 
-	public int add(ProductDTO productDTO) throws Exception {
-		return productDAO.add(productDTO);
+	public int add(ProductDTO productDTO, MultipartFile[] files, HttpSession session) throws Exception {
+
+		Long num = productDAO.getNum();
+		productDTO.setItem_id(num);
+		int result = productDAO.add(productDTO);
+
+		if (files == null) {
+			return result;
+		}
+
+		ServletContext servletContext = session.getServletContext();
+
+		String path = servletContext.getRealPath("/resources/upload/products");
+
+		System.out.println(path);
+
+		File file = new File(path);
+
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+
+		for (MultipartFile mf : files) {
+
+			if (mf.isEmpty()) {
+				continue;
+			}
+
+			String filename = UUID.randomUUID().toString();
+			filename = filename + "_" + mf.getOriginalFilename();
+
+			File file2 = new File(file, filename);
+
+			mf.transferTo(file2);
+
+			System.out.println(filename);
+
+			ProductFileDTO productFileDTO = new ProductFileDTO();
+
+			productFileDTO.setFilename(filename);
+			productFileDTO.setOriname(mf.getOriginalFilename());
+			productFileDTO.setItem_id(num);
+
+			productDAO.addFile(productFileDTO);
+
+		}
+
+		return result;
 	}
 
 	public int update(ProductDTO productDTO) throws Exception {

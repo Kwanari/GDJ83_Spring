@@ -50,6 +50,9 @@
 			</table>
 			<div class="row">
 				<div >
+					<c:forEach items="${result.productFileDTOs}" var="i">
+						<a href="/resources/upload/products/${i.filename}" class="btn btn-info">${i.oriname}</a>
+					</c:forEach>
 					<a href="../account/add?item_id=${result.item_id}" class="btn btn-info">상품가입</a>
 					<a href="./update?item_id=${result.item_id}" class="btn btn-danger">상품수정</a>
 					<a href="./delete?item_id=${result.item_id}" class="btn btn-primary">상품삭제</a>

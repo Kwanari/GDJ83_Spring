@@ -36,7 +36,7 @@
   	
   	<resultMap type="MemberDTO" id="mypageResult">
   		<!-- primary key -->
-  		<id column="select할 컬럼명" property="setter의 이름"/>
+  		<!-- <id column="select할 컬럼명" property="setter의 이름"/> -->
   		<id column="MEMBER_ID" property="member_id"/>
   		
   		<!-- 그외 나머지 -->

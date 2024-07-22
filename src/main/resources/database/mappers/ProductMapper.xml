@@ -12,12 +12,31 @@
   	<!-- 메서드명 선호 -->
   	<!-- parameterType: 매개변수의 타입, 풀패키지 -->
   	<!-- resultType: 결과값 타입, 풀패키지 -->
-  	<select id="getDetail" resultType="ProductDTO" parameterType="ProductDTO">
+  	<select id="getDetail" parameterType="ProductDTO" resultMap="dtos">
   		<!-- 쿼리작성 -->
   		<!-- ? = #{getter의 이름} -->
-  		SELECT * FROM ITEMS WHERE ITEM_ID = #{item_id}
-  	
+  		SELECT I.*, PF.*
+  		FROM ITEMS I
+  			LEFT JOIN
+  			PRODUCTFILES PF
+  			ON (I.ITEM_ID = PF.ITEM_ID)
+  		WHERE I.ITEM_ID = #{item_id}
   	</select>
+  	
+  	<resultMap type="ProductDTO" id="dtos">
+  		<id column="ITEM_ID" property="item_id"/>
+  		<result column="ITEM_NAME" property="item_name"/> 
+  		<result column="ITEM_DETAIL" property="item_detail"/>
+  		<result column="ITEM_RATE" property="item_rate"/>
+  		
+  		<collection property="productFileDTOs" javaType="java.util.List" ofType="ProductFileDTO">
+  			<id column="FILENUM" property="filenum"/>
+  			<result column="FILENAME" property="filename"/>
+  			<result column="ORINAME" property="oriname"/>
+  		</collection>
+  	</resultMap>
+  	
+  	
   	
   	<select id="getMax" resultType="Long" parameterType="Pager">
   		SELECT COUNT(*)
@@ -66,12 +85,19 @@
 		WHERE R BETWEEN #{startrow} AND #{lastrow}
   	</select>
   	
+  	<select id="getNum" resultType="Long">
+  		SELECT ITEMS_SEQ.NEXTVAL FROM DUAL
+  	</select>
   	
   	<!-- int가 return됨 다른 type 없음 -->
   	<insert id="add" parameterType="ProductDTO">
   	
-  		INSERT INTO ITEMS VALUES (ITEMS_SEQ.NEXTVAL,#{item_name},#{item_detail},#{item_rate})
+  		INSERT INTO ITEMS VALUES (#{item_id},#{item_name},#{item_detail},#{item_rate})
   	
+  	</insert>
+  	
+  	<insert id="addFile" parameterType="ProductFileDTO">
+  		INSERT INTO PRODUCTFILES VALUES (FILES_SEQ.NEXTVAL,#{item_id},#{filename},#{oriname})
   	</insert>
   	
   	
