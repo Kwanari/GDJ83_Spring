@@ -26,6 +26,7 @@
 		<typeAlias type="com.kwan.app.files.FileDTO" alias="FileDTO"/>	
 		<typeAlias type="com.kwan.app.util.Pager" alias="Pager"/>	
 		<typeAlias type="java.util.List" alias="List"/>
+		<typeAlias type="java.util.Map" alias="Map"/>
 		
 	</typeAliases>  
   

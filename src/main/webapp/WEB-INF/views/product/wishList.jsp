@@ -23,7 +23,7 @@
          				<!-- 검색어 입력 폼 -->
          				<form action="list">
 						  <div class="form-row align-items-center mb-3">
-						  						    <div class="col-auto">
+						  	<div class="col-auto">
 						      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
 						      <select name="kind" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
 						        <option value="k1">상품명</option>
@@ -45,18 +45,28 @@
 						<table class="table table-hover">
 							<thead>
 								<tr>
+									<th>
+										<input type="checkbox">
+									</th>
 									<th>번호</th>
 									<th>상품명</th>
 									<th>이자율</th>
+									<th>삭제</th>
 								</tr>
 							</thead>
 							
 							<tbody>
-								<c:forEach items="${list}" var="dto">
-									<tr>
+								<c:forEach items="${wishlist}" var="dto" varStatus="i">
+									<tr id="parentrow ${dto.item_id}"> <!--id="w${i.index}"-->
+										<td>
+											<input type="checkbox">
+										</td>
 										<td>${dto.item_id}</td>
 										<td><a href="./detail?item_id=${dto.item_id}">${dto.item_name}</a></td>
 										<td>${dto.item_rate}</td>
+										<td>
+											<button class="btn btn-danger" data-del-id="${dto.item_id}">X</button>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -83,12 +93,6 @@
 						    </li>
 						  </ul>
 						</nav>
-						
-						<div class="row">
-							<div >
-								<a href="./add" class="btn btn-danger">상품등록</a>
-							</div>
-						</div>
          			
          			</div>
          		</div>
@@ -99,5 +103,7 @@
     </div>
     
     <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
+    
+    <script src="/resources/js/product/delwish.js"></script>
 </body>
 </html>

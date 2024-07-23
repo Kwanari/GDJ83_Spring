@@ -114,6 +114,25 @@
   		
   	</delete>
   	
+  	<insert id="addWish" parameterType="Map">
+  		INSERT INTO WISHLIST 
+  		VALUES (#{item_id}, #{member_id})
+  	</insert>
+  	
+  	<select id="wishList" parameterType="MemberDTO" resultType="ProductDTO">
+  		SELECT I.*, W.*
+  		FROM WISHLIST W
+  			LEFT JOIN
+  			ITEMS I
+  			ON (W.ITEM_ID = I.ITEM_ID)
+  		WHERE W.MEMBER_ID = #{member_id}
+  	</select>
+  	
+  	<delete id="delWish" parameterType="Map">
+  		DELETE WISHLIST
+  		WHERE ITEM_ID = #{item_id} AND MEMBER_ID = #{member_id}
+  	</delete>
+  	
 
   
   </mapper>

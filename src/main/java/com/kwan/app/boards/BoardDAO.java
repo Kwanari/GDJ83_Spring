@@ -2,6 +2,7 @@ package com.kwan.app.boards;
 
 import java.util.List;
 
+import com.kwan.app.files.FileDTO;
 import com.kwan.app.util.Pager;
 
 public interface BoardDAO {
@@ -24,4 +25,6 @@ public interface BoardDAO {
 	int delete(BoardDTO boardDTO) throws Exception;
 
 	BoardDTO detail(BoardDTO boardDTO) throws Exception;
+
+	public abstract FileDTO filedetail(FileDTO fileDTO) throws Exception;
 }

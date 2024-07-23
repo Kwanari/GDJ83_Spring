@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.files.FileManager;
+import com.kwan.app.members.MemberDTO;
 import com.kwan.app.util.Pager;
 
 @Service
@@ -25,6 +26,31 @@ public class ProductService {
 
 	@Autowired
 	FileManager filemanager;
+
+	public int delWish(Long item_id, String member_id) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("item_id", item_id);
+		map.put("member_id", member_id);
+
+		return productDAO.delWish(map);
+	}
+
+	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
+		return productDAO.wishList(memberDTO);
+
+	}
+
+	public int addWish(Long item_id, String member_id) throws Exception {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		map.put("item_id", item_id);
+		map.put("member_id", member_id);
+
+		return productDAO.addWish(map);
+	}
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 

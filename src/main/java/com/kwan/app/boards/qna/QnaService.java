@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.boards.BoardDTO;
 import com.kwan.app.boards.BoardService;
+import com.kwan.app.files.FileDTO;
 import com.kwan.app.files.FileManager;
 import com.kwan.app.util.Pager;
 
@@ -114,6 +115,11 @@ public class QnaService implements BoardService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public FileDTO filedetail(FileDTO fileDTO) throws Exception {
+		return qnaDAO.filedetail(fileDTO);
 	}
 
 }

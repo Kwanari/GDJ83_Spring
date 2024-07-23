@@ -1,11 +1,13 @@
 package com.kwan.app.product;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kwan.app.members.MemberDTO;
 import com.kwan.app.util.Pager;
 
 @Repository
@@ -16,6 +18,18 @@ public class ProductDAO {
 	// database-context > sqlsession
 
 	private final String NAMESPACE = "com.kwan.app.product.ProductDAO.";
+
+	public int delWish(Map<String, Object> map) {
+		return sqlSession.delete(NAMESPACE + "delWish", map);
+	}
+
+	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "wishList", memberDTO);
+	}
+
+	public int addWish(Map<String, Object> map) throws Exception {
+		return sqlSession.insert(NAMESPACE + "addWish", map);
+	}
 
 	public Long getMax(Pager pager) throws Exception {
 

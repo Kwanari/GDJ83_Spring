@@ -48,14 +48,17 @@
 					
 				</tbody>
 			</table>
-			<div class="row">
-				<div >
+			<div class="row justify-content-end">
+				<div>
 					<c:forEach items="${result.productFileDTOs}" var="i">
 						<a href="/resources/upload/products/${i.filename}" class="btn btn-info">${i.oriname}</a>
 					</c:forEach>
-					<a href="../account/add?item_id=${result.item_id}" class="btn btn-info">상품가입</a>
-					<a href="./update?item_id=${result.item_id}" class="btn btn-danger">상품수정</a>
-					<a href="./delete?item_id=${result.item_id}" class="btn btn-primary">상품삭제</a>
+					<a href="../account/add?item_id=${result.item_id}" class="btn btn-primary">상품가입</a>
+					<a href="./update?item_id=${result.item_id}" class="btn btn-info">상품수정</a>
+					<button type="button" id="addwish" data-product-id="${result.item_id}" class="btn btn-info">위시리스트 추가</button>
+					<a href="./delete?item_id=${result.item_id}" class="btn btn-danger">상품삭제</a>
+				 <div id="wishResult">
+				 </div>
 				</div>
 			</div>			                   
 		                </div>
@@ -65,11 +68,12 @@
          		
          		</div>
          	</div>
-         	
          	<c:import url="/WEB-INF/views/template/footer.jsp"></c:import>
          </div>
     </div>
     
     <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
+    
+    <script src="/resources/js/product/wish.js"></script>
 </body>
 </html>

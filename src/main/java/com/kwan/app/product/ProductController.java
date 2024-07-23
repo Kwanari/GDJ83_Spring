@@ -7,10 +7,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kwan.app.members.MemberDTO;
 import com.kwan.app.util.Pager;
 
 @RequestMapping(value = "/product/")
@@ -19,6 +21,37 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
+
+	@GetMapping("delWish")
+	public void delWish(HttpSession session, Long item_id, Model model) {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
+		int result = productService.delWish(item_id, memberDTO.getMember_id());
+
+		model.addAttribute("msg", result);
+
+	}
+
+	@GetMapping("wishList")
+	public void wishList(HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
+		List<ProductDTO> list = productService.wishList(memberDTO);
+
+		model.addAttribute("wishlist", list);
+
+	}
+
+	@GetMapping("addWish")
+	public String addWish(Long item_id, HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
+		int result = productService.addWish(item_id, memberDTO.getMember_id());
+
+		model.addAttribute("msg", result);
+
+		return "commons/result";
+	}
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getList(Model model, Pager pager) throws Exception {

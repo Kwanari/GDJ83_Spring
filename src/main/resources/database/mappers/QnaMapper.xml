@@ -104,6 +104,10 @@
  			UPDATE QNA SET DEL=1 WHERE BOARDNUM = #{boardnum}
  		</delete>
  		
+ 		<select id="filedetail" parameterType="FileDTO" resultType="FileDTO">
+ 			SELECT * FROM QNAFILES WHERE FILENUM=#{filenum}
+ 		</select>
+ 		
  	
  	
  	</mapper>

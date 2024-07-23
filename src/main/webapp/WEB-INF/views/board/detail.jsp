@@ -52,7 +52,7 @@
 			<div class="row">
 				<div>
 					<c:forEach items="${dto.boardFileDTOs}" var="i">
-						<a href="/resources/upload/${board}/${i.filename}" class="btn btn-info">${i.oriname}</a>
+						<a href="fileDown?filenum=${i.filenum}" class="btn btn-info">${i.oriname}</a>
 					</c:forEach>
 					<a href="./reply?boardnum=${dto.boardnum}" class="btn btn-danger">답글</a>
 					<a href="./update?boardnum=${dto.boardnum}" class="btn btn-danger">수정</a>
