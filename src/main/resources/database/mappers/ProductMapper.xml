@@ -100,7 +100,6 @@
   		INSERT INTO PRODUCTFILES VALUES (FILES_SEQ.NEXTVAL,#{item_id},#{filename},#{oriname})
   	</insert>
   	
-  	
   	<update id="update" parameterType="ProductDTO">
   		
   		UPDATE ITEMS SET ITEM_NAME=#{item_name},ITEM_DETAIL=#{item_detail},ITEM_RATE=#{item_rate}
@@ -130,9 +129,10 @@
   	
   	<delete id="delWish" parameterType="Map">
   		DELETE WISHLIST
-  		WHERE ITEM_ID = #{item_id} AND MEMBER_ID = #{member_id}
+  		WHERE MEMBER_ID = #{member_id}
+  		AND ITEM_ID IN
+  		<foreach collection="item_id" item="item" open="(" separator="," close=")">
+  			#{item}
+  		</foreach>
   	</delete>
-  	
-
-  
   </mapper>

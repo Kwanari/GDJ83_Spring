@@ -39,14 +39,15 @@
 						    </div>
 						  </div>
 						</form>
-         				
-						     				
+         				<div>
+						<button type="button" class="btn btn-danger" id="delAll">전체삭제</button>
+						</div>				
 						
 						<table class="table table-hover">
 							<thead>
 								<tr>
 									<th>
-										<input type="checkbox">
+										<input type="checkbox" id="chAll">
 									</th>
 									<th>번호</th>
 									<th>상품명</th>
@@ -59,13 +60,13 @@
 								<c:forEach items="${wishlist}" var="dto" varStatus="i">
 									<tr id="parentrow ${dto.item_id}"> <!--id="w${i.index}"-->
 										<td>
-											<input type="checkbox">
+											<input type="checkbox" class="ch" id="${dto.item_id}">
 										</td>
 										<td>${dto.item_id}</td>
 										<td><a href="./detail?item_id=${dto.item_id}">${dto.item_name}</a></td>
 										<td>${dto.item_rate}</td>
 										<td>
-											<button class="btn btn-danger" data-del-id="${dto.item_id}">X</button>
+											<button class="btn btn-danger btndel" data-del-id="${dto.item_id}">X</button>
 										</td>
 									</tr>
 								</c:forEach>

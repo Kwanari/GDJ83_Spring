@@ -23,13 +23,17 @@ public class ProductController {
 	ProductService productService;
 
 	@GetMapping("delWish")
-	public void delWish(HttpSession session, Long item_id, Model model) {
+	public String delWish(HttpSession session, Long[] item_id, Model model) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
+		for (Long it : item_id) {
+			System.out.println(it);
+		}
 
 		int result = productService.delWish(item_id, memberDTO.getMember_id());
 
 		model.addAttribute("msg", result);
-
+		return "commons/result";
 	}
 
 	@GetMapping("wishList")
@@ -45,6 +49,17 @@ public class ProductController {
 	@GetMapping("addWish")
 	public String addWish(Long item_id, HttpSession session, Model model) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+
+		List<ProductDTO> list = productService.wishList(memberDTO);
+
+		for (ProductDTO dto : list) {
+			if (item_id == dto.getItem_id()) {
+				System.out.println("중복");
+				model.addAttribute("result", "중복된 상품이 있습니다.");
+				model.addAttribute("url", "/product/wishlist");
+				return "commons/message";
+			}
+		}
 
 		int result = productService.addWish(item_id, memberDTO.getMember_id());
 

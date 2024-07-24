@@ -86,6 +86,5 @@
   		INSERT INTO MEMBERFILES 
 		VALUES (FILES_SEQ.NEXTVAL, #{username}, #{filename}, #{oriname})
   	</insert>
-  	
   
   </mapper>

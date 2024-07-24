@@ -31,6 +31,7 @@
 							<div class="mb-3">
 			    	            <label for="userName" class="form-label">ID</label>
 			                    <input type="text" class="form-control ch" id="userName" name="member_id">
+								<div id="idfail"></div>
 			                </div>
 			                <div class="mb-3">
 			                     <label for="password" class="form-label">PASSWORD</label>
@@ -90,7 +91,7 @@
     </div>
     
     <c:import url="/WEB-INF/views/template/footer_script.jsp"></c:import>
-    <!-- <script type="text/javascript" src="../resources/js/member/memberJoinCheck.js"></script> -->
-	<script type="text/javascript" src="../resources/js/commons/files.js"></script>
+    <script src="/resources/js/member/memberJoinCheck.js"></script>
+	<script src="/resources/js/commons/files.js"></script>
 </body>
 </html>

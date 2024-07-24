@@ -63,6 +63,7 @@
 						<div>
 							<a href="./update" class="btn btn-primary">회원수정</a>
 							<a href="./delete" class="btn btn-danger">회원탈퇴</a>
+							<a href="/product/wishlist" class="btn btn-info">위시리스트</a>
 							
 						</div>
 		                </div>

@@ -80,4 +80,18 @@ public class MemberService {
 
 	}
 
+	public int idCheck(MemberDTO memberDTO) {
+
+		int result = 1;
+
+		MemberDTO dto = memberDAO.idCheck(memberDTO);
+
+		if (dto != null) {
+			result = 0;
+		}
+
+		return result;
+
+	}
+
 }

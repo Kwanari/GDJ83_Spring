@@ -44,4 +44,8 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE + "detail", memberDTO);
 	}
 
+	public MemberDTO idCheck(MemberDTO memberDTO) {
+		return sqlSession.selectOne(NAMESPACE + "detail", memberDTO);
+	}
+
 }

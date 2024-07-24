@@ -27,14 +27,25 @@ public class ProductService {
 	@Autowired
 	FileManager filemanager;
 
-	public int delWish(Long item_id, String member_id) {
+	public int delWish(Long[] item_id, String member_id) {
+		int result = 0;
 
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("item_id", item_id);
 		map.put("member_id", member_id);
+		result = productDAO.delWish(map);
 
-		return productDAO.delWish(map);
+//		for (Long bn : item_id) {
+//
+//			Map<String, Object> map = new HashMap<String, Object>();
+//
+//			map.put("item_id", bn);
+//			map.put("member_id", member_id);
+//			result = productDAO.delWish(map);
+//		}
+
+		return result;
 	}
 
 	public List<ProductDTO> wishList(MemberDTO memberDTO) throws Exception {

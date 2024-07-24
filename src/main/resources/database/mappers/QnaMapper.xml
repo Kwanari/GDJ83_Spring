@@ -6,6 +6,8 @@
   
  	<mapper namespace="com.kwan.app.boards.qna.QnaDAO">
  	
+ 	
+ 	
  	<sql id="searchSql">
  		<where>
 	 		BOARDNUM>0
