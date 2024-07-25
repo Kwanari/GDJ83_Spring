@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kwan.app.members.MemberDTO;
 import com.kwan.app.util.Pager;
+import com.kwan.app.util.ProductCommentsPager;
 
 @RequestMapping(value = "/product/")
 @Controller
@@ -21,6 +23,26 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
+
+	@GetMapping("commentList")
+	public void commentList(ProductCommentsPager productCommentsPager, Model model) throws Exception {
+		List<ProductCommentsDTO> list = productService.commentList(productCommentsPager);
+
+		model.addAttribute("pcDTO", list);
+		model.addAttribute("pager", productCommentsPager);
+	}
+
+	@PostMapping("commentAdd")
+	public String commentAdd(ProductCommentsDTO productCommentsDTO, HttpSession session, Model model) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		productCommentsDTO.setBoardwriter(memberDTO.getMember_id());
+
+		int result = productService.commentAdd(productCommentsDTO);
+
+		model.addAttribute("msg", result);
+
+		return "commons/result";
+	}
 
 	@GetMapping("delWish")
 	public String delWish(HttpSession session, Long[] item_id, Model model) {

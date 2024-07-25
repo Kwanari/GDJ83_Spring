@@ -135,4 +135,24 @@
   			#{item}
   		</foreach>
   	</delete>
+  	
+  	<insert id="commentAdd" parameterType="ProductCommentsDTO">
+  		INSERT INTO COMMENTS (BOARDNUM, ITEM_ID, BOARDWRITER, BOARDCONTENTS)
+  		VALUES (COMMENTS_SEQ.NEXTVAL,#{item_id},#{boardwriter}, #{boardcontents})
+  	</insert>
+  	
+  	<select id="commentList" parameterType="ProductCommentsPager" resultType="ProductCommentsDTO">
+  		SELECT * FROM
+  			(SELECT ROWNUM R, C.* FROM
+  				(SELECT * FROM
+  					COMMENTS
+		  			WHERE ITEM_ID = #{item_id}
+		  			ORDER BY CREATEDATE DESC) C
+		  		)
+  		WHERE R BETWEEN #{startrow} AND #{lastrow}
+  	</select>
+  	
+  	<select id="commentTotalCount" parameterType="ProductCommentsPager" resultType="Long">
+  		SELECT COUNT(BOARDNUM) FROM COMMENTS WHERE ITEM_ID=#{item_id}
+  	</select>
   </mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kwan.app.files.FileManager;
 import com.kwan.app.members.MemberDTO;
 import com.kwan.app.util.Pager;
+import com.kwan.app.util.ProductCommentsPager;
 
 @Service
 public class ProductService {
@@ -26,6 +27,19 @@ public class ProductService {
 
 	@Autowired
 	FileManager filemanager;
+
+	public List<ProductCommentsDTO> commentList(ProductCommentsPager productCommentsPager) throws Exception {
+		productCommentsPager.makeRow();
+
+		Long commentTotalCount = productDAO.commentTotalCount(productCommentsPager);
+		productCommentsPager.makeNum(commentTotalCount);
+
+		return productDAO.commentList(productCommentsPager);
+	}
+
+	public int commentAdd(ProductCommentsDTO productCommentsDTO) {
+		return productDAO.commentAdd(productCommentsDTO);
+	}
 
 	public int delWish(Long[] item_id, String member_id) {
 		int result = 0;

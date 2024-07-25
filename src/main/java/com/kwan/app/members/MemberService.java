@@ -85,13 +85,19 @@ public class MemberService {
 		int result = 1;
 
 		MemberDTO dto = memberDAO.idCheck(memberDTO);
-
 		if (dto != null) {
-			result = 0;
+
+			System.out.println(dto.getMember_id());
+			System.out.println(memberDTO.getMember_id());
+
+			if (dto.getMember_id().equals(memberDTO.getMember_id())) {
+				result = 0;
+			}
+
 		}
+		System.out.println(result);
 
 		return result;
-
 	}
 
 }

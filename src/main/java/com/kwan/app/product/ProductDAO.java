@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kwan.app.members.MemberDTO;
 import com.kwan.app.util.Pager;
+import com.kwan.app.util.ProductCommentsPager;
 
 @Repository
 public class ProductDAO {
@@ -18,6 +19,22 @@ public class ProductDAO {
 	// database-context > sqlsession
 
 	private final String NAMESPACE = "com.kwan.app.product.ProductDAO.";
+
+	public Long commentTotalCount(ProductCommentsPager productCommentsPager) {
+		return sqlSession.selectOne(NAMESPACE + "commentTotalCount", productCommentsPager);
+	}
+
+	public List<ProductCommentsDTO> commentList(ProductCommentsPager productCommentsPager) {
+		System.out.println(productCommentsPager.getItem_id());
+		System.out.println(productCommentsPager.getStartrow());
+		System.out.println(productCommentsPager.getLastrow());
+
+		return sqlSession.selectList(NAMESPACE + "commentList", productCommentsPager);
+	}
+
+	public int commentAdd(ProductCommentsDTO productCommentsDTO) {
+		return sqlSession.insert(NAMESPACE + "commentAdd", productCommentsDTO);
+	}
 
 	public int delWish(Map<String, Object> map) {
 		return sqlSession.delete(NAMESPACE + "delWish", map);

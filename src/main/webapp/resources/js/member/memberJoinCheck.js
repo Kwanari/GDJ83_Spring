@@ -22,16 +22,18 @@
  userName.addEventListener("blur", ()=>{
     fetch("./idCheck?member_id="+userName.value,{
         method:"GET"
+    }).then((res)=>{return res.text()})
+    .then((res)=>{
+        res.trim();
+        alert(res);
+        
+        if(res==0){
+            userName.value="";
+            idfail.innerHTML="ID가 중복됩니다.";
+        } else {
+            idfail.innerHTML="";
+        }
     })
-    // .then((res)=>{res.text})
-    // .then((res)=>{
-    //     res.trim();
-
-    //     if(res==0){
-    //         userName.value="";
-    //         idfail.innerText="ID가 중복됩니다.";
-    //     } 
-    // })
  })
 
 
