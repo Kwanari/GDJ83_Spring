@@ -24,6 +24,18 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
+	@PostMapping("commentDelete")
+	public String commentDelete(ProductCommentsDTO productCommentsDTO, HttpSession session, Model model) {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		productCommentsDTO.setBoardwriter(memberDTO.getMember_id());
+
+		int result = productService.commentDelete(productCommentsDTO);
+
+		model.addAttribute("msg", result);
+
+		return "commons/result";
+	}
+
 	@GetMapping("commentList")
 	public void commentList(ProductCommentsPager productCommentsPager, Model model) throws Exception {
 		List<ProductCommentsDTO> list = productService.commentList(productCommentsPager);
@@ -40,6 +52,8 @@ public class ProductController {
 		int result = productService.commentAdd(productCommentsDTO);
 
 		model.addAttribute("msg", result);
+
+		System.out.println(result);
 
 		return "commons/result";
 	}

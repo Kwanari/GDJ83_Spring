@@ -28,6 +28,10 @@ public class ProductService {
 	@Autowired
 	FileManager filemanager;
 
+	public int commentDelete(ProductCommentsDTO productCommentsDTO) {
+		return productDAO.commentDelete(productCommentsDTO);
+	}
+
 	public List<ProductCommentsDTO> commentList(ProductCommentsPager productCommentsPager) throws Exception {
 		productCommentsPager.makeRow();
 

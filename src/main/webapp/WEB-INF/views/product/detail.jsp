@@ -49,7 +49,7 @@
 				</tbody>
 			</table>
 			<div>
-				<divclass="row justify-content-end">
+				<div class="row justify-content-end">
 					<c:forEach items="${result.productFileDTOs}" var="i">
 						<a href="/resources/upload/products/${i.filename}" class="btn btn-info">${i.oriname}</a>
 					</c:forEach>
@@ -59,8 +59,7 @@
 					<a href="./delete?item_id=${result.item_id}" class="btn btn-danger">상품삭제</a>
 				 <div id="wishResult">
 				 </div>
-				</div>
-				<div class="row justify-content-start">
+				
 				<div>
 					<!--댓글-->
 					<!-- Button trigger modal -->
@@ -89,15 +88,13 @@
 						</div>
 					</div>
 				</div>
-				
+			</div>		
 				<!-- <textarea id="commentContents">
 
 
 				</textarea>
 				<button id="commentAdd" class="btn btn-primary" > 댓글 </button> -->
-
-				<div id="commentList" > <!-- 댓글 목록 -->
-				</div>
+				<div id="commentList" class="row justify-content-center"> <!-- 댓글 목록 -->
 				</div>
 			</div>			                   
 		                </div>

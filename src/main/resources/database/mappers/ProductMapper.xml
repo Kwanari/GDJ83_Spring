@@ -155,4 +155,8 @@
   	<select id="commentTotalCount" parameterType="ProductCommentsPager" resultType="Long">
   		SELECT COUNT(BOARDNUM) FROM COMMENTS WHERE ITEM_ID=#{item_id}
   	</select>
+  	
+  	<delete id="commentDelete" parameterType="ProductCommentsDTO">
+		DELETE COMMENTS WHERE BOARDWRITER=#{boardwriter} AND ITEM_ID=#{item_id} AND BOARDNUM = #{boardnum}  	
+  	</delete>
   </mapper>

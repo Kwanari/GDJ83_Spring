@@ -20,6 +20,10 @@ public class ProductDAO {
 
 	private final String NAMESPACE = "com.kwan.app.product.ProductDAO.";
 
+	public int commentDelete(ProductCommentsDTO productCommentsDTO) {
+		return sqlSession.delete(NAMESPACE + "commentDelete", productCommentsDTO);
+	}
+
 	public Long commentTotalCount(ProductCommentsPager productCommentsPager) {
 		return sqlSession.selectOne(NAMESPACE + "commentTotalCount", productCommentsPager);
 	}
