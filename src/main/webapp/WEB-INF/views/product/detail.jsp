@@ -51,7 +51,7 @@
 			<div>
 				<div class="row justify-content-end">
 					<c:forEach items="${result.productFileDTOs}" var="i">
-						<a href="/resources/upload/products/${i.filename}" class="btn btn-info">${i.oriname}</a>
+						<a href="/resources/upload/products/${i.filename}" class="btn">${i.oriname}</a>
 					</c:forEach>
 					<a href="../account/add?item_id=${result.item_id}" class="btn btn-primary">상품가입</a>
 					<a href="./update?item_id=${result.item_id}" class="btn btn-info">상품수정</a>
@@ -63,7 +63,7 @@
 				<div>
 					<!--댓글-->
 					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal" id="openModal">
 						댓글 입력
 					</button>
 					<div> <!-- 댓글 입력 modal -->

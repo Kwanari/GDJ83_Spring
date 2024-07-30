@@ -24,6 +24,15 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
+	@PostMapping("commentUpdate")
+	public String commentUpdate(ProductCommentsDTO productCommentsDTO, Model model) {
+		int result = productService.commentUpdate(productCommentsDTO);
+
+		model.addAttribute("msg", result);
+
+		return "commons/result";
+	}
+
 	@PostMapping("commentDelete")
 	public String commentDelete(ProductCommentsDTO productCommentsDTO, HttpSession session, Model model) {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");

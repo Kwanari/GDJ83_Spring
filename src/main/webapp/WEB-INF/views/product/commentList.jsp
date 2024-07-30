@@ -4,12 +4,13 @@
 	<div class="row col-md-8">
 			<table class="table table-hover">
 			<tbody>
-				<c:forEach items="${pcDTO}" var="i">
+				<c:forEach items="${pcDTO}" var="i" varStatus="j">
 					<tr>
 					<td>${i.boardwriter}</td>
-					<td>${i.boardcontents}</td>
+					<td id="con${j.index}">${i.boardcontents}</td>
 					<td>${i.createdate}</td>
-					<td><c:if test="${i.boardwriter eq member.member_id}"><button type="button" class="delbtn" id="${i.boardnum}">삭제</button></c:if></td>
+					<td><c:if test="${i.boardwriter eq member.member_id}"><button type="button" class="delbtn" data-del-id="${i.boardnum}">삭제</button></c:if></td>
+					<td><c:if test="${i.boardwriter eq member.member_id}"><button class="btn btn-info ups" data-update-con="con${j.index}" data-del-id="${i.boardnum}" data-toggle="modal" data-target="#commentModal">수정</button></c:if></td>
 					</tr>
 				</c:forEach>
 			</tbody>

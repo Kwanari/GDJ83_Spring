@@ -28,6 +28,10 @@ public class ProductService {
 	@Autowired
 	FileManager filemanager;
 
+	public int commentUpdate(ProductCommentsDTO productCommentsDTO) {
+		return productDAO.commentUpdate(productCommentsDTO);
+	}
+
 	public int commentDelete(ProductCommentsDTO productCommentsDTO) {
 		return productDAO.commentDelete(productCommentsDTO);
 	}

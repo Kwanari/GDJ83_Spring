@@ -4,6 +4,16 @@ const boardContents = document.getElementById("boardContents");
 const commentClose = document.getElementById("commentClose");
 const addWish = document.getElementById("addwish");
 const delbtn = document.getElementsByClassName("delbtn");
+const openModal = document.getElementById("openModal");
+
+let flag=true;
+let boardnum=0;
+
+openModal.addEventListener("click",()=>{
+    flag=true;
+    boardContents.value="";
+    commentAdd.innerHTML="댓글 등록";
+})
 
 let productid=addWish.getAttribute("data-product-id");
 
@@ -23,11 +33,28 @@ commentList.addEventListener("click", (e)=>{
     }
 
     if(e.target.classList.contains("delbtn")){
-        let boardnum = e.target.id
+        boardnum = e.target.getAttribute("data-del-id")
+        
 
         alert("상품번호: "+productid+", 댓글번호: "+boardnum)
 
         delComment(boardnum);
+    }
+
+    if(e.target.classList.contains("ups")){
+        flag=false;
+        
+        boardnum = e.target.getAttribute("data-del-id")
+        
+        let c = e.target.getAttribute("data-update-con")
+
+        c = document.getElementById(c).innerHTML
+
+        boardContents.value = c
+
+        commentAdd.innerHTML="댓글 수정";
+
+
     }
 
 })
@@ -65,28 +92,50 @@ function getList(page){
 }
 
 commentAdd.addEventListener("click", ()=>{
-    commentClose.click();
     let contents = boardContents.value;
+    let url="commentAdd";
 
-    fetch("commentAdd",{
-        method:"post",
-        headers:{
-            "Content-type":"application/x-www-form-urlencoded"
-            },
-        body:"boardcontents="+contents+"&item_id="+productid
-    })
-    .then((res)=>{return res.text()})
-    .then((res)=>{
-        res=res.trim();
-        if(res>0){
-            alert(res)
-            getList(1);
-        } else {
-            alert("실패")
-        }
-    }).catch(()=>{alert("실패")})
+    const form = new FormData();
 
-    boardContents.value="";
+    form.append("boardcontents",contents)
+    form.append("item_id", productid)
+    form.append("boardnum", boardnum)
 
+    // let param="boardcontents="+contents+"&item_id="+productid;
+
+    if(contents==null||contents==""){
+        alert("내용 필요함")
+        return;
+    }
+
+    console.log(flag)
+    
+    if(!flag){
+        url="commentUpdate";
+        // param="boardcontents="+contents+"&boardnum="+boardnum;
+    }
+
+    console.log(url)
+    // console.log(param)
+    
+    commentClose.click();
+
+        fetch(url,{
+            method:"post",
+            body:form
+        })
+        .then((res)=>{return res.text()})
+        .then((res)=>{
+            res=res.trim();
+            if(res>0){
+                alert(res)
+                getList(1);
+            } else {
+                alert("실패")
+            }
+        }).catch(()=>{alert("실패")})
+
+        boardContents.value="";
+    
 
 })

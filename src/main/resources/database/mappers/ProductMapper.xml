@@ -159,4 +159,8 @@
   	<delete id="commentDelete" parameterType="ProductCommentsDTO">
 		DELETE COMMENTS WHERE BOARDWRITER=#{boardwriter} AND ITEM_ID=#{item_id} AND BOARDNUM = #{boardnum}  	
   	</delete>
+  	
+  	<update id="commentUpdate" parameterType="ProductCommentsDTO">
+  		UPDATE COMMENTS SET BOARDCONTENTS=#{boardcontents} WHERE BOARDNUM=#{boardnum}
+  	</update>
   </mapper>
