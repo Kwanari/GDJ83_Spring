@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/summernote.jsp"></c:import>
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->
@@ -69,6 +70,8 @@
 	<script src="/resources/js/commons/files.js"></script>
 	<script>
 		setMax(5);
+		//css 선택자와 같음 id=#, class=.
+		$('#bookDetail').summernote();
 	</script>
 </body>
 </html>

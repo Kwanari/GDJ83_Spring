@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/template/header_css.jsp"></c:import>
+<c:import url="/WEB-INF/views/template/summernote.jsp"></c:import>
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->

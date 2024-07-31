@@ -53,12 +53,12 @@ public class QnaController {
 	}
 
 	@PostMapping("add")
-	public String add(QnaDTO qnaDTO, HttpSession session, MultipartFile[] files) throws Exception {
+	public String add(QnaDTO qnaDTO, HttpSession session, MultipartFile[] attach) throws Exception {
 		MemberDTO dto = (MemberDTO) session.getAttribute("member");
 
 		qnaDTO.setBoardwriter(dto.getMember_id());
 
-		int result = qnaService.add(qnaDTO, session, files);
+		int result = qnaService.add(qnaDTO, session, attach);
 
 		return "redirect:./list";
 	}

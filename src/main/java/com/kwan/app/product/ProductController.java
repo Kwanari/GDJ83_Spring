@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -142,10 +143,11 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(ProductDTO productDTO, Model model, MultipartFile[] files, HttpSession session) throws Exception {
+	public String add(ProductDTO productDTO, Model model, MultipartFile[] attach, HttpSession session)
+			throws Exception {
 		System.out.println("add");
 
-		int result = productService.add(productDTO, files, session);
+		int result = productService.add(productDTO, attach, session);
 
 		System.out.println(result);
 
@@ -195,5 +197,20 @@ public class ProductController {
 		}
 
 		return path;
+	}
+
+	@ExceptionHandler(NullPointerException.class)
+	public void exceptionHandler() {
+
+	}
+
+	@ExceptionHandler(Exception.class)
+	public void exceptionHandler2() {
+
+	}
+
+	@ExceptionHandler(Throwable.class)
+	public void exceptionHandler3() {
+
 	}
 }
